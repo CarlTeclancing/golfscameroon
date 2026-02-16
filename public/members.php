@@ -5,15 +5,15 @@ $memberModel = new Member();
 $members = $memberModel->all();
 include __DIR__ . '/header.php';
 ?>
-  <header class="bg-gradient-to-r from-green-700 to-red-600 p-6 text-white">
-    <div class="max-w-6xl mx-auto">
-      <h1 class="text-3xl font-bold">Our Members</h1>
+  <header class="bg-white border-b border-gray-200 p-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h1 class="text-3xl font-bold text-green-700">Our Members</h1>
     </div>
   </header>
   <main class="max-w-6xl mx-auto p-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <?php foreach ($members as $m): ?>
-        <div class="bg-white rounded shadow p-4">
+        <div class="bg-white rounded shadow p-4 text-center">
           <div class="h-40 bg-gray-100 rounded mb-4 flex items-center justify-center overflow-hidden">
               <?php if (!empty($m['image'])): ?>
               <img src="<?php echo base_url('uploads/' . $m['image']); ?>" alt="<?php echo e($m['name']); ?>" class="object-cover h-full w-full">

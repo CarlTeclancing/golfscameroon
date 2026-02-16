@@ -11,8 +11,10 @@ $routes = [
     'about' => 'about',
     'services' => 'services',
     'members' => 'members',
+    'gallery' => 'gallery',
     'blog' => 'blog',
     'donations' => 'donations',
+    'contact' => 'contact',
     'terms' => 'terms',
 ];
 

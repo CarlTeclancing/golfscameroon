@@ -69,3 +69,10 @@ CREATE TABLE messages (
     message TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE gallery_images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150),
+    image VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

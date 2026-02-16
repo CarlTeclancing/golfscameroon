@@ -159,4 +159,31 @@ function get_setting($key, $default = '') {
     }
 }
 
+// Currency helpers: store rates in settings as JSON mapping to USD base
+function convert_amount($amount, $from = 'USD', $to = null) {
+    if (!$to) $to = get_setting('default_currency', 'USD');
+    $ratesJson = get_setting('currency_rates', '');
+    $rates = $ratesJson ? json_decode($ratesJson, true) : null;
+    if (!$rates || !isset($rates[$from]) || !isset($rates[$to])) {
+        return $amount; // no rates available
+    }
+    // convert from -> USD -> to
+    $amountInUsd = $amount / $rates[$from];
+    $converted = $amountInUsd * $rates[$to];
+    return $converted;
+}
+
+function format_currency($amount, $currency = null) {
+    $currency = $currency ?? get_setting('default_currency', 'USD');
+    $symbols = [ 'USD' => '$', 'EUR' => '€', 'XAF' => 'FCFA' ];
+    // assume stored amounts are in USD
+    $converted = convert_amount((float)$amount, 'USD', $currency);
+    $decimals = in_array($currency, ['XAF']) ? 0 : 2;
+    $fmt = number_format($converted, $decimals);
+    $sym = $symbols[$currency] ?? $currency . ' ';
+    // put symbol appropriately (simple approach)
+    if ($currency === 'XAF') return $fmt . ' ' . $sym;
+    return $sym . $fmt;
+}
+
 ?>

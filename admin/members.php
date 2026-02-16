@@ -37,7 +37,7 @@ if (!empty($_GET['export']) && $_GET['export'] === 'csv') {
 <div class="flex items-center justify-between mb-4">
   <h2 class="text-xl font-semibold text-gray-800">Members</h2>
   <div class="flex gap-2">
-    <a href="member_form.php" class="bg-gradient-to-r from-green-600 to-green-700 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition font-medium"><i class="bi bi-plus-circle"></i> New Member</a>
+    <a href="member_form.php" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition font-medium"><i class="bi bi-plus-circle"></i> New Member</a>
     <a href="?export=csv" class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition font-medium"><i class="bi bi-download"></i> Export CSV</a>
   </div>
 </div>
@@ -57,8 +57,21 @@ if (!empty($_GET['export']) && $_GET['export'] === 'csv') {
         <div class="flex justify-between items-start">
           <div class="flex gap-4">
             <div class="h-36 w-36 bg-gray-100 rounded overflow-hidden">
-              <?php if (!empty($m['image'])): ?>
-                <img src="<?php echo base_url('uploads/' . $m['image']); ?>" class="w-full h-full object-cover">
+              <?php
+                $imgUrl = '';
+                if (!empty($m['image'])) {
+                    $thumbPath = __DIR__ . '/../uploads/thumbs/' . pathinfo($m['image'], PATHINFO_FILENAME) . '.webp';
+                    if (file_exists($thumbPath)) {
+                        $imgUrl = base_url('uploads/thumbs/' . pathinfo($m['image'], PATHINFO_FILENAME) . '.webp');
+                    } else {
+                        $imgUrl = base_url('uploads/' . $m['image']);
+                    }
+                }
+              ?>
+              <?php if (!empty($imgUrl)): ?>
+                <img src="<?php echo e($imgUrl); ?>" class="w-full h-full object-cover">
+              <?php else: ?>
+                <div class="flex items-center justify-center h-full text-gray-400">No image</div>
               <?php endif; ?>
             </div>
             <div>

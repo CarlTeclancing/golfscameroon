@@ -1,11 +1,11 @@
 <?php $page_title = 'Services'; include __DIR__ . '/header.php'; ?>
-  <header class="bg-gradient-to-r from-green-700 to-red-600 p-6 text-white">
-    <div class="max-w-6xl mx-auto">
-      <h1 class="text-3xl font-bold">Our Services</h1>
+  <header class="bg-white border-b border-gray-200 p-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h1 class="text-3xl font-bold text-green-700">Our Services</h1>
     </div>
   </header>
   <main class="max-w-6xl mx-auto p-6">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
       <div class="p-6 bg-white rounded shadow">
         <h4 class="font-semibold">Community Assistance</h4>
         <p class="mt-2 text-sm">Direct support and resources for communities in need.</p>

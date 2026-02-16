@@ -26,7 +26,7 @@ if (!in_array($role, ['admin','editor'])) {
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-900">
   <div class="flex min-h-screen">
-    <aside class="w-64 bg-gradient-to-b from-green-700 to-green-800 text-white border-r border-green-900">
+    <aside class="w-64 bg-green-700 text-white border-r border-green-800">
       <div class="p-4 font-bold text-lg border-b border-green-600">Golfs Cameroon</div>
       <nav class="p-4 space-y-1">
         <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="dashboard.php"><i class="bi bi-graph-up"></i> Dashboard</a>
@@ -34,6 +34,7 @@ if (!in_array($role, ['admin','editor'])) {
         <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="members.php"><i class="bi bi-people"></i> Members</a>
         <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="donations.php"><i class="bi bi-currency-dollar"></i> Donations</a>
         <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="blogs.php"><i class="bi bi-file-text"></i> Blog Manager</a>
+        <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="gallery.php"><i class="bi bi-images"></i> Gallery</a>
         <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="settings.php"><i class="bi bi-gear"></i> Settings</a>
         <hr class="border-green-600 my-3">
         <a class="block py-2 px-3 rounded hover:bg-red-600 transition text-red-100" href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
@@ -46,9 +47,7 @@ if (!in_array($role, ['admin','editor'])) {
             <h1 class="text-2xl font-semibold text-gray-800">Admin Dashboard</h1>
             <p class="text-sm text-gray-600">Welcome, <?php echo e($_SESSION['username'] ?? 'Admin'); ?> (<?php echo e($_SESSION['role'] ?? 'admin'); ?>)</p>
           </div>
-          <div>
-            <button onclick="toggleTheme()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition font-medium"><i class="bi bi-moon"></i> Toggle Theme</button>
-          </div>
+          <div></div>
         </div>
       </header>
 

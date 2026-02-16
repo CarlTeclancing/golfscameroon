@@ -13,10 +13,10 @@ if (!$post) {
 $page_title = $post['title'];
 include __DIR__ . '/header.php';
 ?>
-  <header class="bg-gradient-to-r from-green-700 to-red-600 p-6 text-white">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-3xl font-bold"><?php echo e($post['title']); ?></h1>
-      <p class="text-sm">By <?php echo e($post['author'] ?? 'Admin'); ?> • <?php echo e(date('M d, Y', strtotime($post['created_at']))); ?></p>
+  <header class="bg-white border-b border-gray-200 p-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-3xl font-bold text-green-700"><?php echo e($post['title']); ?></h1>
+      <p class="text-sm text-gray-700">By <?php echo e($post['author'] ?? 'Admin'); ?> • <?php echo e(date('M d, Y', strtotime($post['created_at']))); ?></p>
     </div>
   </header>
   <main class="max-w-4xl mx-auto p-6 bg-white mt-6 rounded shadow">
@@ -27,7 +27,7 @@ include __DIR__ . '/header.php';
       <?php echo $post['content']; ?>
     </div>
     <div class="mt-6">
-      <a href="<?php echo base_url('public/blog.php'); ?>" class="text-green-700 hover:text-red-600">← Back to blog</a>
+      <a href="<?php echo base_url('blog'); ?>" class="text-green-700 hover:text-red-600">← Back to blog</a>
     </div>
   </main>
 <?php include __DIR__ . '/footer.php'; ?>

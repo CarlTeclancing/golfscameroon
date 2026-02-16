@@ -14,12 +14,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['_action'] ?? '') === 'sett
     if (!verify_csrf($_POST['_csrf'] ?? '')) { 
         $error = 'Invalid CSRF token'; 
     } else {
-        $keys = ['site_name', 'site_description', 'site_logo', 'about_text', 'contact_email', 'contact_phone', 'address'];
-        foreach ($keys as $key) {
+        // Basic text fields
+        $textKeys = ['site_name', 'site_description', 'about_text', 'contact_email', 'contact_phone', 'address'];
+        foreach ($textKeys as $key) {
             $value = $_POST[$key] ?? '';
             $settingModel->set($key, $value);
         }
-        $msg = 'Settings updated successfully!';
+
+        // Currency settings
+        $defaultCurrency = $_POST['default_currency'] ?? 'USD';
+        $rate_usd = floatval($_POST['rate_usd'] ?? 1);
+        $rate_xaf = floatval($_POST['rate_xaf'] ?? 600);
+        $rate_eur = floatval($_POST['rate_eur'] ?? 0.9);
+        $rates = ['USD' => $rate_usd, 'XAF' => $rate_xaf, 'EUR' => $rate_eur];
+        $settingModel->set('default_currency', $defaultCurrency);
+        $settingModel->set('currency_rates', json_encode($rates));
+
+        // Handle logo upload (optional)
+        if (!empty($_FILES['site_logo_file']['name'])) {
+            $upload = upload_image($_FILES['site_logo_file'], __DIR__ . '/../uploads');
+            if ($upload['success']) {
+                // store relative path so header can use base_url()
+                $logoPath = 'uploads/' . $upload['filename'];
+                $settingModel->set('site_logo', $logoPath);
+            } else {
+                $error = 'Logo upload failed: ' . $upload['error'];
+            }
+        }
+
+        if (empty($error)) $msg = 'Settings updated successfully!';
     }
 }
 
@@ -74,7 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['_action'] ?? '') === 'dele
 $settings = $settingModel->all();
 $settingsMap = [];
 foreach ($settings as $s) {
-    $settingsMap[$s['key']] = $s['value'];
+    // settings table uses `key_name` column
+    $k = $s['key_name'] ?? ($s['key'] ?? null);
+    if ($k) $settingsMap[$k] = $s['value'];
 }
 
 // Get all admin users
@@ -101,7 +126,7 @@ $allUsers = $userModel->all();
         <div class="lg:col-span-2">
             <div class="bg-white rounded-lg shadow p-6">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4"><i class="bi bi-sliders"></i> Global Website Settings</h3>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_csrf" value="<?php echo csrf_token(); ?>">
                     <input type="hidden" name="_action" value="settings">
 
@@ -117,9 +142,45 @@ $allUsers = $userModel->all();
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Logo URL</label>
-                        <input type="text" name="site_logo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" 
-                               placeholder="https://example.com/logo.png" value="<?php echo e($settingsMap['site_logo'] ?? ''); ?>">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Site Logo (upload)</label>
+                        <?php $currentLogo = $settingsMap['site_logo'] ?? ''; ?>
+                        <?php if (!empty($currentLogo)): ?>
+                            <div class="mb-2">
+                                <img src="<?php echo e(base_url($currentLogo)); ?>" alt="Current logo" class="h-16 object-contain">
+                            </div>
+                        <?php endif; ?>
+                        <input type="file" name="site_logo_file" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Default Currency</label>
+                        <select name="default_currency" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                            <?php $def = $settingsMap['default_currency'] ?? 'USD'; ?>
+                            <option value="USD" <?php echo ($def === 'USD') ? 'selected' : ''; ?>>USD</option>
+                            <option value="XAF" <?php echo ($def === 'XAF') ? 'selected' : ''; ?>>XAF</option>
+                            <option value="EUR" <?php echo ($def === 'EUR') ? 'selected' : ''; ?>>EUR</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <?php
+                            $rates = json_decode($settingsMap['currency_rates'] ?? '{}', true);
+                            $r_usd = $rates['USD'] ?? 1;
+                            $r_xaf = $rates['XAF'] ?? 600;
+                            $r_eur = $rates['EUR'] ?? 0.9;
+                        ?>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Rate USD</label>
+                            <input type="number" step="0.0001" name="rate_usd" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" value="<?php echo e($r_usd); ?>">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Rate XAF</label>
+                            <input type="number" step="0.0001" name="rate_xaf" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" value="<?php echo e($r_xaf); ?>">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Rate EUR</label>
+                            <input type="number" step="0.0001" name="rate_eur" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" value="<?php echo e($r_eur); ?>">
+                        </div>
                     </div>
 
                     <div class="mb-4">
@@ -145,7 +206,7 @@ $allUsers = $userModel->all();
                                value="<?php echo e($settingsMap['address'] ?? 'Yaounde, Cameroon'); ?>">
                     </div>
 
-                    <button class="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition font-medium">
+                    <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-medium">
                         <i class="bi bi-check-circle"></i> Save Settings
                     </button>
                 </form>
@@ -208,7 +269,7 @@ $allUsers = $userModel->all();
             </div>
 
             <div class="flex items-end">
-                <button class="w-full bg-gradient-to-r from-green-600 to-green-700 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition font-medium">
+                <button class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition font-medium">
                     <i class="bi bi-plus-circle"></i> Create
                 </button>
             </div>

@@ -1,10 +1,10 @@
 <?php $page_title = 'Terms & Conditions'; include __DIR__ . '/header.php'; ?>
-  <header class="bg-gradient-to-r from-green-700 to-red-600 p-6 text-white">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-2xl font-bold">Terms & Conditions</h1>
+  <header class="bg-white border-b border-gray-200 p-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-2xl font-bold text-green-700">Terms & Conditions</h1>
     </div>
   </header>
-  <main class="max-w-4xl mx-auto p-6 bg-white mt-6 rounded shadow">
+  <main class="max-w-4xl mx-auto p-6 bg-white mt-6 rounded shadow text-center">
     <h2 class="font-semibold">Privacy</h2>
     <p>We respect donor privacy. Data collected during donations is used only for administrative purposes.</p>
 

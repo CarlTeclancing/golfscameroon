@@ -11,103 +11,129 @@ $db = $database->getConnection();
 $projStmt = $db->query('SELECT * FROM projects ORDER BY created_at DESC');
 $projects = $projStmt->fetchAll();
 
-// handle donation form post
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!verify_csrf($_POST['_csrf'] ?? '')) {
-        $error = 'Invalid CSRF token';
-    } else {
-        $donorModel = new Donor($db);
-        $donationModel = new Donation($db);
-
-        $donorData = [
-            'name' => $_POST['full_name'],
-            'email' => $_POST['email'],
-            'location' => $_POST['location'] ?? null,
-            'phone' => $_POST['phone'] ?? null,
-        ];
-        $donorModel->create($donorData);
-        $donor_id = $donorModel->findLastInsertId();
-
-        $project_id = (int) ($_POST['project_id'] ?? 0);
-        $amount = (float) ($_POST['amount'] ?? 0);
-        $donationModel->create($donor_id, $project_id, $amount);
-
-        // fetch payment link
-        $ps = $db->prepare('SELECT payment_link FROM projects WHERE id = :id');
-        $ps->execute([':id'=>$project_id]);
-        $p = $ps->fetch();
-        $payment_link = $p['payment_link'] ?? '/';
-
-        // redirect to payment link
-        header('Location: ' . $payment_link);
-        exit;
-    }
+// compute project progress helper
+function project_progress($db, $project_id, $target) {
+  try {
+    $stmt = $db->prepare('SELECT SUM(amount) as s FROM donations WHERE project_id = :id');
+    $stmt->execute([':id'=>$project_id]);
+    $row = $stmt->fetch();
+    $sum = $row['s'] ?? 0;
+    $pct = $target > 0 ? min(100, round(($sum / $target) * 100)) : 0;
+    return [$sum, $pct];
+  } catch (Exception $e) { return [0,0]; }
 }
+
 $page_title = 'Donate';
 include __DIR__ . '/header.php';
 ?>
-  <header class="bg-gradient-to-r from-green-700 to-red-600 p-6 text-white">
-    <div class="max-w-6xl mx-auto">
-      <h1 class="text-3xl font-bold">Support Our Projects</h1>
+  <header class="bg-white border-b border-gray-200 p-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h1 class="text-3xl font-bold text-green-700">Support Our Projects</h1>
+      <p class="text-gray-700 mt-2">Help us make a difference by supporting any of our active projects.</p>
     </div>
   </header>
   <main class="max-w-6xl mx-auto p-6">
-    <?php if (!empty($error)): ?>
-      <div class="bg-red-100 text-red-800 p-3 rounded mb-4"><?php echo e($error); ?></div>
-    <?php endif; ?>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <h2 class="text-xl font-semibold mb-4">Active Projects</h2>
-        <?php foreach ($projects as $proj):
-            $progress = ($proj['target_amount'] > 0) ? rand(5,90) : 0; // placeholder for real calc
-        ?>
-          <div class="bg-white p-4 rounded shadow mb-4">
-            <h3 class="font-semibold"><?php echo e($proj['name']); ?></h3>
-            <p class="text-sm text-gray-700"><?php echo e(substr($proj['description'],0,160)); ?>...</p>
-            <div class="mt-3">
-              <div class="w-full bg-gray-200 rounded h-3 overflow-hidden">
-                <div class="bg-green-500 h-3" style="width: <?php echo $progress; ?>%"></div>
-              </div>
-              <p class="text-sm text-gray-600 mt-1"><?php echo $progress; ?>% of <?php echo number_format($proj['target_amount'],2); ?></p>
+    <h2 class="text-2xl font-semibold mb-6 text-center">Active Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <?php foreach ($projects as $proj):
+        list($raised,$progress) = project_progress($db, $proj['id'], $proj['target_amount']);
+      ?>
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+          <h3 class="text-lg font-semibold mb-2"><?php echo e($proj['name']); ?></h3>
+          <p class="text-sm text-gray-700 mb-4"><?php echo e(substr($proj['description'],0,150)); ?>...</p>
+          <div class="mb-4">
+            <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+              <div class="bg-green-500 h-2" style="width: <?php echo $progress; ?>%"></div>
             </div>
-            <a href="#donate" data-project="<?php echo e($proj['id']); ?>" class="mt-3 inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Donate</a>
+            <p class="text-xs text-gray-600 mt-2"><?php echo $progress; ?>% funded • Goal: <?php echo format_currency($proj['target_amount']); ?></p>
           </div>
-        <?php endforeach; ?>
-      </div>
-      <div>
-        <h2 class="text-xl font-semibold mb-4">Donate Now</h2>
-        <form method="post" id="donateForm" action="">
-          <input type="hidden" name="_csrf" value="<?php echo csrf_token(); ?>">
-          <input type="hidden" name="project_id" id="project_id" value="<?php echo e($projects[0]['id'] ?? 0); ?>">
-          <label class="block mb-2">Full name
-            <input name="full_name" class="w-full p-2 border rounded" required>
-          </label>
-          <label class="block mb-2">Email
-            <input type="email" name="email" class="w-full p-2 border rounded" required>
-          </label>
-          <label class="block mb-2">Location
-            <input name="location" class="w-full p-2 border rounded">
-          </label>
-          <label class="block mb-2">Phone
-            <input name="phone" class="w-full p-2 border rounded">
-          </label>
-          <label class="block mb-2">Amount (USD)
-            <input name="amount" type="number" step="0.01" class="w-full p-2 border rounded" required>
-          </label>
-          <button class="bg-green-600 text-white px-4 py-2 rounded">Continue to Payment</button>
-        </form>
-      </div>
+          <button class="w-full bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition font-medium"
+                  onclick="openDonateModal(<?php echo e($proj['id']); ?>, '<?php echo e($proj['name']); ?>')">
+            <i class="bi bi-heart"></i> Donate Now
+          </button>
+        </div>
+      <?php endforeach; ?>
     </div>
   </main>
+
+  <!-- Donation Modal -->
+  <div id="donateModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+      <div class="bg-green-700 text-white p-6 flex justify-between items-center">
+        <h2 class="text-xl font-bold">Make a Donation</h2>
+        <button onclick="closeDonateModal()" class="text-white hover:text-gray-200 text-2xl">&times;</button>
+      </div>
+      
+      <form id="donateForm" method="post" action="<?php echo base_url('api/process_donation.php'); ?>" class="p-6 space-y-4">
+        <input type="hidden" name="_csrf" value="<?php echo csrf_token(); ?>">
+        <input type="hidden" name="project_id" id="modal_project_id" value="">
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Project</label>
+          <p id="modal_project_name" class="font-semibold text-gray-900"></p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+          <input type="text" name="full_name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" required>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+          <input type="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" required>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+            <input type="tel" name="phone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+            <input type="text" name="location" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Amount (USD) *</label>
+          <input type="number" name="amount" step="0.01" min="1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" required>
+        </div>
+
+        <button type="submit" class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition font-medium">
+          Continue to Payment
+        </button>
+      </form>
+    </div>
+  </div>
+
 <?php include __DIR__ . '/footer.php'; ?>
+
   <script>
-    // basic behavior: clicking Donate on a project sets the project id in the donate form
-    document.querySelectorAll('a[data-project]').forEach(function(el){
-      el.addEventListener('click', function(e){
-        e.preventDefault();
-        var pid = this.getAttribute('data-project');
-        document.getElementById('project_id').value = pid;
-        window.scrollTo({top: document.getElementById('donateForm').offsetTop - 20, behavior: 'smooth'});
-      });
+    function openDonateModal(projectId, projectName) {
+      document.getElementById('modal_project_id').value = projectId;
+      document.getElementById('modal_project_name').textContent = projectName;
+      document.getElementById('donateModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDonateModal() {
+      document.getElementById('donateModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      document.getElementById('donateForm').reset();
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('donateModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeDonateModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeDonateModal();
+      }
     });
   </script>
+

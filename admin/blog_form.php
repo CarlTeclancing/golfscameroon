@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <textarea id="editor" name="content" class="w-full p-2 border rounded" rows="12"><?php echo e($post['content'] ?? ''); ?></textarea>
     </label>
 
-    <button class="bg-gradient-to-r from-green-600 to-green-700 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition font-medium"><i class="bi bi-check-circle"></i> Save</button>
+    <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition font-medium"><i class="bi bi-check-circle"></i> Save</button>
   </form>
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   <script>

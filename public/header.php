@@ -35,14 +35,14 @@ function nav_link_class($route, $is_mobile = false) {
     $is_active = ($current_page === $route) || ($route === 'home' && $current_page === '');
 
     if ($is_mobile) {
-        return $is_active
-            ? 'block px-4 py-2 bg-red-600 text-white font-semibold'
-            : 'block px-4 py-2 text-white hover:bg-green-600';
+      return $is_active
+        ? 'block px-4 py-2 bg-red-600 text-white font-semibold'
+        : 'block px-4 py-2 text-green-800 hover:bg-green-50';
     }
 
     return $is_active
-        ? 'text-red-300 font-semibold border-b-2 border-red-300 pb-1'
-        : 'text-white hover:text-red-200';
+      ? 'text-red-600 font-semibold border-b-2 border-red-600 pb-1'
+      : 'text-green-700 hover:text-red-600';
 }
 ?>
 <!doctype html>
@@ -55,14 +55,14 @@ function nav_link_class($route, $is_mobile = false) {
   <script src="<?php echo asset_url('assets/app.js'); ?>" defer></script>
   <title><?php echo isset($page_title) ? e($page_title) . ' - ' . e($site_name) : e($site_name); ?></title>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <nav class="bg-green-700 shadow-sm sticky top-0 z-50">
+<body class="bg-white text-gray-800">
+  <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center gap-4">
-          <a href="<?php echo base_url(''); ?>" class="text-xl font-bold text-white flex items-center gap-2">
+          <a href="<?php echo base_url(''); ?>" class="text-xl font-bold text-green-700 flex items-center gap-2">
             <?php if (!empty($site_logo)): ?>
-              <img src="<?php echo e($site_logo); ?>" alt="Logo" class="h-8 w-auto">
+              <img src="<?php echo e(base_url($site_logo)); ?>" alt="Logo" class="h-8 w-auto">
             <?php endif; ?>
             <?php echo e($site_name); ?>
           </a>
@@ -71,25 +71,28 @@ function nav_link_class($route, $is_mobile = false) {
             <a href="<?php echo base_url('about'); ?>" class="<?php echo nav_link_class('about'); ?>">About</a>
             <a href="<?php echo base_url('services'); ?>" class="<?php echo nav_link_class('services'); ?>">Services</a>
             <a href="<?php echo base_url('members'); ?>" class="<?php echo nav_link_class('members'); ?>">Members</a>
+            <a href="<?php echo base_url('gallery'); ?>" class="<?php echo nav_link_class('gallery'); ?>">Gallery</a>
             <a href="<?php echo base_url('blog'); ?>" class="<?php echo nav_link_class('blog'); ?>">Blog</a>
             <a href="<?php echo base_url('donations'); ?>" class="<?php echo nav_link_class('donations'); ?>">Donate</a>
           </div>
         </div>
         <div class="flex items-center gap-4">
-          <button onclick="toggleTheme()" class="hidden sm:inline px-3 py-1 border border-white text-white rounded hover:bg-green-600">Toggle</button>
+          <a href="<?php echo base_url('contact'); ?>" class="hidden sm:inline bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Contact Us</a>
           <button id="mobile-menu-btn" class="md:hidden px-3 py-2 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
         </div>
       </div>
     </div>
-    <div id="mobile-nav" class="md:hidden hidden bg-green-700 border-t border-green-600">
+    <div id="mobile-nav" class="md:hidden hidden bg-white border-t border-gray-200">
       <a class="<?php echo nav_link_class('home', true); ?>" href="<?php echo base_url(''); ?>">Home</a>
       <a class="<?php echo nav_link_class('about', true); ?>" href="<?php echo base_url('about'); ?>">About</a>
       <a class="<?php echo nav_link_class('services', true); ?>" href="<?php echo base_url('services'); ?>">Services</a>
       <a class="<?php echo nav_link_class('members', true); ?>" href="<?php echo base_url('members'); ?>">Members</a>
+      <a class="<?php echo nav_link_class('gallery', true); ?>" href="<?php echo base_url('gallery'); ?>">Gallery</a>
       <a class="<?php echo nav_link_class('blog', true); ?>" href="<?php echo base_url('blog'); ?>">Blog</a>
       <a class="<?php echo nav_link_class('donations', true); ?>" href="<?php echo base_url('donations'); ?>">Donate</a>
+      <a class="<?php echo nav_link_class('contact', true); ?>" href="<?php echo base_url('contact'); ?>">Contact</a>
     </div>
   </nav>
 

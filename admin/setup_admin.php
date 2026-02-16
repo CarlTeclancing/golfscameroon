@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Admin Setup - Golfs Cameroon</title>
 </head>
-<body class="bg-gradient-to-br from-green-50 to-red-50 flex items-center justify-center min-h-screen p-4">
+<body class="bg-white flex items-center justify-center min-h-screen p-4">
     <div class="w-full max-w-md bg-white rounded-lg shadow-xl p-8">
         <h1 class="text-3xl font-bold text-center mb-2 text-green-700">Admin Setup</h1>
         <p class="text-center text-gray-600 text-sm mb-6">Create your first admin user</p>
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
             </div>
             
-            <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition">
+            <button type="submit" class="w-full bg-green-600 text-white font-semibold py-2 rounded-lg hover:bg-green-700 transition">
                 Create Admin User
             </button>
         </form>

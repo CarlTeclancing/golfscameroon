@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if (!empty($project['image'])): ?>
       <div class="mb-3"><img src="<?php echo base_url('uploads/' . $project['image']); ?>" class="h-32 object-cover rounded"></div>
     <?php endif; ?>
-    <button class="bg-gradient-to-r from-green-600 to-green-700 text-white px-4 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition font-medium"><i class="bi bi-check-circle"></i> <?php echo $project ? 'Update' : 'Create'; ?></button>
+    <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition font-medium"><i class="bi bi-check-circle"></i> <?php echo $project ? 'Update' : 'Create'; ?></button>
   </form>
 </div>
 
