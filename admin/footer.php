@@ -11,5 +11,19 @@
       </div>
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var btn = document.getElementById('admin-notify-btn');
+      var menu = document.getElementById('admin-notify-menu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        menu.classList.toggle('hidden');
+      });
+      document.addEventListener('click', function(){
+        if (!menu.classList.contains('hidden')) menu.classList.add('hidden');
+      });
+    });
+  </script>
 </body>
 </html>

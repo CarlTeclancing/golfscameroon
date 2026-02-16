@@ -40,6 +40,9 @@ function base_url($path = '') {
         if (preg_match('#/public$#', $base)) {
             $base = preg_replace('#/public$#', '', $base);
         }
+        if (preg_match('#/admin$#', $base)) {
+            $base = preg_replace('#/admin$#', '', $base);
+        }
     }
     
     $base = $base === '/' ? '' : $base;

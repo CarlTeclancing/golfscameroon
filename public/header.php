@@ -3,6 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 require_once __DIR__ . '/../config/helpers.php';
+require_once __DIR__ . '/../config/visitor-tracker.php';
 $site_name = get_setting('site_name', 'Golfs Cameroon');
 $site_logo = get_setting('site_logo', '');
 
@@ -58,13 +59,14 @@ function nav_link_class($route, $is_mobile = false) {
 <body class="bg-white text-gray-800">
   <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="flex items-center justify-between h-16">
+      <div class="flex items-center justify-between py-4">
         <div class="flex items-center gap-4">
           <a href="<?php echo base_url(''); ?>" class="text-xl font-bold text-green-700 flex items-center gap-2">
             <?php if (!empty($site_logo)): ?>
-              <img src="<?php echo e(base_url($site_logo)); ?>" alt="Logo" class="h-8 w-auto">
+              <img src="<?php echo e(base_url($site_logo)); ?>" alt="Logo" class="h-20 w-auto">
+            <?php else: ?>
+              <span class="sr-only"><?php echo e($site_name); ?></span>
             <?php endif; ?>
-            <?php echo e($site_name); ?>
           </a>
           <div class="hidden md:flex items-center space-x-4 text-sm">
             <a href="<?php echo base_url(''); ?>" class="<?php echo nav_link_class('home'); ?>">Home</a>
@@ -78,7 +80,7 @@ function nav_link_class($route, $is_mobile = false) {
         </div>
         <div class="flex items-center gap-4">
           <a href="<?php echo base_url('contact'); ?>" class="hidden sm:inline bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Contact Us</a>
-          <button id="mobile-menu-btn" class="md:hidden px-3 py-2 text-white">
+          <button id="mobile-menu-btn" class="md:hidden px-3 py-2 text-green-700 hover:text-red-600 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
         </div>
@@ -98,8 +100,17 @@ function nav_link_class($route, $is_mobile = false) {
 
   <script>
     document.addEventListener('DOMContentLoaded', function(){
-      initMobileMenu('#mobile-menu-btn', '#mobile-nav');
-      initScrollReveal();
+      var btn = document.querySelector('#mobile-menu-btn');
+      var nav = document.querySelector('#mobile-nav');
+      if (btn && nav) {
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          nav.classList.toggle('hidden');
+        });
+      }
+      if (typeof initScrollReveal === 'function') {
+        initScrollReveal();
+      }
     });
   </script>
 </body>

@@ -76,3 +76,13 @@ CREATE TABLE gallery_images (
     image VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE visitors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    page VARCHAR(255) NOT NULL,
+    ip_address VARCHAR(45),
+    user_agent VARCHAR(500),
+    visited_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_page (page),
+    INDEX idx_visited_at (visited_at)
+);
