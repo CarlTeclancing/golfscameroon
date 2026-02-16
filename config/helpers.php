@@ -26,6 +26,73 @@ function redirect($url) {
     exit;
 }
 
+function supported_languages() {
+    return [
+        'en' => 'English',
+        'fr' => 'Français',
+        'es' => 'Español'
+    ];
+}
+
+// Handle language switch via query parameter
+if (isset($_GET['lang'])) {
+    $lang = strtolower(trim($_GET['lang']));
+    $supported = supported_languages();
+    if (isset($supported[$lang])) {
+        $_SESSION['lang'] = $lang;
+    }
+}
+
+function current_lang() {
+    return $_SESSION['lang'] ?? 'en';
+}
+
+function t($key, $fallback = null) {
+    $translations = [
+        'en' => [
+            'nav.home' => 'Home',
+            'nav.about' => 'About',
+            'nav.services' => 'Services',
+            'nav.members' => 'Members',
+            'nav.gallery' => 'Gallery',
+            'nav.blog' => 'Blog',
+            'nav.donate' => 'Donate',
+            'nav.contact' => 'Contact',
+            'nav.contact_us' => 'Contact Us',
+            'nav.language' => 'Language'
+        ],
+        'fr' => [
+            'nav.home' => 'Accueil',
+            'nav.about' => 'À propos',
+            'nav.services' => 'Services',
+            'nav.members' => 'Membres',
+            'nav.gallery' => 'Galerie',
+            'nav.blog' => 'Blog',
+            'nav.donate' => 'Faire un don',
+            'nav.contact' => 'Contact',
+            'nav.contact_us' => 'Nous contacter',
+            'nav.language' => 'Langue'
+        ],
+        'es' => [
+            'nav.home' => 'Inicio',
+            'nav.about' => 'Acerca de',
+            'nav.services' => 'Servicios',
+            'nav.members' => 'Miembros',
+            'nav.gallery' => 'Galería',
+            'nav.blog' => 'Blog',
+            'nav.donate' => 'Donar',
+            'nav.contact' => 'Contacto',
+            'nav.contact_us' => 'Contáctanos',
+            'nav.language' => 'Idioma'
+        ]
+    ];
+
+    $lang = current_lang();
+    if (isset($translations[$lang][$key])) return $translations[$lang][$key];
+    if (isset($translations['en'][$key])) return $translations['en'][$key];
+    return $fallback ?? $key;
+}
+
 // Return project base URL (auto-detects if app is in a subfolder)
 function base_url($path = '') {
     $script = $_SERVER['SCRIPT_NAME'] ?? '';

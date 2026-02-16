@@ -77,11 +77,19 @@ try {
 $projectsLast7 = $db->query("SELECT COUNT(*) as c FROM projects WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)")->fetch()['c'] ?? 0;
 $membersLast7 = $db->query("SELECT COUNT(*) as c FROM members WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)")->fetch()['c'] ?? 0;
 $donationsLast7 = $db->query("SELECT COUNT(*) as c FROM donations WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)")->fetch()['c'] ?? 0;
+
+// Contact submissions
+$contactMessages = [];
+try {
+    $contactMessages = $db->query("SELECT name, email, message, created_at FROM messages ORDER BY created_at DESC")->fetchAll();
+} catch (Exception $e) {
+    // messages table may not exist yet
+}
 ?>
 
-<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mb-6">
     <!-- Projects Card -->
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+    <div class="bg-white p-4 sm:p-6 rounded-lg shadow hover:shadow-lg transition">
         <div class="flex items-start justify-between">
             <div>
                 <p class="text-sm text-gray-600">Projects</p>
@@ -95,7 +103,7 @@ $donationsLast7 = $db->query("SELECT COUNT(*) as c FROM donations WHERE created_
     </div>
 
     <!-- Members Card -->
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+    <div class="bg-white p-4 sm:p-6 rounded-lg shadow hover:shadow-lg transition">
         <div class="flex items-start justify-between">
             <div>
                 <p class="text-sm text-gray-600">Members</p>
@@ -109,7 +117,7 @@ $donationsLast7 = $db->query("SELECT COUNT(*) as c FROM donations WHERE created_
     </div>
 
     <!-- Donors Card -->
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+    <div class="bg-white p-4 sm:p-6 rounded-lg shadow hover:shadow-lg transition">
         <div class="flex items-start justify-between">
             <div>
                 <p class="text-sm text-gray-600">Donors</p>
@@ -123,7 +131,7 @@ $donationsLast7 = $db->query("SELECT COUNT(*) as c FROM donations WHERE created_
     </div>
 
     <!-- Donations Card -->
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+    <div class="bg-white p-4 sm:p-6 rounded-lg shadow hover:shadow-lg transition">
         <div class="flex items-start justify-between">
             <div>
                 <p class="text-sm text-gray-600">Donations</p>
@@ -137,7 +145,7 @@ $donationsLast7 = $db->query("SELECT COUNT(*) as c FROM donations WHERE created_
     </div>
 
     <!-- Blog Posts Card -->
-    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+    <div class="bg-white p-4 sm:p-6 rounded-lg shadow hover:shadow-lg transition">
         <div class="flex items-start justify-between">
             <div>
                 <p class="text-sm text-gray-600">Blog Posts</p>
@@ -150,56 +158,9 @@ $donationsLast7 = $db->query("SELECT COUNT(*) as c FROM donations WHERE created_
         </div>
     </div>
 </section>
-
-<!-- Visitor Analytics -->
-<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-    <!-- Total Visitors -->
-    <div class="bg-white p-6 rounded-lg shadow">
-        <h3 class="text-sm text-gray-600 mb-2">Total Visitors (All Time)</h3>
-        <p class="text-3xl font-bold text-indigo-700"><?php echo e(number_format($totalVisitors)); ?></p>
-        <p class="text-xs text-gray-500 mt-2">Unique page visits tracked</p>
-    </div>
-
-    <!-- Today's Visitors -->
-    <div class="bg-white p-6 rounded-lg shadow">
-        <h3 class="text-sm text-gray-600 mb-2">Today's Visitors</h3>
-        <p class="text-3xl font-bold text-teal-700"><?php echo e(number_format($todayVisitors)); ?></p>
-        <p class="text-xs text-gray-500 mt-2"><?php echo e(date('M d, Y')); ?></p>
-    </div>
-
-    <!-- Top Page -->
-    <div class="bg-white p-6 rounded-lg shadow">
-        <h3 class="text-sm text-gray-600 mb-2">Most Visited Page</h3>
-        <?php if (!empty($topPages)): ?>
-            <p class="text-2xl font-bold text-cyan-700 truncate"><?php echo e(ucfirst(str_replace('_', ' ', $topPages[0]['page']))); ?></p>
-            <p class="text-xs text-gray-500 mt-2"><?php echo e(number_format($topPages[0]['count'])); ?> visits (30d)</p>
-        <?php else: ?>
-            <p class="text-lg text-gray-400">No data</p>
-        <?php endif; ?>
-    </div>
-</section>
-
-<!-- Top Pages List -->
-<?php if (!empty($topPages)): ?>
-<section class="mb-6 bg-white p-6 rounded-lg shadow">
-    <h3 class="text-lg font-semibold mb-4 text-gray-800"><i class="bi bi-graph-up"></i> Top Pages (Last 30 Days)</h3>
-    <div class="space-y-2">
-        <?php foreach ($topPages as $idx => $pg): ?>
-            <div class="flex items-center justify-between pb-2 border-b border-gray-100">
-                <div class="flex items-center gap-3">
-                    <span class="inline-block bg-green-100 text-green-700 text-sm font-bold px-3 py-1 rounded-full w-8 h-8 flex items-center justify-center"><?php echo ($idx + 1); ?></span>
-                    <span class="text-gray-700"><?php echo e(ucfirst(str_replace('_', ' ', $pg['page']))); ?></span>
-                </div>
-                <span class="text-gray-600 font-medium"><?php echo e(number_format($pg['count'])); ?> visits</span>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</section>
-<?php endif; ?>
-
-<section class="mt-6 bg-white p-6 rounded-lg shadow">
+<section class="mt-6 bg-white p-4 sm:p-6 rounded-lg shadow">
     <h2 class="text-xl font-semibold mb-4 text-gray-800"><i class="bi bi-graph-up"></i> Monthly Donation Trend (Last 12 Months)</h2>
-    <div style="position: relative; height: 400px; margin-bottom: 20px;">
+    <div class="relative h-64 sm:h-80 lg:h-96 mb-5">
         <canvas id="donationsChart"></canvas>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
@@ -216,6 +177,87 @@ $donationsLast7 = $db->query("SELECT COUNT(*) as c FROM donations WHERE created_
             <p class="text-2xl font-bold text-purple-700"><?php echo format_currency($peakAmount, $currency); ?></p>
         </div>
     </div>
+</section>
+
+<!-- Visitor Analytics -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 pt-8 sm:pt-12">
+    <!-- Total Visitors -->
+    <div class="bg-white p-4 sm:p-6 rounded-lg shadow">
+        <h3 class="text-sm text-gray-600 mb-2">Total Visitors (All Time)</h3>
+        <p class="text-3xl font-bold text-indigo-700"><?php echo e(number_format($totalVisitors)); ?></p>
+        <p class="text-xs text-gray-500 mt-2">Unique page visits tracked</p>
+    </div>
+
+    <!-- Today's Visitors -->
+    <div class="bg-white p-4 sm:p-6 rounded-lg shadow">
+        <h3 class="text-sm text-gray-600 mb-2">Today's Visitors</h3>
+        <p class="text-3xl font-bold text-teal-700"><?php echo e(number_format($todayVisitors)); ?></p>
+        <p class="text-xs text-gray-500 mt-2"><?php echo e(date('M d, Y')); ?></p>
+    </div>
+
+    <!-- Top Page -->
+    <div class="bg-white p-4 sm:p-6 rounded-lg shadow">
+        <h3 class="text-sm text-gray-600 mb-2">Most Visited Page</h3>
+        <?php if (!empty($topPages)): ?>
+            <p class="text-2xl font-bold text-cyan-700 truncate"><?php echo e(ucfirst(str_replace('_', ' ', $topPages[0]['page']))); ?></p>
+            <p class="text-xs text-gray-500 mt-2"><?php echo e(number_format($topPages[0]['count'])); ?> visits (30d)</p>
+        <?php else: ?>
+            <p class="text-lg text-gray-400">No data</p>
+        <?php endif; ?>
+    </div>
+</section>
+
+<!-- Top Pages List -->
+<?php if (!empty($topPages)): ?>
+<section class="mb-6 bg-white p-4 sm:p-6 rounded-lg shadow">
+    <h3 class="text-lg font-semibold mb-4 text-gray-800"><i class="bi bi-graph-up"></i> Top Pages (Last 30 Days)</h3>
+    <div class="space-y-2">
+        <?php foreach ($topPages as $idx => $pg): ?>
+            <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+                <div class="flex items-center gap-3">
+                    <span class="inline-block bg-green-100 text-green-700 text-sm font-bold px-3 py-1 rounded-full w-8 h-8 flex items-center justify-center"><?php echo ($idx + 1); ?></span>
+                    <span class="text-gray-700"><?php echo e(ucfirst(str_replace('_', ' ', $pg['page']))); ?></span>
+                </div>
+                <span class="text-gray-600 font-medium"><?php echo e(number_format($pg['count'])); ?> visits</span>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>
+<?php endif; ?>
+
+<!-- Contact Submissions -->
+<section class="mb-6 bg-white p-4 sm:p-6 rounded-lg shadow">
+    <h3 class="text-lg font-semibold mb-4 text-gray-800"><i class="bi bi-envelope"></i> Contact Submissions</h3>
+    <?php if (empty($contactMessages)): ?>
+        <p class="text-gray-500">No contact submissions yet.</p>
+    <?php else: ?>
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-xs sm:text-sm">
+                <thead>
+                    <tr class="text-left text-gray-600 border-b">
+                        <th class="py-2 pr-4">Name</th>
+                        <th class="py-2 pr-4">Email</th>
+                        <th class="py-2 pr-4">Message</th>
+                        <th class="py-2">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($contactMessages as $msg): ?>
+                        <tr class="border-b border-gray-100 align-top">
+                            <td class="py-3 pr-4 font-medium text-gray-800"><?php echo e($msg['name']); ?></td>
+                            <td class="py-3 pr-4 text-gray-700"><?php echo e($msg['email']); ?></td>
+                            <td class="py-3 pr-4 text-gray-700">
+                                <div class="max-w-xl whitespace-pre-line break-words"><?php echo e($msg['message']); ?></div>
+                            </td>
+                            <td class="py-3 text-gray-600 whitespace-nowrap">
+                                <?php echo e(date('M d, Y H:i', strtotime($msg['created_at']))); ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php endif; ?>
 </section>
 
 <script>

@@ -6,6 +6,8 @@ require_once __DIR__ . '/../config/helpers.php';
 require_once __DIR__ . '/../config/visitor-tracker.php';
 $site_name = get_setting('site_name', 'Golfs Cameroon');
 $site_logo = get_setting('site_logo', '');
+$languages = supported_languages();
+$current_lang = current_lang();
 
 $path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '', '/');
 $base = trim(parse_url(base_url(''), PHP_URL_PATH) ?? '', '/');
@@ -69,17 +71,25 @@ function nav_link_class($route, $is_mobile = false) {
             <?php endif; ?>
           </a>
           <div class="hidden md:flex items-center space-x-4 text-sm">
-            <a href="<?php echo base_url(''); ?>" class="<?php echo nav_link_class('home'); ?>">Home</a>
-            <a href="<?php echo base_url('about'); ?>" class="<?php echo nav_link_class('about'); ?>">About</a>
-            <a href="<?php echo base_url('services'); ?>" class="<?php echo nav_link_class('services'); ?>">Services</a>
-            <a href="<?php echo base_url('members'); ?>" class="<?php echo nav_link_class('members'); ?>">Members</a>
-            <a href="<?php echo base_url('gallery'); ?>" class="<?php echo nav_link_class('gallery'); ?>">Gallery</a>
-            <a href="<?php echo base_url('blog'); ?>" class="<?php echo nav_link_class('blog'); ?>">Blog</a>
-            <a href="<?php echo base_url('donations'); ?>" class="<?php echo nav_link_class('donations'); ?>">Donate</a>
+            <a href="<?php echo base_url(''); ?>" class="<?php echo nav_link_class('home'); ?>"><?php echo e(t('nav.home')); ?></a>
+            <a href="<?php echo base_url('about'); ?>" class="<?php echo nav_link_class('about'); ?>"><?php echo e(t('nav.about')); ?></a>
+            <a href="<?php echo base_url('services'); ?>" class="<?php echo nav_link_class('services'); ?>"><?php echo e(t('nav.services')); ?></a>
+            <a href="<?php echo base_url('members'); ?>" class="<?php echo nav_link_class('members'); ?>"><?php echo e(t('nav.members')); ?></a>
+            <a href="<?php echo base_url('gallery'); ?>" class="<?php echo nav_link_class('gallery'); ?>"><?php echo e(t('nav.gallery')); ?></a>
+            <a href="<?php echo base_url('blog'); ?>" class="<?php echo nav_link_class('blog'); ?>"><?php echo e(t('nav.blog')); ?></a>
+            <a href="<?php echo base_url('donations'); ?>" class="<?php echo nav_link_class('donations'); ?>"><?php echo e(t('nav.donate')); ?></a>
           </div>
         </div>
         <div class="flex items-center gap-4">
-          <a href="<?php echo base_url('contact'); ?>" class="hidden sm:inline bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Contact Us</a>
+          <form method="get" class="hidden sm:flex items-center gap-2">
+            <label for="lang" class="text-sm text-gray-600"><?php echo e(t('nav.language')); ?></label>
+            <select id="lang" name="lang" class="border border-gray-300 text-sm rounded px-2 py-1" onchange="this.form.submit()">
+              <?php foreach ($languages as $code => $label): ?>
+                <option value="<?php echo e($code); ?>" <?php echo $current_lang === $code ? 'selected' : ''; ?>><?php echo e($label); ?></option>
+              <?php endforeach; ?>
+            </select>
+          </form>
+          <a href="<?php echo base_url('contact'); ?>" class="hidden sm:inline bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"><?php echo e(t('nav.contact_us')); ?></a>
           <button id="mobile-menu-btn" class="md:hidden px-3 py-2 text-green-700 hover:text-red-600 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
@@ -87,14 +97,24 @@ function nav_link_class($route, $is_mobile = false) {
       </div>
     </div>
     <div id="mobile-nav" class="md:hidden hidden bg-white border-t border-gray-200">
-      <a class="<?php echo nav_link_class('home', true); ?>" href="<?php echo base_url(''); ?>">Home</a>
-      <a class="<?php echo nav_link_class('about', true); ?>" href="<?php echo base_url('about'); ?>">About</a>
-      <a class="<?php echo nav_link_class('services', true); ?>" href="<?php echo base_url('services'); ?>">Services</a>
-      <a class="<?php echo nav_link_class('members', true); ?>" href="<?php echo base_url('members'); ?>">Members</a>
-      <a class="<?php echo nav_link_class('gallery', true); ?>" href="<?php echo base_url('gallery'); ?>">Gallery</a>
-      <a class="<?php echo nav_link_class('blog', true); ?>" href="<?php echo base_url('blog'); ?>">Blog</a>
-      <a class="<?php echo nav_link_class('donations', true); ?>" href="<?php echo base_url('donations'); ?>">Donate</a>
-      <a class="<?php echo nav_link_class('contact', true); ?>" href="<?php echo base_url('contact'); ?>">Contact</a>
+      <a class="<?php echo nav_link_class('home', true); ?>" href="<?php echo base_url(''); ?>"><?php echo e(t('nav.home')); ?></a>
+      <a class="<?php echo nav_link_class('about', true); ?>" href="<?php echo base_url('about'); ?>"><?php echo e(t('nav.about')); ?></a>
+      <a class="<?php echo nav_link_class('services', true); ?>" href="<?php echo base_url('services'); ?>"><?php echo e(t('nav.services')); ?></a>
+      <a class="<?php echo nav_link_class('members', true); ?>" href="<?php echo base_url('members'); ?>"><?php echo e(t('nav.members')); ?></a>
+      <a class="<?php echo nav_link_class('gallery', true); ?>" href="<?php echo base_url('gallery'); ?>"><?php echo e(t('nav.gallery')); ?></a>
+      <a class="<?php echo nav_link_class('blog', true); ?>" href="<?php echo base_url('blog'); ?>"><?php echo e(t('nav.blog')); ?></a>
+      <a class="<?php echo nav_link_class('donations', true); ?>" href="<?php echo base_url('donations'); ?>"><?php echo e(t('nav.donate')); ?></a>
+      <a class="<?php echo nav_link_class('contact', true); ?>" href="<?php echo base_url('contact'); ?>"><?php echo e(t('nav.contact')); ?></a>
+      <div class="px-4 py-2 border-t border-gray-200">
+        <form method="get" class="flex items-center gap-2">
+          <label for="lang-mobile" class="text-sm text-gray-600"><?php echo e(t('nav.language')); ?></label>
+          <select id="lang-mobile" name="lang" class="border border-gray-300 text-sm rounded px-2 py-1" onchange="this.form.submit()">
+            <?php foreach ($languages as $code => $label): ?>
+              <option value="<?php echo e($code); ?>" <?php echo $current_lang === $code ? 'selected' : ''; ?>><?php echo e($label); ?></option>
+            <?php endforeach; ?>
+          </select>
+        </form>
+      </div>
     </div>
   </nav>
 

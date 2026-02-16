@@ -75,9 +75,9 @@ try {
   <title>Admin - Golfs Cameroon</title>
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-900">
-  <div class="flex min-h-screen">
-    <aside class="w-64 bg-green-700 text-white border-r border-green-800">
-      <div class="p-4 border-b border-green-600 flex items-center justify-center">
+  <div class="flex min-h-screen flex-col md:flex-row">
+    <aside class="w-full md:w-64 bg-green-700 text-white border-r border-green-800 md:fixed md:top-0 md:left-0 md:h-screen">
+      <div class="p-4 border-b border-green-600 bg-white flex items-center justify-center">
         <?php if (!empty($site_logo)): ?>
           <img src="<?php echo e(base_url($site_logo)); ?>" alt="Logo" class="h-20 w-auto">
         <?php else: ?>
@@ -91,6 +91,7 @@ try {
         <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="donations.php"><i class="bi bi-currency-dollar"></i> Donations</a>
         <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="blogs.php"><i class="bi bi-file-text"></i> Blog Manager</a>
         <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="gallery.php"><i class="bi bi-images"></i> Gallery</a>
+        <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="contacts.php"><i class="bi bi-envelope"></i> Contacts</a>
         <a class="block py-2 px-3 rounded hover:bg-green-600 transition" href="settings.php"><i class="bi bi-gear"></i> Settings</a>
         <hr class="border-green-600 my-3">
         <a class="block py-2 px-3 rounded hover:bg-red-600 transition text-red-100" href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
@@ -99,7 +100,7 @@ try {
         </div>
       </nav>
     </aside>
-    <div class="flex-1 flex flex-col">
+    <div class="flex-1 flex flex-col md:ml-64">
       <div class="bg-white border-b border-gray-200 shadow-sm">
         <div class="flex items-center justify-between px-6 py-4">
           <div class="flex items-center gap-4">
