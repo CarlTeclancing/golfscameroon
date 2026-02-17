@@ -84,19 +84,19 @@ include __DIR__ . '/header.php';
             <h1 class="text-2xl md:text-3xl font-bold text-center mx-8">We're not stopping here</h1>
             <div class="grid md:grid-cols-3 gap-10 my-12" >
                 <article>
-                    <h2 class="font-bold text-green-700 text-center text-2xl">51%</h2>
+                    <h2 class="font-bold text-green-700 text-center text-4xl">51%</h2>
                <p class="text-sm text-gray-600 mt-2 text-center">
                 of young people in underserved communities still lack equal access to quality educational and leadership opportunities. When youth are held back, communities fall behind. 
                </p>
                 </article>
                 <article>
-                    <h2 class="font-bold text-green-700 text-center text-2xl">1 in 7</h2>
+                    <h2 class="font-bold text-green-700 text-center text-4xl">1 in 7</h2>
                <p class="text-sm text-gray-600 mt-2 text-center">
                 youths lacks the support system needed to develop their talents and skills. Our mission is to bridge that gap and prepare young people to shape the future.
                </p>
                 </article>
                  <article>
-                    <h2 class="font-bold text-green-700 text-center text-2xl">50%</h2>
+                    <h2 class="font-bold text-green-700 text-center text-4xl">50%</h2>
                <p class="text-sm text-gray-600 mt-2 text-center">
                of young people complete school each year without access to career guidance or practical leadership training. education alone is not enough without direction and opportunity. 
                </p>
