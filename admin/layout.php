@@ -134,16 +134,16 @@ try {
         <?php endif; ?>
       </div>
       <nav class="p-4 space-y-1">
-        <a class="<?php echo admin_nav_class('dashboard'); ?>" href="<?php echo base_url('admin/dashboard'); ?>"><i class="bi bi-graph-up"></i> Dashboard</a>
-        <a class="<?php echo admin_nav_class('projects'); ?>" href="<?php echo base_url('admin/projects'); ?>"><i class="bi bi-bullseye"></i> Projects</a>
-        <a class="<?php echo admin_nav_class('members'); ?>" href="<?php echo base_url('admin/members'); ?>"><i class="bi bi-people"></i> Members</a>
-        <a class="<?php echo admin_nav_class('donations'); ?>" href="<?php echo base_url('admin/donations'); ?>"><i class="bi bi-currency-dollar"></i> Donations</a>
-        <a class="<?php echo admin_nav_class('blogs'); ?>" href="<?php echo base_url('admin/blogs'); ?>"><i class="bi bi-file-text"></i> Blog Manager</a>
-        <a class="<?php echo admin_nav_class('gallery'); ?>" href="<?php echo base_url('admin/gallery'); ?>"><i class="bi bi-images"></i> Gallery</a>
-        <a class="<?php echo admin_nav_class('contacts'); ?>" href="<?php echo base_url('admin/contacts'); ?>"><i class="bi bi-envelope"></i> Contacts</a>
-        <a class="<?php echo admin_nav_class('settings'); ?>" href="<?php echo base_url('admin/settings'); ?>"><i class="bi bi-gear"></i> Settings</a>
+        <a class="<?php echo admin_nav_class('dashboard'); ?>" href="<?php echo base_url('admin/dashboard.php'); ?>"><i class="bi bi-graph-up"></i> Dashboard</a>
+        <a class="<?php echo admin_nav_class('projects'); ?>" href="<?php echo base_url('admin/projects.php'); ?>"><i class="bi bi-bullseye"></i> Projects</a>
+        <a class="<?php echo admin_nav_class('members'); ?>" href="<?php echo base_url('admin/members.php'); ?>"><i class="bi bi-people"></i> Members</a>
+        <a class="<?php echo admin_nav_class('donations'); ?>" href="<?php echo base_url('admin/donations.php'); ?>"><i class="bi bi-currency-dollar"></i> Donations</a>
+        <a class="<?php echo admin_nav_class('blogs'); ?>" href="<?php echo base_url('admin/blogs.php'); ?>"><i class="bi bi-file-text"></i> Blog Manager</a>
+        <a class="<?php echo admin_nav_class('gallery'); ?>" href="<?php echo base_url('admin/gallery.php'); ?>"><i class="bi bi-images"></i> Gallery</a>
+        <a class="<?php echo admin_nav_class('contacts'); ?>" href="<?php echo base_url('admin/contacts.php'); ?>"><i class="bi bi-envelope"></i> Contacts</a>
+        <a class="<?php echo admin_nav_class('settings'); ?>" href="<?php echo base_url('admin/settings.php'); ?>"><i class="bi bi-gear"></i> Settings</a>
         <hr class="border-green-600 my-3">
-        <a class="block py-2 px-3 rounded hover:bg-red-600 transition text-red-100" href="<?php echo base_url('admin/logout'); ?>"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        <a class="block py-2 px-3 rounded hover:bg-red-600 transition text-red-100" href="<?php echo base_url('admin/logout.php'); ?>"><i class="bi bi-box-arrow-right"></i> Logout</a>
         <div class="pt-4 text-xs text-green-100">
           <?php echo e(get_setting('contact_email', '')); ?>
         </div>

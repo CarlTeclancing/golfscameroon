@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $role;
-            redirect(base_url('admin/dashboard'));
+            redirect(base_url('admin/dashboard.php'));
           }
         } else {
           $error = 'Invalid credentials';
