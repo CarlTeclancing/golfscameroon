@@ -45,7 +45,7 @@ include __DIR__ . '/header.php';
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto p-6 ">
+    <main class="max-w-7xl mx-auto p-6 ">
         <!-- section The Future Begins With Our Youth -->
         <section id="services" class="py-8 my-[2vw]" data-reveal>
             <h1 class="text-2xl md:text-3xl font-bold text-center mx-8">The Future Begins With Our Youth</h1>
@@ -96,7 +96,7 @@ include __DIR__ . '/header.php';
             <h1 class="text-green-700 text-2xl md:text-3xl font-semibold text-center mx-8 capitalize">ways to get involved</h1>
             <div class="grid grid-cols-2 gap-10 my-12" >
             <div class=" flex justify-between gap-8 bg-white shadow shadow-sm   overflow-hidden p-1 " data-reveal>
-                <img src="<?php echo asset_url('uploads/leadership.jpg'); ?>" alt="leadership" class="w-1/2 object-cover ">
+                <img src="<?php echo asset_url('uploads/become_volunteer.jpg'); ?>" alt="leadership" class="w-1/2 object-fit ">
                 <div class="px-2 my-4">
                 <h3 class="font-semibold text-xl text-green-700">Become a Volunteer</h3>
                 <p class="text-sm text-gray-600 mt-2  mx-2 ">Mentorship, coaching, and youth leadership engagement programs designed to raise confident and purpose-driven changemakers.</p>
@@ -129,7 +129,7 @@ include __DIR__ . '/header.php';
                 
             </div>
              <div class=" flex justify-between gap-8 bg-white shadow shadow-sm   overflow-hidden  p-1" data-reveal>
-                <img src="<?php echo asset_url('uploads/leadership.jpg'); ?>" alt="leadership" class="w-1/2 object-cover ">
+                <img src="<?php echo asset_url('uploads/join_youth.jpg'); ?>" alt="leadership" class="w-1/2 object-cover ">
                 <div class="px-2 my-4">
                 <h3 class="font-semibold text-xl text-green-700">Join the Youth Network</h3>
                 <p class="text-sm text-gray-600 mt-2  mx-2 ">Are you a young leader or aspiring professional? Connect with a growing network of purpose-driven youth.</p>

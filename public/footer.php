@@ -1,5 +1,6 @@
   <footer class="bg-white border-t border-gray-200 text-gray-700 p-6 mt-12">
     <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 text-center md:text-left">
+      
       <div>
         <h4 class="font-semibold text-green-700"><?php echo e(get_setting('site_name', 'Golfs Cameroon')); ?></h4>
         <p class="text-sm text-gray-600 mt-2"><?php echo e(get_setting('site_description', 'Empowering youth through education and community support.')); ?></p>
@@ -25,6 +26,7 @@
           <?php endif; ?>
         </div>
       </div>
+      <img src="<?php echo asset_url('uploads/logo.jpg'); ?>" alt="logo" class="w-full object-cover ">
     </div>
   </footer>
 </body>

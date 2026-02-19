@@ -64,7 +64,7 @@ function get_involvement_options() {
         [
             'title' => 'Become a Volunteer',
             'description' => 'Mentorship, coaching, and youth leadership engagement programs designed to raise confident and purpose-driven changemakers.',
-            'image' => 'uploads/leadership.jpg',
+            'image' => 'uploads/become_volunteer.jpg',
             'link' => 'members',
             'button_text' => 'Join us'
         ],
@@ -85,7 +85,7 @@ function get_involvement_options() {
         [
             'title' => 'Join the Youth Network',
             'description' => 'Are you a young leader or aspiring professional? Connect with a growing network of purpose-driven youth.',
-            'image' => 'uploads/leadership.jpg',
+            'image' => 'uploads/join_youth.jpg',
             'link' => 'members',
             'button_text' => 'Join the Network'
         ]
