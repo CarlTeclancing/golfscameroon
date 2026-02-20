@@ -26,7 +26,7 @@
           <?php endif; ?>
         </div>
       </div>
-      <img src="<?php echo asset_url('uploads/logo.jpg'); ?>" alt="logo" class="w-full object-cover ">
+      <img src="<?php echo asset_url('uploads/logo1.jpg'); ?>" alt="logo" class="w-full object-cover ">
     </div>
   </footer>
 </body>

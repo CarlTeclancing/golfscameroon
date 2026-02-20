@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once __DIR__ . '/../models/Project.php';
 require_once __DIR__ . '/../models/Member.php';
 require_once __DIR__ . '/../config/database.php';
@@ -25,34 +25,78 @@ function project_progress($db, $project_id, $target) {
 $page_title = 'Home';
 include __DIR__ . '/header.php';
 ?>
-    <header class="bg-white  border-gray-200">
-        <div class="max-w-6xl mx-auto p-8 md:p-16 flex flex-col md:flex-row items-center gap-8">
-            <div class="flex-1 text-center" data-reveal>
-                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight text-green-700">Empowering Cameroon&apos;s Youth through Education & Opportunity</h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-700">We create mentorship, skill-building, and scholarship programs to unlock potential and build resilient communities aligned with the UN SDGs.</p>
-                <div class="mt-6 flex gap-3 justify-center">
-                    <button onclick="openDonateModal(0, 'General Donation')" class="bg-green-600 text-white px-5 py-3 rounded-lg shadow hover:bg-green-700 transition font-medium">
-                        <i class="bi bi-heart"></i> Donate Now
+<style>
+  .hero-section {
+    background: linear-gradient(135deg, rgba(22, 78, 58, 0.95) 0%, rgba(13, 101, 45, 0.85) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-card {
+    transform: rotate(4deg);
+    transition: transform 0.5s ease;
+  }
+  .hero-card:hover {
+    transform: rotate(0deg) scale(1.02);
+  }
+  .involvement-card {
+    transition: all 0.3s ease;
+  }
+  .involvement-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+  .faq-card {
+    transition: all 0.3s ease;
+  }
+  .faq-card:hover {
+    background: linear-gradient(135deg, rgba(22, 78, 58, 0.05) 0%, rgba(34, 197, 94, 0.05) 100%);
+  }
+</style>
+
+    <!-- Hero Section -->
+    <header class="hero-section py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1 text-center md:text-left" data-reveal>
+                <span class="inline-block bg-green-800 bg-opacity-50 text-green-100 px-4 py-2 rounded-full text-sm font-semibold mb-4">Welcome to Golfs Cameroon</span>
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight text-white mb-6">Empowering Cameroon&apos;s Youth through Education & Opportunity</h1>
+                <p class="text-lg md:text-xl text-green-100 mb-8 leading-relaxed">We create mentorship, skill-building, and scholarship programs to unlock potential and build resilient communities aligned with the UN SDGs.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <button onclick="openDonateModal(0, 'General Donation')" class="bg-white text-green-700 px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 font-semibold">
+                        <i class="bi bi-heart-fill mr-2"></i> Donate Now
                     </button>
-                    <a href="<?php echo base_url('members'); ?>" class="border border-green-600 text-green-700 px-5 py-3 rounded-lg hover:bg-green-50 transition font-medium">Join Us</a>
+                    <a href="<?php echo base_url('members'); ?>" class="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-green-700 transition duration-300 font-semibold">
+                        <i class="bi bi-people-fill mr-2"></i> Join Us
+                    </a>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 v" data-reveal>
-                <div class="bg-white  overflow-hidden shadow-lg transform rotate-15 w-[200px] p-4 ">
-                    <img src="<?php echo asset_url('uploads/heroImage.png'); ?>" alt="Youth program" class=" object-center ">
+            <div class="w-full md:w-1/2 flex justify-center" data-reveal>
+                <div class="hero-card bg-white rounded-2xl overflow-hidden shadow-2xl  p-3">
+                    <img src="<?php echo asset_url('uploads/heroImage.png'); ?>" alt="Youth program" class="rounded-xl w-full h-auto">
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto p-6 ">
-        <!-- section The Future Begins With Our Youth -->
-        <section id="services" class="py-8 my-[2vw]" data-reveal>
-            <h1 class="text-2xl md:text-3xl font-bold text-center mx-8">The Future Begins With Our Youth</h1>
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <!-- Section: The Future Begins With Our Youth -->
+        <section id="services" class="py-12 mb-16" data-reveal>
+            <div class="text-center mb-12">
+                <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">The Future Begins With Our Youth</h1>
+            </div>
             <?php render_info_cards(get_info_cards()); ?>
         </section>
-        <!-- section Cameroon Youth Leadership Initiative -->
-       <section id="initiative" class="py-8 bg-brand text-white grid md:grid-cols-2 gap-6 mb-12 py-8 " data-reveal>
+         <section id="initiative" class="py-8 bg-brand text-white grid md:grid-cols-2 gap-6 mb-12 py-8 " data-reveal>
             
             <div class="bg-white w-[710px] h-[544px] shadow-lg p-4" data-reveal>
                 <img src="<?php echo asset_url('uploads/initiative.jpg'); ?>" alt="initiative" class="w-full object-cover ">
@@ -68,138 +112,148 @@ include __DIR__ . '/header.php';
            </article>
             
         </section>
-        <section  class="py-8" data-reveal>
-            <h1 class="text-2xl md:text-3xl font-bold text-center mx-8">We're not stopping here</h1>
-            <div class="grid md:grid-cols-3 gap-10 my-12" >
+
+        <!-- Section: Statistics -->
+        <section class="py-12 mb-16" data-reveal>
+            <div class="text-center mb-12">
+                <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">We're Not Stopping Here</h1>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
                 <?php foreach (get_statistics() as $stat): ?>
                     <?php render_stat_card($stat); ?>
                 <?php endforeach; ?>
             </div>
         </section>
-        <section id="top-projects" data-reveal>
-            <h1 class="text-2xl md:text-3xl font-bold text-center mx-8">Our work</h1>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 my-12" >
+
+        <!-- Section: Our Work -->
+        <section id="top-projects" class="py-12 mb-16 bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 md:p-12" data-reveal>
+            <div class="text-center mb-12">
+                <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Our Work</h1>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <?php foreach (get_service_cards() as $service): ?>
                     <?php render_service_card($service); ?>
                 <?php endforeach; ?>
             </div>
         </section>
-          <!-- <section id="get involved" data-reveal>
-            <h1 class="text-green-700 text-2xl md:text-3xl font-semibold text-center mx-8 capitalize">ways to get involved</h1>
-            <div class="grid grid-cols-2 gap-10 my-12" >
-                <?php foreach (get_involvement_options() as $option): ?>
-                    <?php render_involvement_card($option); ?>
-                <?php endforeach; ?>
+        <!-- Section: Get Involved -->
+        <section id="get-involved" data-reveal class="py-16 mb-16">
+            <div class="text-center mb-12">
+                <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Take Action</span>
+                <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2 capitalize">Ways to Get Involved</h1>
             </div>
-        </section> -->
-        <section id="get involved" data-reveal>
-            <h1 class="text-green-700 text-2xl md:text-3xl font-semibold text-center mx-8 capitalize">ways to get involved</h1>
-            <div class="grid grid-cols-2 gap-10 my-12" >
-            <div class=" flex justify-between gap-8 bg-white shadow shadow-sm   overflow-hidden p-1 " data-reveal>
-                <img src="<?php echo asset_url('uploads/become_volunteer.jpg'); ?>" alt="leadership" class="w-1/2 object-fit ">
-                <div class="px-2 my-4">
-                <h3 class="font-semibold text-xl text-green-700">Become a Volunteer</h3>
-                <p class="text-sm text-gray-600 mt-2  mx-2 ">Mentorship, coaching, and youth leadership engagement programs designed to raise confident and purpose-driven changemakers.</p>
-                   <button><a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-4 py-2 mt-4 transition font-medium">
-             Join us
-               </a></button>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="involvement-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
+                    <img src="<?php echo asset_url('uploads/become_volunteer.jpg'); ?>" alt="volunteer" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl text-green-700 mb-3">Become a Volunteer</h3>
+                        <p class="text-gray-600 mb-4">Mentorship, coaching, and youth leadership engagement programs designed to raise confident and purpose-driven changemakers.</p>
+                        <a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800">
+                            Join Us
+                        </a>
+                    </div>
                 </div>
-                
-            </div>
-            <div class=" flex justify-between gap-8 bg-white shadow shadow-sm   overflow-hidden p-1 " data-reveal>
-                <img src="<?php echo asset_url('uploads/global_patnership.jpg'); ?>" alt="leadership" class="w-1/2 object-cover ">
-                <div class="px-2 my-4">
-                <h3 class="font-semibold text-xl text-green-700">Partner With Us</h3>
-                <p class="text-sm text-gray-600 mt-2  mx-2 ">Collaborate with us as an organization, institution, or corporate body. Together, we can expand opportunities for youth across borders.</p>
-                   <button><a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-4 py-2 mt-4 transition font-medium">
-             partner now
-               </a></button>
+                <div class="involvement-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
+                    <img src="<?php echo asset_url('uploads/global_patnership.jpg'); ?>" alt="partnership" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl text-green-700 mb-3">Partner With Us</h3>
+                        <p class="text-gray-600 mb-4">Collaborate with us as an organization, institution, or corporate body. Together, we can expand opportunities for youth across borders.</p>
+                        <a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800">
+                            Partner Now
+                        </a>
+                    </div>
                 </div>
-                
-            </div>
-             <div class=" flex justify-between gap-8 bg-white shadow shadow-sm   overflow-hidden p-1 " data-reveal>
-                <img src="<?php echo asset_url('uploads/leadership.jpg'); ?>" alt="leadership" class="w-1/2 object-cover ">
-                <div class="px-2 my-4">
-                <h3 class="font-semibold text-xl text-green-700">Support the Missionr</h3>
-                <p class="text-sm text-gray-600 mt-2  mx-2 ">Contribute resources that help us run leadership programs and community outreach initiatives. Every contribution helps shape future changemakers.</p>
-                   <button><a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-4 py-2 mt-4 transition font-medium">
-           Support Now
-               </a></button>
+                <div class="involvement-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
+                    <img src="<?php echo asset_url('uploads/leadership.jpg'); ?>" alt="support" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl text-green-700 mb-3">Support the Mission</h3>
+                        <p class="text-gray-600 mb-4">Contribute resources that help us run leadership programs and community outreach initiatives. Every contribution helps shape future changemakers.</p>
+                        <a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800">
+                            Support Now
+                        </a>
+                    </div>
                 </div>
-                
-            </div>
-             <div class=" flex justify-between gap-8 bg-white shadow shadow-sm   overflow-hidden  p-1" data-reveal>
-                <img src="<?php echo asset_url('uploads/join_youth.jpg'); ?>" alt="leadership" class="w-1/2 object-cover ">
-                <div class="px-2 my-4">
-                <h3 class="font-semibold text-xl text-green-700">Join the Youth Network</h3>
-                <p class="text-sm text-gray-600 mt-2  mx-2 ">Are you a young leader or aspiring professional? Connect with a growing network of purpose-driven youth.</p>
-                   <button><a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-4 py-2 mt-4 transition font-medium">
-            Join the Network
-               </a></button>
+                <div class="involvement-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
+                    <img src="<?php echo asset_url('uploads/join_youth.jpg'); ?>" alt="network" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl text-green-700 mb-3">Join the Youth Network</h3>
+                        <p class="text-gray-600 mb-4">Are you a young leader or aspiring professional? Connect with a growing network of purpose-driven youth.</p>
+                        <a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800">
+                            Join the Network
+                        </a>
+                    </div>
                 </div>
-                
-            </div>
             </div>
         </section>
-        <section id="" class="   bg-brand text-white grid md:grid-cols-2 gap-6 justify-center items-center mb-12  py-8" data-reveal>
-            <div class="flex justify-center items-center">
-                <h2 class="text-3xl font-semibold text-green-700 mb-4 ">“Our youths are not the problem, they are the promise.”</h2>
-           
-            </div>
-                
-             <div class="bg-white w-[710px] h-[544px] shadow-lg p-4 transform translate-y-2" data-reveal>
-                <img src="<?php echo asset_url('uploads/initiative.jpg'); ?>" alt="initiative" class="w-full object-cover ">
-            </div>
-            
-        </section>
-        <section class="bg-[#639E82] py-8 mb-12" data-reveal>
-        <div class="flex justify-center items-center flex-col leading-[2] my-8 gap-1 text-center ">
-            <h2 class="font-semibold text-2xl text-green-700 tex-center uppercase">
-                We have the youth, the talent,<br> the drive
-            </h2>
-            <p class="text-sm text-gray-600 mt-2  mx-2 text-center">All we need is the opportunity</p>
-             <button><a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-4 py-2 mt-4 transition font-medium">
-        Donate today
-               </a></button>
-        </div>    
-        </section>
-        <section id="asked questions" class="py-8 my-[2vw]" data-reveal>
-            <h1 class="text-2xl md:text-4xl font-semibold text-center mx-8 text-green-700">Frequently asked questions</h1>
-            <div class="grid md:grid-cols-3 gap-6 my-12" >
-                <div class="text-left">
-                <h3 class="font-bold text-2xl  mb-4 text-green-700"> What about boys?</h3>
-                <p class="mt-2 text-sm text-gray-600">Whether you choose to sponsor a girl or a boy, you’ll help projects focused on equal opportunities for all children. We know girls are the most vulnerable and we ensure that boys play an important role in building secure communities that value girls.</p>
-            </div>
-             <div class="text-left">
-                <h3 class="font-bold text-2xl  mb-4 text-green-700"> Is sponsorship like adoption?</h3>
-                <p class="mt-2 text-sm text-gray-600">No, it's not. The girl you sponsor will
-                have a family of her own, but your words
-                of encouragement play an important role
-                for her and her community. Letter writing
-                also helps girls learn about other cultures
-                and improve their literacy skills.</p>
-            </div>
-            <div class="text-left">
-                <h3 class="font-bold text-2xl  mb-4 text-green-700">How can I get more
-                information?</h3>
-                <p class="mt-2 text-sm text-gray-600">Our Supporter Engagement team are
-                happy to answer any questions about
-                sponsorship and our work. You can
-                reach them on 0300 777 9779 or
-                supporterquestions@plan-uk.org.</p>
-            </div>
-            </div>
-            <div class="py-10 text-center">
-                <p class="text-lg text-green-700 text-center font-bold">More FAQs <i class="bi bi-chevron-right text-green-700  mx-2"></i></p>
+
+        <!-- Quote Section -->
+        <section class="bg-gradient-to-r from-green-800 to-green-700 text-white rounded-xl p-8 md:p-16 mb-16" data-reveal>
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <i class="bi bi-quote text-6xl text-green-400 mb-6 block"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold leading-relaxed">"Our youths are not the problem, they are the promise."</h2>
+                </div>
+                <div class="flex justify-center">
+                    <div class="hero-card bg-white p-2 shadow-2xl overflow-hidden transform translate-y-4 hover:translate-y-0 transition duration-500">
+                        <img src="<?php echo asset_url('uploads/person_smile.jpg'); ?>" alt="initiative" class="w-full h-72 object-cover">
+                    </div>
+                </div>
             </div>
         </section>
-        <section id="why_choose_golf" class="py-8 my-[2vw] flex justify-center item-center " data-reveal>
-            <div class="flex flex-col  justify-center items-center w-2/3">
-                <h1 class="text-2xl md:text-3xl font-semibold text-center mx-8 text-green-700 uppercase">Why choose THE GOLFS CAMeroon?</h1>
-                <p class="mt-2 text-sm text-gray-600 ">We are a youth-focused organization striving to empower the next generation of leaders and changemakers. For years, we’ve worked alongside young people and their communities to ensure every youth can reach their full potential and every young person has access to guidance, mentorship, and opportunities. We bring people together to nurture talent, build skills, and create pathways to leadership, even in underserved areas.</p>
-        
+
+        <!-- CTA Banner -->
+        <section class="bg-gradient-to-br from-[#639E82] to-green-600 text-white rounded-3xl py-16 mb-16" data-reveal>
+            <div class="text-center">
+                <h2 class="font-bold text-3xl md:text-4xl mb-4 uppercase">
+                    We Have the Youth, the Talent, the Drive
+                </h2>
+                <p class="text-xl text-green-100 mb-8">All we need is the opportunity</p>
+                <a href="<?php echo base_url('donations'); ?>" class="inline-block bg-white text-green-700 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="bi bi-heart-fill mr-2"></i>Donate Today
+                </a>
             </div>
-            
+        </section>
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 mb-16 bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 md:p-12" data-reveal>
+            <div class="text-center mb-12">
+                <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Frequently Asked Questions</h1>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="faq-card bg-white p-8 rounded-2xl shadow-md" data-reveal>
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="bi bi-question-circle text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-4 text-green-700">What about boys?</h3>
+                    <p class="text-gray-600 leading-relaxed">Whether you choose to sponsor a girl or a boy, you'll help projects focused on equal opportunities for all children. We know girls are the most vulnerable and we ensure that boys play an important role in building secure communities that value girls.</p>
+                </div>
+                <div class="faq-card bg-white p-8 rounded-2xl shadow-md" data-reveal>
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="bi bi-chat-heart text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-4 text-green-700">Is sponsorship like adoption?</h3>
+                    <p class="text-gray-600 leading-relaxed">No, it's not. The girl you sponsor will have a family of her own, but your words of encouragement play an important role for her and her community. Letter writing also helps girls learn about other cultures and improve their literacy skills.</p>
+                </div>
+                <div class="faq-card bg-white p-8 rounded-2xl shadow-md" data-reveal>
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="bi bi-telephone text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-4 text-green-700">How can I get more information?</h3>
+                    <p class="text-gray-600 leading-relaxed">Our Supporter Engagement team are happy to answer any questions about sponsorship and our work. You can reach them on 0300 777 9779 or supporterquestions@plan-uk.org.</p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="<?php echo base_url('faq'); ?>" class="inline-flex items-center text-lg text-green-700 font-bold hover:text-green-800 transition">
+                    More FAQs <i class="bi bi-chevron-right mx-2"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-choose-golfs" class="py-16 mb-16" data-reveal>
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-3xl md:text-4xl font-bold text-green-700 mb-6 uppercase">Why Choose The Golfs Cameroon?</h1>
+                <p class="text-lg text-gray-600 leading-relaxed">We are a youth-focused organization striving to empower the next generation of leaders and changemakers. For years, we've worked alongside young people and their communities to ensure every youth can reach their full potential and every young person has access to guidance, mentorship, and opportunities. We bring people together to nurture talent, build skills, and create pathways to leadership, even in underserved areas.</p>
+            </div>
         </section>
         <!-- <section id="members" data-reveal>
             <h2 class="text-2xl font-semibold mb-4 text-center">Our Members</h2>

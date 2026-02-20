@@ -7,7 +7,7 @@ function render_info_cards($cards) {
             <div class="text-left">
                 <h3 class="font-bold text-2xl px-2"><?php echo e($card['title']); ?></h3>
                 <img src="<?php echo asset_url('uploads/vector.png'); ?>" alt="green line" class="w-20">
-                <p class="mt-2 text-sm text-gray-600 leading-[2]"><?php echo e($card['description']); ?></p>
+                <p class="mt-2 text-sm sm:text-lg text-gray-600 leading-[2]"><?php echo e($card['description']); ?></p>
             </div>
         <?php endforeach; ?>
     </div>
@@ -17,15 +17,15 @@ function render_info_cards($cards) {
 function render_service_card($service) {
     ?>
     <div class="group bg-white rounded shadow shadow-sm overflow-hidden   block" data-reveal>
-        <div class="relative overflow-hidden h-2/3">
+        <div class="relative overflow-hidden h-3/5">
             <img src="<?php echo asset_url($service['image']); ?>" alt="<?php echo e($service['title']); ?>" class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300">
         </div>
         <div class="px-2 py-3">
-            <h3 class="font-semibold text-xl text-green-700 flex justify-between items-center group-hover:text-red-700 transition-colors duration-300 cursor-pointer">
+            <h3 class="font-semibold text-xl text-green-700 flex justify-between items-center ">
                 <span><?php echo e($service['title']); ?></span>
                <a  href="<?php echo base_url('services'); ?>"><i class="bi bi-chevron-right text-green-700 group-hover:text-red-700 group-hover:translate-x-1 transition-all duration-300"></i></a> 
             </h3>
-            <p class="text-sm text-gray-600 mt-2 mx-2 line-clamp-2 leading-[2]"><?php echo e($service['description']); ?></p>
+            <p class="text-sm sm:text-md text-gray-600 mt-2 line-clamp-2 leading-[2]"><?php echo e($service['description']); ?></p>
         </div>
         </div>
     <?php
@@ -35,7 +35,7 @@ function render_stat_card($stat) {
     ?>
     <article data-reveal>
         <h2 class="font-bold text-green-700 text-center text-4xl"><?php echo e($stat['number']); ?></h2>
-        <p class="text-sm text-gray-600 mt-2 text-center leading-[2]"><?php echo e($stat['description']); ?></p>
+        <p class="text-sm sm:text-lg text-gray-600 mt-2 text-center leading-[2]"><?php echo e($stat['description']); ?></p>
     </article>
     <?php
 }
@@ -49,7 +49,7 @@ function render_involvement_card($card) {
         <div class=" my-4 flex flex-col justify-between">
             <div>
                 <h3 class="font-semibold text-xl text-green-700 group-hover:text-red-700 transition-colors duration-300"><?php echo e($card['title']); ?></h3>
-                <p class="text-sm text-gray-600 mt-2 mx-2 group-hover:text-gray-800 transition-colors duration-300"><?php echo e($card['description']); ?></p>
+                <p class="text-sm sm:text-lg text-gray-600 mt-2 mx-2 group-hover:text-gray-800 transition-colors duration-300"><?php echo e($card['description']); ?></p>
             </div>
             <button class="mt-4 self-start">
                 <a href="<?php echo base_url($card['link']); ?>" class="inline-block bg-red-700 text-white px-4 py-2 rounded transition-all duration-300 hover:bg-red-800 hover:shadow-md">
@@ -61,9 +61,6 @@ function render_involvement_card($card) {
     <?php
 }
 
-/**
- * FAQ Card
- */
 function render_faq_card($faq) {
     ?>
     <div class="text-left">
@@ -73,43 +70,47 @@ function render_faq_card($faq) {
     <?php
 }
 
-/**
- * Focus Area Section - 2-column layout with alternating image position
- */
+
 function render_focus_area($area, $image_on_left = true) {
     ?>
-    <section id="<?php echo e($area['id']); ?>" class="py-12" data-reveal>
-        <div class="grid md:grid-cols-2 gap-10 my-12">
+    <section id="<?php echo e($area['id']); ?>" class="py-16 mb-16" data-reveal>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
             <?php if ($image_on_left): ?>
-                <div class="relative overflow-hidden shadow-lg p-4 hover:shadow-2xl transition-shadow duration-300 w-[750px] h-[750px]">
-                    <img src="<?php echo asset_url($area['image']); ?>" alt="<?php echo e($area['title']); ?>" class="object-cover hover:scale-105 transition-transform duration-300 w-full h-full">
+                <div class="relative overflow-hidden rounded-2xl shadow-2xl group">
+                    <img src="<?php echo asset_url($area['image']); ?>" alt="<?php echo e($area['title']); ?>" class="object-cover w-full h-96 group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
             <?php endif; ?>
-            
-            <div class="px-2">
-                <h3 class="font-semibold text-3xl text-green-700 mb-4 hover:text-red-700 transition-colors duration-300"><?php echo e($area['title']); ?></h3>
-                <h5 class="font-bold mb-4 text-gray-700"><?php echo e($area['subtitle']); ?></h5>
-                <p class="mb-2"><?php echo e($area['content']); ?></p>
-                <div>
-                    <h3 class="font-bold text-2xl px-2 mb-2">What we do</h3>
-                    <img src="<?php echo asset_url('uploads/vector.png'); ?>" alt="green line" class="w-20">
-                </div>
-                <ul class="mb-4 space-y-2">
-                    <?php foreach ($area['what_we_do'] as $item): ?>
-                        <li class="hover:text-green-700 hover:translate-x-2 transition-all duration-200">✓ <?php echo e($item); ?></li>
-                    <?php endforeach; ?>
-                </ul>
+
+            <div class="<?php echo $image_on_left ? '' : 'md:order-first'; ?>">
+                <span class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold mb-3"><?php echo e($area['subtitle']); ?></span>
+                <h3 class="font-bold text-3xl md:text-4xl text-green-700 mb-4"><?php echo e($area['title']); ?></h3>
+                <p class="text-gray-600 text-lg leading-relaxed mb-6"><?php echo e($area['content']); ?></p>
                 
-                <div>
-                    <h3 class="font-bold text-2xl px-2 mb-2">Why it matters:</h3>
-                    <img src="<?php echo asset_url('uploads/vector.png'); ?>" alt="green line" class="w-20">
+                <div class="mb-6">
+                    <h4 class="font-bold text-xl text-green-700 mb-3 flex items-center">
+                        <i class="bi bi-check-circle-fill mr-2"></i> What We Do
+                    </h4>
+                    <ul class="space-y-3">
+                        <?php foreach ($area['what_we_do'] as $item): ?>
+                            <li class="flex items-start text-gray-700">
+                                <span class="text-green-600 mr-3 mt-1">•</span>
+                                <span><?php echo e($item); ?></span>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
-                <p class="leading-relaxed text-gray-700"><?php echo e($area['why_it_matters']); ?></p>
+
+                <div class="bg-gradient-to-r from-green-50 to-white rounded-xl p-6 border-l-4 border-green-600">
+                    <h4 class="font-bold text-lg text-green-700 mb-2">Why It Matters</h4>
+                    <p class="text-gray-700 leading-relaxed"><?php echo e($area['why_it_matters']); ?></p>
+                </div>
             </div>
-            
+
             <?php if (!$image_on_left): ?>
-                <div class="relative overflow-hidden shadow-lg p-4 pb-none hover:shadow-2xl transition-shadow duration-300 w-[750px] h-[750px]">
-                    <img src="<?php echo asset_url($area['image']); ?>" alt="<?php echo e($area['title']); ?>" class="object-cover hover:scale-105 transition-transform duration-300 w-full h-full">
+                <div class="relative overflow-hidden rounded-2xl shadow-2xl group">
+                    <img src="<?php echo asset_url($area['image']); ?>" alt="<?php echo e($area['title']); ?>" class="object-cover w-full h-96 group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
             <?php endif; ?>
         </div>
