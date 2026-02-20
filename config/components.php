@@ -108,7 +108,7 @@ function render_focus_area($area, $image_on_left = true) {
             </div>
 
             <?php if (!$image_on_left): ?>
-                <div class="relative overflow-hidden rounded-2xl shadow-2xl group">
+                <div class="relative overflow-hidden p-2 shadow-2xl group">
                     <img src="<?php echo asset_url($area['image']); ?>" alt="<?php echo e($area['title']); ?>" class="object-cover w-full h-96 group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
