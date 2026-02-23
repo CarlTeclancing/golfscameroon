@@ -5,8 +5,16 @@ $blogModel = new Blog();
 $posts = $blogModel->all();
 include __DIR__ . '/header.php';
 ?>
-  <header class="bg-white border-b border-gray-200 p-6" style="background-image: linear-gradient(rgba(64, 74, 63, 0.7), rgba(0,0,0,0.6)), url('uploads/hands_smile.jpg') ">
-    <div class="max-w-6xl mx-auto text-center">
+<style>
+  .blog-hero {
+    background-image: linear-gradient(rgba(64, 74, 63, 0.7), rgba(11, 11, 11, 0.6)), url('uploads/hands_smile.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+</style>
+  <header class="border-b border-gray-200 p-6 blog-hero">
+    <div class="max-w-6xl mx-auto text-center px-6 py-16">
       <h1 class="text-3xl font-bold text-green-600">News & Blog</h1>
       <p class="text-white mt-2">Stay updated with our latest stories, insights, and community news.</p>
     </div>

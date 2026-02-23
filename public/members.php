@@ -5,9 +5,19 @@ $memberModel = new Member();
 $members = $memberModel->all();
 include __DIR__ . '/header.php';
 ?>
-  <header class="bg-white border-b border-gray-200 p-6" style="background-image: linear-gradient(rgba(64, 74, 63, 0.7), rgba(0,0,0,0.6)), url('uploads/hands_smile.jpg') ">
+<style>
+  .members-hero {
+    background-image: linear-gradient(rgba(64, 74, 63, 0.7), rgba(72, 138, 81, 0.6)), url('uploads/hands_smile.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+</style>
+  <header class="bg-white border-b border-gray-200 p-6 members-hero py-16">
+     <div class="max-w-6xl mx-auto text-center">
+      <h1 class="text-5xl font-bold text-white ">Our Members</h1>
     <div class="max-w-6xl mx-auto text-center">
-      <h1 class="text-3xl font-bold text-green-100">Our Members</h1>
+      <h1 class="text-xl font-bold text-white ">Our Members</h1>
     </div>
   </header>
   <main class="max-w-6xl mx-auto p-6">
