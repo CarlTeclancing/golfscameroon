@@ -3,6 +3,7 @@
 function render_info_cards($cards) {
     ?>
     <div class="grid md:grid-cols-3 gap-6 my-12">
+        
         <?php foreach ($cards as $card): ?>
             <div class="text-left">
                 <h3 class="font-bold text-2xl px-2"><?php echo e($card['title']); ?></h3>

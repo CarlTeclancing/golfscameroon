@@ -1,0 +1,27 @@
+Database created
+
+Here are connection details for the new database. Connection details should be stored in a secure location or website configuration, as they are displayed only once.
+Hostname:
+localhost
+Database:
+golfscam_ngo_db
+Username:
+golfscam_ngo_db
+Password:
+jePPQswphR9DG9B2a6jk
+
+
+
+
+
+
+
+Certificate and Key Saved.
+
+LetsEncrypt request successful for:
+golfscameroon.org
+www.golfscameroon.org
+pop.golfscameroon.org
+smtp.golfscameroon.org
+mail.golfscameroon.org
+ftp.golfscameroon.org

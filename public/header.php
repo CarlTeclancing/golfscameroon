@@ -168,5 +168,3 @@ function nav_link_class($route, $is_mobile = false) {
       }
     });
   </script>
-</body>
-</html>

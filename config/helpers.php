@@ -114,7 +114,8 @@ function base_url($path = '') {
     
     $base = $base === '/' ? '' : $base;
     $path = ltrim($path, '/');
-    return $base . ($path !== '' ? '/' . $path : '');
+    $url = $base . ($path !== '' ? '/' . $path : '');
+    return $url ?: '/';
 }
 
 function asset_url($path = '') {
