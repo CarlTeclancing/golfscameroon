@@ -19,7 +19,7 @@ function render_service_card($service) {
     ?>
     <div class="group bg-white rounded shadow shadow-sm overflow-hidden   block" data-reveal>
         <div class="relative overflow-hidden h-3/5">
-            <img src="<?php echo asset_url($service['image']); ?>" alt="<?php echo e($service['title']); ?>" class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300">
+            <img src="<?php echo asset_url($service['image']); ?>" alt="<?php echo e($service['title']); ?>" class="h-full w-full  group-hover:scale-110 transition-transform duration-300">
         </div>
         <div class="px-2 py-3">
             <h3 class="font-semibold text-xl text-green-700 flex justify-between items-center ">
@@ -77,8 +77,8 @@ function render_focus_area($area, $image_on_left = true) {
     <section id="<?php echo e($area['id']); ?>" class="py-16 mb-16" data-reveal>
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <?php if ($image_on_left): ?>
-                <div class="relative overflow-hidden rounded-2xl shadow-2xl group">
-                    <img src="<?php echo asset_url($area['image']); ?>" alt="<?php echo e($area['title']); ?>" class="object-cover w-full h-96 group-hover:scale-110 transition-transform duration-500">
+                <div class="relative overflow-hidden shadow-2xl group p-2 bg-white">
+                    <img src="<?php echo asset_url($area['image']); ?>" alt="<?php echo e($area['title']); ?>" class="w-full h-96 group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
             <?php endif; ?>

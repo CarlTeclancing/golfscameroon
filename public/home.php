@@ -68,7 +68,7 @@ include __DIR__ . '/header.php';
     <header class="hero-section py-20 md:py-32">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
             <div class="flex-1 text-center md:text-left" data-reveal>
-                <span class="inline-block bg-green-800 bg-opacity-50 text-green-100 px-4 py-2 rounded-full text-sm font-semibold mb-4">Welcome to Golfs Cameroon</span>
+                <span class="inline-block bg-green-800 bg-opacity-50 text-green-100 px-4 py-2 rounded-full text-sm font-semibold mb-4">Welcome to The Golfs Cameroon</span>
                 <h1 class="text-4xl md:text-6xl font-bold leading-tight text-white mb-6">Empowering Cameroon&apos;s Youth through Education & Opportunity</h1>
                 <p class="text-lg md:text-xl text-green-100 mb-8 leading-relaxed">We create mentorship, skill-building, and scholarship programs to unlock potential and build resilient communities aligned with the UN SDGs.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
@@ -99,7 +99,7 @@ include __DIR__ . '/header.php';
          <section id="initiative" class="py-8 bg-brand text-white grid md:grid-cols-2 gap-6 mb-12 py-8 " data-reveal>
             
             <div class="bg-white w-[710px] h-[544px] shadow-lg p-4" data-reveal>
-                <img src="<?php echo asset_url('uploads/initiative.jpg'); ?>" alt="initiative" class="w-full object-cover ">
+                <img src="<?php echo asset_url('uploads/trads.jpeg'); ?>" alt="initiative" class="w-full object-cover ">
             </div>
             
             <article class="text-left">
@@ -142,10 +142,10 @@ include __DIR__ . '/header.php';
                 <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Take Action</span>
                 <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2 capitalize">Ways to Get Involved</h1>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="involvement-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
-                    <img src="<?php echo asset_url('uploads/become_volunteer.jpg'); ?>" alt="volunteer" class="w-full h-48 object-cover">
-                    <div class="p-6">
+            <div class="grid grid-cols-2 gap-8">
+                <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2 h-[200px] " data-reveal>
+                    <img src="<?php echo asset_url('uploads/volunteer3.jpg'); ?>" alt="volunteer" class="w-full h-full">
+                    <div class="p-6 w-full">
                         <h3 class="font-semibold text-xl text-green-700 mb-3">Become a Volunteer</h3>
                         <p class="text-gray-600 mb-4">Mentorship, coaching, and youth leadership engagement programs designed to raise confident and purpose-driven changemakers.</p>
                         <a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800">
@@ -153,8 +153,8 @@ include __DIR__ . '/header.php';
                         </a>
                     </div>
                 </div>
-                <div class="involvement-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
-                    <img src="<?php echo asset_url('uploads/global_patnership.jpg'); ?>" alt="partnership" class="w-full h-48 object-cover">
+                <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2" data-reveal>
+                    <img src="<?php echo asset_url('uploads/global_patnership.jpg'); ?>" alt="partnership" class="w-full h-full">
                     <div class="p-6">
                         <h3 class="font-semibold text-xl text-green-700 mb-3">Partner With Us</h3>
                         <p class="text-gray-600 mb-4">Collaborate with us as an organization, institution, or corporate body. Together, we can expand opportunities for youth across borders.</p>
@@ -163,8 +163,8 @@ include __DIR__ . '/header.php';
                         </a>
                     </div>
                 </div>
-                <div class="involvement-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
-                    <img src="<?php echo asset_url('uploads/leadership.jpg'); ?>" alt="support" class="w-full h-48 object-cover">
+                <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2 " data-reveal>
+                    <img src="<?php echo asset_url('uploads/pose.jpg'); ?>" alt="support" class="w-full h-full ">
                     <div class="p-6">
                         <h3 class="font-semibold text-xl text-green-700 mb-3">Support the Mission</h3>
                         <p class="text-gray-600 mb-4">Contribute resources that help us run leadership programs and community outreach initiatives. Every contribution helps shape future changemakers.</p>
@@ -173,8 +173,8 @@ include __DIR__ . '/header.php';
                         </a>
                     </div>
                 </div>
-                <div class="involvement-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
-                    <img src="<?php echo asset_url('uploads/join_youth.jpg'); ?>" alt="network" class="w-full h-48 object-cover">
+                <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2" data-reveal>
+                    <img src="<?php echo asset_url('uploads/together.jpg'); ?>" alt="network" class="w-full h-full object-center ">
                     <div class="p-6">
                         <h3 class="font-semibold text-xl text-green-700 mb-3">Join the Youth Network</h3>
                         <p class="text-gray-600 mb-4">Are you a young leader or aspiring professional? Connect with a growing network of purpose-driven youth.</p>
@@ -194,8 +194,8 @@ include __DIR__ . '/header.php';
                     <h2 class="text-3xl md:text-4xl font-bold leading-relaxed">"Our youths are not the problem, they are the promise."</h2>
                 </div>
                 <div class="flex justify-center">
-                    <div class="hero-card bg-white p-2 shadow-2xl overflow-hidden transform translate-y-4 hover:translate-y-0 transition duration-500">
-                        <img src="<?php echo asset_url('uploads/person_smile.jpg'); ?>" alt="initiative" class="w-full h-72 object-cover">
+                    <div class="hero-card bg-white p-2 shadow-2xl overflow-hidden transform translate-y-4 hover:translate-y-0 transition duration-500 w-full ">
+                        <img src="<?php echo asset_url('uploads/kids.jpg'); ?>" alt="initiative" class="w-full h-96 object-center">
                     </div>
                 </div>
             </div>

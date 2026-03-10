@@ -39,7 +39,7 @@ function get_service_cards() {
         [
             'title' => 'Leadership Development',
             'description' => 'Mentorship, coaching, and youth leadership engagement programs designed to raise confident and purpose-driven changemakers.',
-            'image' => 'uploads/leadership.jpg'
+            'image' => 'uploads/leader.jpg'
         ],
         [
             'title' => 'Education & School Engagement',
@@ -122,7 +122,7 @@ function get_focus_areas() {
             'title' => 'Leadership Development',
             'subtitle' => 'Building confident, purpose-driven changemakers',
             'content'=>'Our Leadership Development programs are designed to equip young people with the mindset, skills, and guidance they need to become responsible leaders in their communities and beyond.',
-            'image' => 'uploads/leadership.jpg',
+            'image' => 'uploads/leader.jpg',
             'what_we_do' => [
                 'Provide mentorship and coaching led by experienced role models',
                 'Engage youths in leadership discussions, workshops, and activities',

@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <link rel="icon" type="image/png" href="./golf_logo.png">
     <title>Admin Setup - Golfs Cameroon</title>
 </head>
 <body class="bg-white flex items-center justify-center min-h-screen p-4">

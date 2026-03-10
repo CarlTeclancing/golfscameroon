@@ -39,7 +39,7 @@
     <!-- Mission & Vision -->
     <section class="grid md:grid-cols-2 gap-12 items-center mb-20" data-reveal>
       <div>
-        <img src="<?php echo asset_url('uploads/initiative.jpg'); ?>" alt="Youth empowerment" class="rounded-2xl shadow-2xl w-full h-80 object-cover transform -rotate-3 hover:rotate-0 transition duration-500">
+        <img src="<?php echo asset_url('uploads/out.jpg'); ?>" alt="Youth empowerment" class="rounded-2xl shadow-2xl w-full h-80 object-cover transform -rotate-3 hover:rotate-0 transition duration-500">
       </div>
       <div>
         <h2 class="text-3xl md:text-4xl font-bold text-green-700 mb-6">Our Mission & Vision</h2>

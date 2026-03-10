@@ -122,7 +122,7 @@ function asset_url($path = '') {
     return base_url(ltrim($path, '/'));
 }
 
-function upload_image($file, $targetDir, $maxSize = 2097152) {
+function upload_image($file, $targetDir, $maxSize = 5242880) {
     // $file is from $_FILES['field']
     if (empty($file) || $file['error'] !== UPLOAD_ERR_OK) {
         return ['success'=>false, 'error'=>'No file uploaded or upload error'];
