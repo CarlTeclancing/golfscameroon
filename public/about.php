@@ -178,33 +178,39 @@
       </div>
       <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden text-center group">
-          <div class="h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
-            <i class="bi bi-person-circle text-8xl text-green-300 group-hover:scale-110 transition duration-300"></i>
+          <div class="h-64 w-full bg-gray-100 flex items-center justify-center overflow-hidden">
+            <img src="<?php echo asset_url('uploads/CEO.jpeg'); ?>" alt="Dimitry" class="h-full w-full group-hover:scale-110 transition duration-300">
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800">Founder Name</h3>
+            <h3 class="text-xl font-bold text-gray-800">Mr. OWAMBA DIMITRY NGOMO</h3>
             <p class="text-red-600 font-medium text-sm mb-3">Founder & Executive Director</p>
-            <p class="text-gray-600 text-sm">Passionate about youth empowerment with over 10 years of experience in community development.</p>
           </div>
         </div>
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden text-center group">
           <div class="h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
-            <i class="bi bi-person-circle text-8xl text-red-300 group-hover:scale-110 transition duration-300"></i>
+          <img src="<?php echo asset_url('uploads/vice_presi.jpeg'); ?>" alt="Liz Britney Angel" class="h-full w-full group-hover:scale-110 transition duration-300">
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800">Program Director</h3>
-            <p class="text-green-600 font-medium text-sm mb-3">Programs & Operations</p>
-            <p class="text-gray-600 text-sm">Dedicated to designing and implementing impactful youth programs across Cameroon.</p>
+            <h3 class="text-xl font-bold text-gray-800">Madam Bih Liz Britney Angel</h3>
+            <p class="text-green-600 font-medium text-sm mb-3">Vice president of the  Golfs cameroon.</p>
           </div>
         </div>
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden text-center group">
           <div class="h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
-            <i class="bi bi-person-circle text-8xl text-green-300 group-hover:scale-110 transition duration-300"></i>
+           <img src="<?php echo asset_url('uploads/IMG-20260225-WA0063.jpg (1).jpeg'); ?>" alt="Counselor" class="h-full w-full group-hover:scale-110 transition duration-300">
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800">Community Lead</h3>
-            <p class="text-red-600 font-medium text-sm mb-3">Community Engagement</p>
-            <p class="text-gray-600 text-sm">Building bridges between youth, families, and community stakeholders.</p>
+            <h3 class="text-xl font-bold text-gray-800">Dr/Mr Assene  Assene Joseph Marie</h3>
+            <p class="text-red-600 font-medium text-sm mb-3">General counselor and pioneer for the golfs cameroon</p>
+          </div>
+        </div>
+          <div class="bg-white rounded-2xl shadow-lg overflow-hidden text-center group">
+          <div class="h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
+          <img src="<?php echo asset_url('uploads/Miss.jpeg'); ?>" alt=" Frances Fiona" class="h-full w-full group-hover:scale-110 transition duration-300">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800">Miss Golfs cameroon 2025/2026</h3>
+            <p class="text-green-600 font-medium text-sm mb-3"> Frances Fiona</p>
           </div>
         </div>
       </div>
