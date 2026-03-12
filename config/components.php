@@ -7,7 +7,7 @@ function render_info_cards($cards) {
         <?php foreach ($cards as $card): ?>
             <div class="text-left">
                 <h3 class="font-bold text-2xl px-2"><?php echo e($card['title']); ?></h3>
-                <img src="<?php echo asset_url('uploads/vector.png'); ?>" alt="green line" class="w-20">
+                <img src="<?php echo asset_url('uploads/Vector.jpg'); ?>" alt="green line" class="w-20">
                 <p class="mt-2 text-sm sm:text-lg text-gray-600 leading-[2]"><?php echo e($card['description']); ?></p>
             </div>
         <?php endforeach; ?>
