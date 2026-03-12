@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /ngo/
+    RewriteBase /
     
     # Don't rewrite if it's a real file or directory
     RewriteCond %{REQUEST_FILENAME} -f [OR]

@@ -39,7 +39,7 @@
     <!-- Mission & Vision -->
     <section class="grid md:grid-cols-2 gap-12 items-center mb-20" data-reveal>
       <div>
-        <img src="<?php echo asset_url('uploads/out.jpg'); ?>" alt="Youth empowerment" class="rounded-2xl shadow-2xl w-full h-80 object-cover transform -rotate-3 hover:rotate-0 transition duration-500">
+        <img src="<?php echo asset_url('uploads/out.jpg'); ?>" alt="Youth empowerment" class="rounded-2xl shadow-2xl w-full h-96  transform -rotate-3 hover:rotate-0 transition duration-500">
       </div>
       <div>
         <h2 class="text-3xl md:text-4xl font-bold text-green-700 mb-6">Our Mission & Vision</h2>
@@ -183,7 +183,7 @@
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-gray-800">Mr. OWAMBA DIMITRY NGOMO</h3>
-            <p class="text-red-600 font-medium text-sm mb-3">Founder & Executive Director</p>
+            <p class="text-green-600 font-medium text-sm mb-3">Founder & Executive Director</p>
           </div>
         </div>
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden text-center group">
@@ -201,7 +201,7 @@
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-gray-800">Dr/Mr Assene  Assene Joseph Marie</h3>
-            <p class="text-red-600 font-medium text-sm mb-3">General counselor and pioneer for the golfs cameroon</p>
+            <p class="text-green-600 font-medium text-sm mb-3">General counselor and pioneer for the golfs cameroon</p>
           </div>
         </div>
           <div class="bg-white rounded-2xl shadow-lg overflow-hidden text-center group">
@@ -209,8 +209,8 @@
           <img src="<?php echo asset_url('uploads/Miss.jpeg'); ?>" alt=" Frances Fiona" class="h-full w-full group-hover:scale-110 transition duration-300">
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800">Miss Golfs cameroon 2025/2026</h3>
-            <p class="text-green-600 font-medium text-sm mb-3"> Frances Fiona</p>
+            <h3 class="text-xl font-bold text-gray-800"> Frances Fiona</h3>
+            <p class="text-green-600 font-medium text-sm mb-3">Miss Golfs cameroon 2025/2026</p>
           </div>
         </div>
       </div>
