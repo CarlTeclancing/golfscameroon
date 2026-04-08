@@ -91,6 +91,21 @@ function nav_link_class($route, $is_mobile = false) {
     a, button {
       transition: all 0.3s ease-in-out;
     }
+
+    h1 { font-size: clamp(2rem, 4vw, 3.4rem); }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.6rem); }
+    h3 { font-size: clamp(1.25rem, 2.3vw, 2rem); }
+    p, label, a, button { font-size: clamp(0.95rem, 1.8vw, 1.05rem); }
+    .text-green-700, .text-gray-700, .text-gray-600, .text-white { word-break: break-word; }
+
+    @media (max-width: 640px) {
+      nav .flex { flex-wrap: wrap; }
+      nav .max-w-6xl { padding-left: 1rem; padding-right: 1rem; }
+      nav a, nav button { font-size: 0.95rem; }
+      .text-xl { font-size: 1.25rem; }
+      .hc-inner { padding: 2.5rem 1rem 2rem; }
+    }
+
     nav a:hover {
       text-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     }

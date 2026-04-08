@@ -25,8 +25,9 @@ function project_progress($db, $project_id, $target) {
 $page_title = 'Home';
 include __DIR__ . '/header.php';
 ?>
+
 <style>
-  .hero-section {
+  /* .hero-section {
     background: linear-gradient(135deg, rgba(22, 78, 58, 0.95) 0%, rgba(13, 101, 45, 0.85) 100%);
     position: relative;
     overflow: hidden;
@@ -41,7 +42,94 @@ include __DIR__ . '/header.php';
     background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
+  } */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap');
+ 
+  :root {
+    --green-dark: #14532d;
+    --green-mid:  #166534;
+    --gold:       #0c3a1f;
+    --slide-dur:  800ms;
+    --text-dur:   600ms;
   }
+ 
+  .hero-carousel { position:relative; width:100%; min-height:100vh; overflow:hidden; font-family:'DM Sans',sans-serif; }
+ 
+  .hc-slide { position:absolute; inset:0; display:flex; align-items:center; opacity:0; pointer-events:none; transition:opacity var(--slide-dur) ease; }
+  .hc-slide.active { opacity:1; pointer-events:auto; }
+ 
+  .hc-bg-img { position:absolute; inset:0; background-size:cover; background-position:center; z-index:0; }
+ 
+  .hc-overlay { position:absolute; inset:0; z-index:1; }
+  .hc-slide:nth-child(odd)  .hc-overlay { background:linear-gradient(105deg, rgba(20,83,45,.97) 0%, rgba(22,101,52,.88) 40%, rgba(22,101,52,.40) 65%, transparent 100%); }
+  .hc-slide:nth-child(even) .hc-overlay { background:linear-gradient(255deg, rgba(20,83,45,.97) 0%, rgba(22,101,52,.88) 40%, rgba(22,101,52,.30) 65%, transparent 100%); }
+ 
+  .hc-inner { position:relative; z-index:2; max-width:1280px; margin:0 auto; padding:6rem 1.5rem 4rem; width:100%; display:flex; align-items:center; gap:3rem; min-height:100vh; }
+  .hc-slide:nth-child(even) .hc-inner { flex-direction:row-reverse; }
+ 
+  .hc-text { flex:1; max-width:580px; }
+  .hc-slide:nth-child(even) .hc-text { text-align:right; }
+ 
+  .hc-tag, .hc-title, .hc-desc, .hc-actions { opacity:0; transform:translateY(28px); transition:opacity var(--text-dur) ease, transform var(--text-dur) ease; }
+  .hc-slide.active .hc-tag     { opacity:1; transform:none; transition-delay:120ms; }
+  .hc-slide.active .hc-title   { opacity:1; transform:none; transition-delay:260ms; }
+  .hc-slide.active .hc-desc    { opacity:1; transform:none; transition-delay:400ms; }
+  .hc-slide.active .hc-actions { opacity:1; transform:none; transition-delay:530ms; }
+ 
+  .hc-tag { display:inline-block; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); color:#bbf7d0; padding:.35rem 1rem; border-radius:999px; font-size:.8rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-bottom:1.1rem; backdrop-filter:blur(6px); }
+  .hc-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:900; line-height:1.12; color:#fff; margin-bottom:1.25rem; }
+  .hc-title span { color:var(--gold); }
+  .hc-desc { font-size:1.05rem; line-height:1.75; color:#d1fae5; margin-bottom:2rem; }
+ 
+  .hc-actions { display:flex; flex-wrap:wrap; gap:.85rem; }
+  .hc-slide:nth-child(even) .hc-actions { justify-content:flex-end; }
+ 
+  .btn-primary   { display:inline-flex; align-items:center; gap:.45rem; background:#fff; color:var(--green-dark); padding:.85rem 1.75rem; border-radius:.6rem; font-weight:700; font-size:.95rem; border:none; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.2); transition:transform .2s,box-shadow .2s; text-decoration:none; }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 14px 32px rgba(0,0,0,.28); }
+  .btn-secondary { display:inline-flex; align-items:center; gap:.45rem; border:2px solid rgba(255,255,255,.7); color:#fff; padding:.85rem 1.75rem; border-radius:.6rem; font-weight:600; font-size:.95rem; background:transparent; cursor:pointer; transition:background .2s,color .2s; text-decoration:none; }
+  .btn-secondary:hover { background:#fff; color:var(--green-dark); }
+ 
+  .hc-img-wrap { flex:0 0 auto; width:min(420px,40vw); display:flex; justify-content:center; }
+  @media(max-width:767px){ .hc-img-wrap { display:none; } }
+  .hc-card { background:rgba(255,255,255,.10); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.22); border-radius:1.25rem; padding:.75rem; box-shadow:0 20px 60px rgba(0,0,0,.35); opacity:0; transform:scale(.93) translateY(18px); transition:opacity var(--text-dur) ease .35s, transform var(--text-dur) ease .35s; }
+  .hc-slide.active .hc-card { opacity:1; transform:scale(1) translateY(0); }
+  .hc-card img { border-radius:.85rem; width:100%; height:320px; object-fit:cover; display:block; }
+ 
+  .hc-progress-wrap { position:absolute; bottom:0; left:0; right:0; height:3px; background:rgba(255,255,255,.15); z-index:10; }
+  .hc-progress-bar { height:100%; background:var(--gold); width:0%; transition:none; }
+  .hc-progress-bar.running { transition:width 6000ms linear; width:100%; }
+ 
+  .hc-dots { position:absolute; bottom:1.8rem; left:50%; transform:translateX(-50%); display:flex; gap:.55rem; z-index:10; }
+  .hc-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.35); border:none; cursor:pointer; transition:background .3s,transform .3s; padding:0; }
+  .hc-dot.active { background:#fff; transform:scale(1.4); }
+
+  .hc-inner { max-width:1280px; margin:0 auto; padding:6rem 1.5rem 4rem; width:100%; display:flex; align-items:center; gap:3rem; min-height:100vh; }
+  .hc-text { flex:1; max-width:580px; }
+  .hc-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:900; line-height:1.12; color:#fff; margin-bottom:1.25rem; }
+  .hc-desc { font-size:1.05rem; line-height:1.75; color:#d1fae5; margin-bottom:2rem; }
+
+  @media (max-width: 1024px) {
+    .hc-inner { padding:4rem 1.25rem 3rem; gap:2rem; }
+    .hc-title { font-size:clamp(2rem,5.5vw,3rem); }
+    .hc-desc { font-size:clamp(1rem,2.4vw,1.05rem); }
+    .hc-card { max-width:360px; }
+  }
+
+  @media (max-width: 767px) {
+    .hc-inner { flex-direction:column; align-items:flex-start; padding:3rem 1rem 2rem; min-height:auto; }
+    .hc-slide:nth-child(even) .hc-inner { flex-direction:column; }
+    .hc-text { width:100%; max-width:100%; }
+    .hc-title { font-size:clamp(1.75rem,8vw,2.5rem); line-height:1.15; }
+    .hc-desc { font-size:clamp(0.95rem,3vw,1rem); margin-bottom:1.5rem; }
+    .hc-actions { flex-wrap:wrap; gap:.75rem; }
+    .hc-img-wrap { width:100%; display:block; }
+    .hc-card { width:100%; max-width:100%; }
+    .hc-progress-wrap { height:2px; }
+    .hc-dots { bottom:1.1rem; }
+    .hc-counter { right:1rem; left:auto; font-size:.75rem; }
+    .hc-arrow { width:40px; height:40px; }
+  }
+  .hc-counter span { color:#fff; }
   .hero-card {
     transform: rotate(4deg);
     transition: transform 0.5s ease;
@@ -65,7 +153,7 @@ include __DIR__ . '/header.php';
 </style>
 
     <!-- Hero Section -->
-    <header class="hero-section py-20 md:py-32">
+    <!-- <header class="hero-section py-20 md:py-32">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
             <div class="flex-1 text-center md:text-left" data-reveal>
                 <span class="inline-block bg-green-800 bg-opacity-50 text-green-100 px-4 py-2 rounded-full text-sm font-semibold mb-4">Welcome to The Golfs Cameroon</span>
@@ -86,7 +174,109 @@ include __DIR__ . '/header.php';
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->
+   <!-- <?php  $heroSlides = [
+    [
+        'image'   => 'hero-img1.jpeg',
+        'alt'     => 'Youth Education Program',
+        'tag'     => ['icon' => 'bi-dot', 'label' => 'Raise Leaders'],
+        'title'   => 'Empowering Cameroon\'s <span>Youth</span> through Education &amp; Opportunity',
+        'desc'    => 'We create mentorship, skill-building, and scholarship programs to unlock potential and build resilient communities aligned with the UN SDGs.',
+        'buttons' => [
+            ['label' => 'Donate Now', 'href' => null,                'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'primary',   'icon' => 'bi-heart-fill'],
+            ['label' => 'Join Us',    'href' => base_url('members'), 'onclick' => null,                                    'style' => 'secondary', 'icon' => 'bi-people-fill'],
+        ],
+    ],
+    [
+        'image'   => 'hero-img2.jpeg',
+        'alt'     => 'Scholarship Program',
+        'tag'     => ['icon' => 'bi-mortarboard-fill', 'label' => 'Scholarships &amp; Mentorship'],
+        'title'   => 'Building <span>Resilient</span> Communities, One Scholar at a Time',
+        'desc'    => 'Our scholarship programs have supported hundreds of bright young minds across Cameroon — giving them the tools and guidance to shape their futures.',
+        'buttons' => [
+            ['label' => 'Our Programs',    'href' => base_url('scholarships'), 'onclick' => null, 'style' => 'primary',   'icon' => 'bi-book-fill'],
+            ['label' => 'Success Stories', 'href' => base_url('stories'),      'onclick' => null, 'style' => 'secondary', 'icon' => 'bi-chat-quote-fill'],
+        ],
+    ],
+    [
+        'image'   => 'hero-img3.jpeg',
+        'alt'     => 'Skill Building',
+        'tag'     => ['icon' => 'bi-globe-americas', 'label' => 'UN SDGs Aligned'],
+        'title'   => 'Skill-Building for a <span>Sustainable</span> Future',
+        'desc'    => 'From digital literacy to entrepreneurship, our programs equip young Cameroonians with 21st-century skills to thrive in a changing global economy.',
+        'buttons' => [
+            ['label' => 'Explore Skills', 'href' => base_url('programs'), 'onclick' => null,                                    'style' => 'primary',   'icon' => 'bi-briefcase-fill'],
+            ['label' => 'Support Us',     'href' => null,                 'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'secondary', 'icon' => 'bi-heart-fill'],
+        ],
+    ],
+];
+?> -->
+ <? php $heroSlides = get_heroSlides();?>
+<header class="hero-carousel" id="heroCarousel">
+ 
+  <?php foreach ($heroSlides as $slide): ?>
+  <div class="hc-slide">
+ 
+    <div class="hc-bg-img"
+         style="background-image:url('<?php echo asset_url('uploads/' . $slide['image']); ?>')">
+    </div>
+    <div class="hc-overlay"></div>
+ 
+    <div class="hc-inner">
+      <!-- Text -->
+      <div class="hc-text">
+        <span class="hc-tag">
+          <i class="bi <?php echo $slide['tag']['icon']; ?>"></i>
+          <?php echo $slide['tag']['label']; ?>
+        </span>
+        <h1 class="hc-title"><?php echo $slide['title']; ?></h1>
+        <p  class="hc-desc"><?php echo $slide['desc']; ?></p>
+        <div class="hc-actions">
+          <?php foreach ($slide['buttons'] as $btn):
+            // Use <a> when there's an href, <button> when it's a JS action
+            if ($btn['href']):
+          ?>
+            <a href="<?php echo $btn['href']; ?>" class="btn-<?php echo $btn['style']; ?>">
+              <i class="bi <?php echo $btn['icon']; ?>"></i>
+              <?php echo $btn['label']; ?>
+            </a>
+          <?php else: ?>
+            <button onclick="<?php echo htmlspecialchars($btn['onclick']); ?>"
+                    class="btn-<?php echo $btn['style']; ?>">
+              <i class="bi <?php echo $btn['icon']; ?>"></i>
+              <?php echo $btn['label']; ?>
+            </button>
+          <?php endif; endforeach; ?>
+        </div>
+      </div>
+ 
+      <!-- Card image -->
+      <div class="hc-img-wrap">
+        <div class="hc-card">
+          <img src="<?php echo asset_url('uploads/' . $slide['image']); ?>"
+               alt="<?php echo htmlspecialchars($slide['alt']); ?>">
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+  <?php endforeach; ?>
+ 
+  <!-- Controls -->
+  <button class="hc-arrow prev" onclick="heroMove(-1)" aria-label="Previous slide">
+    <i class="bi bi-chevron-left"></i>
+  </button>
+  <button class="hc-arrow next" onclick="heroMove(1)" aria-label="Next slide">
+    <i class="bi bi-chevron-right"></i>
+  </button>
+ 
+  <div class="hc-dots" id="heroDots"></div>
+  <div class="hc-counter"><span id="heroCurrent">1</span> / <span id="heroTotal"></span></div>
+ 
+  <div class="hc-progress-wrap">
+    <div class="hc-progress-bar" id="heroProgressBar"></div>
+  </div>
+</header>
 
     <main class="max-w-7xl mx-auto px-6 py-16">
         <!-- Section: The Future Begins With Our Youth -->
@@ -142,8 +332,8 @@ include __DIR__ . '/header.php';
                 <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Take Action</span>
                 <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2 capitalize">Ways to Get Involved</h1>
             </div>
-            <div class="grid grid-cols-2 gap-8">
-                <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2 h-[200px] " data-reveal>
+            <div class="grid sm:grid-cols-2  gap-8">
+                <div class=" flex flex-wrap involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2 h-[200px] " data-reveal>
                     <img src="<?php echo asset_url('uploads/volunteer3.jpg'); ?>" alt="volunteer" class="w-full h-full">
                     <div class="p-6 w-full">
                         <h3 class="font-semibold text-xl text-green-700 mb-3">Become a Volunteer</h3>
@@ -277,7 +467,7 @@ include __DIR__ . '/header.php';
     </main>
 
   <!-- Donation Modal -->
-  <!-- <div id="donateModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+  <div id="donateModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
     <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
     <div class="bg-green-700 text-white p-6 flex justify-between items-center">
         <h2 class="text-xl font-bold">Make a Donation</h2>
@@ -324,7 +514,7 @@ include __DIR__ . '/header.php';
         </button>
       </form>
     </div>
-  </div> -->
+  </div>
 
 <?php include __DIR__ . '/footer.php'; ?>
     <script>
@@ -360,4 +550,69 @@ include __DIR__ . '/header.php';
             initMobileMenu('#mobile-menu-btn', '#mobile-nav');
             initScrollReveal();
         });
+
+        (function () {
+  const carousel  = document.getElementById('heroCarousel');
+  const slides    = carousel.querySelectorAll('.hc-slide');
+  const dotsWrap  = document.getElementById('heroDots');
+  const barEl     = document.getElementById('heroProgressBar');
+  const currentEl = document.getElementById('heroCurrent');
+  const totalEl   = document.getElementById('heroTotal');
+  const INTERVAL  = 6000;
+  let current = 0, timer, barTimer;
+ 
+  totalEl.textContent = slides.length;
+  slides[0].classList.add('active');
+ 
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'hc-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    d.onclick = () => { goTo(i); startAuto(); };
+    dotsWrap.appendChild(d);
+  });
+ 
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+    currentEl.textContent = current + 1;
+    resetProgress();
+  }
+ 
+  function resetProgress() {
+    barEl.classList.remove('running');
+    barEl.style.transition = 'none';
+    barEl.style.width = '0%';
+    clearTimeout(barTimer);
+    barTimer = setTimeout(() => barEl.classList.add('running'), 30);
+  }
+ 
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(() => heroMove(1), INTERVAL);
+  }
+ 
+  window.heroMove = function (dir) { goTo(current + dir); startAuto(); };
+ 
+  carousel.addEventListener('mouseenter', () => clearInterval(timer));
+  carousel.addEventListener('mouseleave', startAuto);
+ 
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  heroMove(-1);
+    if (e.key === 'ArrowRight') heroMove(1);
+  });
+ 
+  let touchX = 0;
+  carousel.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+  carousel.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) heroMove(dx < 0 ? 1 : -1);
+  });
+ 
+  resetProgress();
+  startAuto();
+})();
     </script>
