@@ -27,22 +27,6 @@ include __DIR__ . '/header.php';
 ?>
 
 <style>
-  /* .hero-section {
-    background: linear-gradient(135deg, rgba(22, 78, 58, 0.95) 0%, rgba(13, 101, 45, 0.85) 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-section::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-  } */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap');
  
   :root {
@@ -64,7 +48,7 @@ include __DIR__ . '/header.php';
   .hc-slide:nth-child(odd)  .hc-overlay { background:linear-gradient(105deg, rgba(20,83,45,.97) 0%, rgba(22,101,52,.88) 40%, rgba(22,101,52,.40) 65%, transparent 100%); }
   .hc-slide:nth-child(even) .hc-overlay { background:linear-gradient(255deg, rgba(20,83,45,.97) 0%, rgba(22,101,52,.88) 40%, rgba(22,101,52,.30) 65%, transparent 100%); }
  
-  .hc-inner { position:relative; z-index:2; max-width:1280px; margin:0 auto; padding:6rem 1.5rem 4rem; width:100%; display:flex; align-items:center; gap:3rem; min-height:100vh; }
+  .hc-inner { position:relative; z-index:2; max-width:1280px; margin:0 auto; padding:2rem 1.5rem 4rem; width:100%; display:flex; align-items:center; gap:3rem; min-height:100vh; }
   .hc-slide:nth-child(even) .hc-inner { flex-direction:row-reverse; }
  
   .hc-text { flex:1; max-width:580px; }
@@ -77,8 +61,8 @@ include __DIR__ . '/header.php';
   .hc-slide.active .hc-actions { opacity:1; transform:none; transition-delay:530ms; }
  
   .hc-tag { display:inline-block; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); color:#bbf7d0; padding:.35rem 1rem; border-radius:999px; font-size:.8rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-bottom:1.1rem; backdrop-filter:blur(6px); }
-  .hc-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:900; line-height:1.12; color:#fff; margin-bottom:1.25rem; }
-  .hc-title span { color:var(--gold); }
+  .hc-title { font-family: "Poppins", sans-serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:900; line-height:1.12; color:#fff; margin-bottom:1.25rem; }
+  .hc-title span { color:var(--gold);     font-family: "Agbalumo", system-ui; font-weight:500; }
   .hc-desc { font-size:1.05rem; line-height:1.75; color:#d1fae5; margin-bottom:2rem; }
  
   .hc-actions { display:flex; flex-wrap:wrap; gap:.85rem; }
@@ -104,8 +88,8 @@ include __DIR__ . '/header.php';
   .hc-dot.active { background:#fff; transform:scale(1.4); }
 
   .hc-inner { max-width:1280px; margin:0 auto; padding:6rem 1.5rem 4rem; width:100%; display:flex; align-items:center; gap:3rem; min-height:100vh; }
-  .hc-text { flex:1; max-width:580px; }
-  .hc-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:900; line-height:1.12; color:#fff; margin-bottom:1.25rem; }
+  .hc-text {font-family: "Poppins", sans-serif; flex:1; max-width:580px; }
+  .hc-title { font-family: "Poppins", sans-serif; font-size:clamp(2.5rem,5vw,3.5rem); font-weight:700; line-height:1.12; color:#fff; margin-bottom:1.25rem; }
   .hc-desc { font-size:1.05rem; line-height:1.75; color:#d1fae5; margin-bottom:2rem; }
 
   @media (max-width: 1024px) {
@@ -119,7 +103,7 @@ include __DIR__ . '/header.php';
     .hc-inner { flex-direction:column; align-items:flex-start; padding:3rem 1rem 2rem; min-height:auto; }
     .hc-slide:nth-child(even) .hc-inner { flex-direction:column; }
     .hc-text { width:100%; max-width:100%; }
-    .hc-title { font-size:clamp(1.75rem,8vw,2.5rem); line-height:1.15; }
+    .hc-title {font-family: "Poppins", sans-serif; font-size:clamp(1.75rem,8vw,2.5rem); line-height:1.15; }
     .hc-desc { font-size:clamp(0.95rem,3vw,1rem); margin-bottom:1.5rem; }
     .hc-actions { flex-wrap:wrap; gap:.75rem; }
     .hc-img-wrap { width:100%; display:block; }
@@ -153,114 +137,10 @@ include __DIR__ . '/header.php';
 </style>
 
     <!-- Hero Section -->
-    <!-- <header class="hero-section py-20 md:py-32">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-            <div class="flex-1 text-center md:text-left" data-reveal>
-                <span class="inline-block bg-green-800 bg-opacity-50 text-green-100 px-4 py-2 rounded-full text-sm font-semibold mb-4">Welcome to The Golfs Cameroon</span>
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight text-white mb-6">Empowering Cameroon&apos;s Youth through Education & Opportunity</h1>
-                <p class="text-lg md:text-xl text-green-100 mb-8 leading-relaxed">We create mentorship, skill-building, and scholarship programs to unlock potential and build resilient communities aligned with the UN SDGs.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <button onclick="openDonateModal(0, 'General Donation')" class="bg-white text-green-700 px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 font-semibold">
-                        <i class="bi bi-heart-fill mr-2"></i> Donate Now
-                    </button>
-                    <a href="<?php echo base_url('members'); ?>" class="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-green-700 transition duration-300 font-semibold">
-                        <i class="bi bi-people-fill mr-2"></i> Join Us
-                    </a>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 flex justify-center" data-reveal>
-                <div class="hero-card bg-white rounded-2xl overflow-hidden shadow-2xl  p-3">
-                    <img src="<?php echo asset_url('uploads/heroImage.png'); ?>" alt="Youth program" class="rounded-xl w-full h-auto">
-                </div>
-            </div>
-        </div>
-    </header> -->
-   <!-- <?php  $heroSlides = [
-    [
-        'image'   => 'hero-img1.jpeg',
-        'alt'     => 'Youth Education Program',
-        'tag'     => ['icon' => 'bi-dot', 'label' => 'Raise Leaders'],
-        'title'   => 'Empowering Cameroon\'s <span>Youth</span> through Education &amp; Opportunity',
-        'desc'    => 'We create mentorship, skill-building, and scholarship programs to unlock potential and build resilient communities aligned with the UN SDGs.',
-        'buttons' => [
-            ['label' => 'Donate Now', 'href' => null,                'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'primary',   'icon' => 'bi-heart-fill'],
-            ['label' => 'Join Us',    'href' => base_url('members'), 'onclick' => null,                                    'style' => 'secondary', 'icon' => 'bi-people-fill'],
-        ],
-    ],
-    [
-        'image'   => 'hero-img2.jpeg',
-        'alt'     => 'Scholarship Program',
-        'tag'     => ['icon' => 'bi-mortarboard-fill', 'label' => 'Scholarships &amp; Mentorship'],
-        'title'   => 'Building <span>Resilient</span> Communities, One Scholar at a Time',
-        'desc'    => 'Our scholarship programs have supported hundreds of bright young minds across Cameroon — giving them the tools and guidance to shape their futures.',
-        'buttons' => [
-            ['label' => 'Our Programs',    'href' => base_url('scholarships'), 'onclick' => null, 'style' => 'primary',   'icon' => 'bi-book-fill'],
-            ['label' => 'Success Stories', 'href' => base_url('stories'),      'onclick' => null, 'style' => 'secondary', 'icon' => 'bi-chat-quote-fill'],
-        ],
-    ],
-    [
-        'image'   => 'hero-img3.jpeg',
-        'alt'     => 'Skill Building',
-        'tag'     => ['icon' => 'bi-globe-americas', 'label' => 'UN SDGs Aligned'],
-        'title'   => 'Skill-Building for a <span>Sustainable</span> Future',
-        'desc'    => 'From digital literacy to entrepreneurship, our programs equip young Cameroonians with 21st-century skills to thrive in a changing global economy.',
-        'buttons' => [
-            ['label' => 'Explore Skills', 'href' => base_url('programs'), 'onclick' => null,                                    'style' => 'primary',   'icon' => 'bi-briefcase-fill'],
-            ['label' => 'Support Us',     'href' => null,                 'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'secondary', 'icon' => 'bi-heart-fill'],
-        ],
-    ],
-];
-?> -->
- <? php $heroSlides = get_heroSlides();?>
+ <?php $heroSlides = get_hero_slides(); ?>
 <header class="hero-carousel" id="heroCarousel">
  
-  <?php foreach ($heroSlides as $slide): ?>
-  <div class="hc-slide">
- 
-    <div class="hc-bg-img"
-         style="background-image:url('<?php echo asset_url('uploads/' . $slide['image']); ?>')">
-    </div>
-    <div class="hc-overlay"></div>
- 
-    <div class="hc-inner">
-      <!-- Text -->
-      <div class="hc-text">
-        <span class="hc-tag">
-          <i class="bi <?php echo $slide['tag']['icon']; ?>"></i>
-          <?php echo $slide['tag']['label']; ?>
-        </span>
-        <h1 class="hc-title"><?php echo $slide['title']; ?></h1>
-        <p  class="hc-desc"><?php echo $slide['desc']; ?></p>
-        <div class="hc-actions">
-          <?php foreach ($slide['buttons'] as $btn):
-            // Use <a> when there's an href, <button> when it's a JS action
-            if ($btn['href']):
-          ?>
-            <a href="<?php echo $btn['href']; ?>" class="btn-<?php echo $btn['style']; ?>">
-              <i class="bi <?php echo $btn['icon']; ?>"></i>
-              <?php echo $btn['label']; ?>
-            </a>
-          <?php else: ?>
-            <button onclick="<?php echo htmlspecialchars($btn['onclick']); ?>"
-                    class="btn-<?php echo $btn['style']; ?>">
-              <i class="bi <?php echo $btn['icon']; ?>"></i>
-              <?php echo $btn['label']; ?>
-            </button>
-          <?php endif; endforeach; ?>
-        </div>
-      </div>
- 
-      <!-- Card image -->
-      <div class="hc-img-wrap">
-        <div class="hc-card">
-          <img src="<?php echo asset_url('uploads/' . $slide['image']); ?>"
-               alt="<?php echo htmlspecialchars($slide['alt']); ?>">
-        </div>
-      </div>
-    </div>
- 
-  </div>
-  <?php endforeach; ?>
+  <?php foreach ($heroSlides as $slide): render_hero_slide($slide); endforeach; ?>
  
   <!-- Controls -->
   <button class="hc-arrow prev" onclick="heroMove(-1)" aria-label="Previous slide">
@@ -326,53 +206,18 @@ include __DIR__ . '/header.php';
                 <?php endforeach; ?>
             </div>
         </section>
+
+
         <!-- Section: Get Involved -->
         <section id="get-involved" data-reveal class="py-16 mb-16">
             <div class="text-center mb-12">
                 <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Take Action</span>
                 <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2 capitalize">Ways to Get Involved</h1>
             </div>
-            <div class="grid sm:grid-cols-2  gap-8">
-                <div class=" flex flex-wrap involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2 h-[200px] " data-reveal>
-                    <img src="<?php echo asset_url('uploads/volunteer3.jpg'); ?>" alt="volunteer" class="w-full h-full">
-                    <div class="p-6 w-full">
-                        <h3 class="font-semibold text-xl text-green-700 mb-3">Become a Volunteer</h3>
-                        <p class="text-gray-600 mb-4">Mentorship, coaching, and youth leadership engagement programs designed to raise confident and purpose-driven changemakers.</p>
-                        <a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800">
-                            Join Us
-                        </a>
-                    </div>
-                </div>
-                <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2" data-reveal>
-                    <img src="<?php echo asset_url('uploads/global_patnership.jpg'); ?>" alt="partnership" class="w-full h-full">
-                    <div class="p-6">
-                        <h3 class="font-semibold text-xl text-green-700 mb-3">Partner With Us</h3>
-                        <p class="text-gray-600 mb-4">Collaborate with us as an organization, institution, or corporate body. Together, we can expand opportunities for youth across borders.</p>
-                        <a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800">
-                            Partner Now
-                        </a>
-                    </div>
-                </div>
-                <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2 " data-reveal>
-                    <img src="<?php echo asset_url('uploads/pose.jpg'); ?>" alt="support" class="w-full h-full ">
-                    <div class="p-6">
-                        <h3 class="font-semibold text-xl text-green-700 mb-3">Support the Mission</h3>
-                        <p class="text-gray-600 mb-4">Contribute resources that help us run leadership programs and community outreach initiatives. Every contribution helps shape future changemakers.</p>
-                        <a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800">
-                            Support Now
-                        </a>
-                    </div>
-                </div>
-                <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid grid-cols-2" data-reveal>
-                    <img src="<?php echo asset_url('uploads/together.jpg'); ?>" alt="network" class="w-full h-full object-center ">
-                    <div class="p-6">
-                        <h3 class="font-semibold text-xl text-green-700 mb-3">Join the Youth Network</h3>
-                        <p class="text-gray-600 mb-4">Are you a young leader or aspiring professional? Connect with a growing network of purpose-driven youth.</p>
-                        <a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800">
-                            Join the Network
-                        </a>
-                    </div>
-                </div>
+            <div class="grid sm:grid-cols-2 gap-8">
+                <?php foreach (get_involvement_options() as $card): ?>
+                    <?php render_involvement_card($card); ?>
+                <?php endforeach; ?>
             </div>
         </section>
 

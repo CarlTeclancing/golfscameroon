@@ -15,6 +15,45 @@ function render_info_cards($cards) {
     <?php
 }
 
+function render_hero_slide($slide) {
+    ?>
+    <div class="hc-slide">
+      <div class="hc-bg-img" style="background-image:url('<?php echo asset_url('uploads/' . $slide['image']); ?>')"></div>
+      <div class="hc-overlay"></div>
+      <div class="hc-inner">
+        <div class="hc-text">
+          <span class="hc-tag">
+            <i class="bi <?php echo $slide['tag']['icon']; ?>"></i>
+            <?php echo $slide['tag']['label']; ?>
+          </span>
+          <h1 class="hc-title"><?php echo $slide['title']; ?></h1>
+          <p class="hc-desc"><?php echo $slide['desc']; ?></p>
+          <div class="hc-actions">
+            <?php foreach ($slide['buttons'] as $btn): ?>
+              <?php if ($btn['href']): ?>
+                <a href="<?php echo $btn['href']; ?>" class="btn-<?php echo $btn['style']; ?>">
+                  <i class="bi <?php echo $btn['icon']; ?>"></i>
+                  <?php echo $btn['label']; ?>
+                </a>
+              <?php else: ?>
+                <button onclick="<?php echo htmlspecialchars($btn['onclick']); ?>" class="btn-<?php echo $btn['style']; ?>">
+                  <i class="bi <?php echo $btn['icon']; ?>"></i>
+                  <?php echo $btn['label']; ?>
+                </button>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </div>
+        </div>
+        <div class="hc-img-wrap">
+          <div class="hc-card">
+            <img src="<?php echo asset_url('uploads/' . $slide['image']); ?>" alt="<?php echo htmlspecialchars($slide['alt']); ?>">
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
 function render_service_card($service) {
     ?>
     <div class="group bg-white rounded shadow shadow-sm overflow-hidden   block" data-reveal>
@@ -43,20 +82,20 @@ function render_stat_card($stat) {
 
 function render_involvement_card($card) {
     ?>
-    <div class="flex justify-between gap-8 bg-white shadow shadow-sm   overflow-hidden p-1 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1" data-reveal>
-        <div class=" ">
-            <img src="<?php echo asset_url($card['image']); ?>" alt="<?php echo e($card['title']); ?>" class="h-full object-cover group-hover:scale-110 transition-transform duration-300">
-        </div>
-        <div class=" my-4 flex flex-col justify-between">
+     <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid sm:grid-cols-2 h-[200px]" data-reveal>
+        <img src="<?php echo asset_url($card['image']); ?>"
+             alt="<?php echo e($card['title']); ?>"
+             class="w-full h-full object-cover">
+        <div class="p-6 w-full flex flex-col justify-between">
             <div>
-                <h3 class="font-semibold text-xl text-green-700 group-hover:text-red-700 transition-colors duration-300"><?php echo e($card['title']); ?></h3>
-                <p class="text-sm sm:text-lg text-gray-600 mt-2 mx-2 group-hover:text-gray-800 transition-colors duration-300"><?php echo e($card['description']); ?></p>
+                <h3 class="font-semibold text-xl text-green-700 mb-3"><?php echo e($card['title']); ?></h3>
+                <p class="text-gray-600 mb-4 text-sm leading-relaxed"><?php echo e($card['description']); ?></p>
+                <a href="<?php echo base_url($card['link']); ?>"
+               class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800 w-fit text-center">
+                <?php echo e($card['button_text']); ?>
+            </a>
             </div>
-            <button class="mt-4 self-start">
-                <a href="<?php echo base_url($card['link']); ?>" class="inline-block bg-red-700 text-white px-4 py-2 rounded transition-all duration-300 hover:bg-red-800 hover:shadow-md">
-                    <?php echo e($card['button_text']); ?>
-                </a>
-            </button>
+            
         </div>
     </div>
     <?php

@@ -17,6 +17,44 @@ function get_info_cards() {
     ];
 }
 
+function get_hero_slides() {
+    return [
+        [
+            'image'   => 'hero-img1.jpeg',
+            'alt'     => 'Youth Education Program',
+            'tag'     => ['icon' => 'bi-stars', 'label' => 'Welcome to The Golfs Cameroon'],
+            'title'   => 'Empowering Cameroon\'s <span>Youth</span> through Education &amp; Opportunity',
+            'desc'    => 'We create mentorship, skill-building, and scholarship programs to unlock potential and build resilient communities aligned with the UN SDGs.',
+            'buttons' => [
+                ['label' => 'Donate Now', 'href' => null,                'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'primary',   'icon' => 'bi-heart-fill'],
+                ['label' => 'Join Us',    'href' => base_url('members'), 'onclick' => null,                                    'style' => 'secondary', 'icon' => 'bi-people-fill'],
+            ],
+        ],
+        [
+            'image'   => 'hero-img2.jpeg',
+            'alt'     => 'Scholarship Program',
+            'tag'     => ['icon' => 'bi-mortarboard-fill', 'label' => 'Scholarships &amp; Mentorship'],
+            'title'   => 'Building <span>Resilient</span> Communities, One Scholar at a Time',
+            'desc'    => 'Our scholarship programs have supported hundreds of bright young minds across Cameroon — giving them the tools and guidance to shape their futures.',
+            'buttons' => [
+                ['label' => 'Our Programs',    'href' => base_url('scholarships'), 'onclick' => null, 'style' => 'primary',   'icon' => 'bi-book-fill'],
+                ['label' => 'Success Stories', 'href' => base_url('stories'),      'onclick' => null, 'style' => 'secondary', 'icon' => 'bi-chat-quote-fill'],
+            ],
+        ],
+        [
+            'image'   => 'hero-img3.jpeg',
+            'alt'     => 'Skill Building',
+            'tag'     => ['icon' => 'bi-globe-americas', 'label' => 'UN SDGs Aligned'],
+            'title'   => 'Skill-Building for a <span>Sustainable</span> Future',
+            'desc'    => 'From digital literacy to entrepreneurship, our programs equip young Cameroonians with 21st-century skills to thrive in a changing global economy.',
+            'buttons' => [
+                ['label' => 'Explore Skills', 'href' => base_url('programs'), 'onclick' => null,                                    'style' => 'primary',   'icon' => 'bi-briefcase-fill'],
+                ['label' => 'Support Us',     'href' => null,                 'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'secondary', 'icon' => 'bi-heart-fill'],
+            ],
+        ],
+    ];
+}
+
 function get_statistics() {
     return [
         [
@@ -64,7 +102,7 @@ function get_involvement_options() {
         [
             'title' => 'Become a Volunteer',
             'description' => 'Mentorship, coaching, and youth leadership engagement programs designed to raise confident and purpose-driven changemakers.',
-            'image' => 'uploads/become_volunteer.jpg',
+            'image' => 'uploads/volunteer3.jpg',
             'link' => 'members',
             'button_text' => 'Join us'
         ],
@@ -78,14 +116,14 @@ function get_involvement_options() {
         [
             'title' => 'Support the Mission',
             'description' => 'Contribute resources that help us run leadership programs and community outreach initiatives. Every contribution helps shape future changemakers.',
-            'image' => 'uploads/leadership.jpg',
+            'image' => 'uploads/pose.jpg',
             'link' => 'donations',
             'button_text' => 'Support Now'
         ],
         [
             'title' => 'Join the Youth Network',
             'description' => 'Are you a young leader or aspiring professional? Connect with a growing network of purpose-driven youth.',
-            'image' => 'uploads/join_youth.jpg',
+            'image' => 'uploads/together.jpg',
             'link' => 'members',
             'button_text' => 'Join the Network'
         ]
@@ -199,41 +237,4 @@ function get_service_features() {
     ];
 }
 
-function get_heroSlides() {
-    return[ 
-        [
-        'image'   => 'hero-img1.jpeg',
-        'alt'     => 'Youth Education Program',
-        'tag'     => ['icon' => 'bi-dot', 'label' => 'Raise Leaders'],
-        'title'   => 'Empowering Cameroon\'s <span>Youth</span> through Education &amp; Opportunity',
-        'desc'    => 'We create mentorship, skill-building, and scholarship programs to unlock potential and build resilient communities aligned with the UN SDGs.',
-        'buttons' => [
-            ['label' => 'Donate Now', 'href' => null,                'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'primary',   'icon' => 'bi-heart-fill'],
-            ['label' => 'Join Us',    'href' => base_url('members'), 'onclick' => null,                                    'style' => 'secondary', 'icon' => 'bi-people-fill'],
-        ],
-    ],
-    [
-        'image'   => 'hero-img2.jpeg',
-        'alt'     => 'Scholarship Program',
-        'tag'     => ['icon' => 'bi-mortarboard-fill', 'label' => 'Scholarships &amp; Mentorship'],
-        'title'   => 'Building <span>Resilient</span> Communities, One Scholar at a Time',
-        'desc'    => 'Our scholarship programs have supported hundreds of bright young minds across Cameroon — giving them the tools and guidance to shape their futures.',
-        'buttons' => [
-            ['label' => 'Our Programs',    'href' => base_url('scholarships'), 'onclick' => null, 'style' => 'primary',   'icon' => 'bi-book-fill'],
-            ['label' => 'Success Stories', 'href' => base_url('stories'),      'onclick' => null, 'style' => 'secondary', 'icon' => 'bi-chat-quote-fill'],
-        ],
-    ],
-    [
-        'image'   => 'hero-img3.jpeg',
-        'alt'     => 'Skill Building',
-        'tag'     => ['icon' => 'bi-globe-americas', 'label' => 'UN SDGs Aligned'],
-        'title'   => 'Skill-Building for a <span>Sustainable</span> Future',
-        'desc'    => 'From digital literacy to entrepreneurship, our programs equip young Cameroonians with 21st-century skills to thrive in a changing global economy.',
-        'buttons' => [
-            ['label' => 'Explore Skills', 'href' => base_url('programs'), 'onclick' => null,                                    'style' => 'primary',   'icon' => 'bi-briefcase-fill'],
-            ['label' => 'Support Us',     'href' => null,                 'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'secondary', 'icon' => 'bi-heart-fill'],
-        ],
-    ],
-];
-};
 ?>
