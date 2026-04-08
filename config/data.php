@@ -36,9 +36,9 @@ function get_hero_slides() {
             'tag'     => ['icon' => 'bi-mortarboard-fill', 'label' => 'Scholarships &amp; Mentorship'],
             'title'   => 'Building <span>Resilient</span> Communities, One Scholar at a Time',
             'desc'    => 'Our scholarship programs have supported hundreds of bright young minds across Cameroon — giving them the tools and guidance to shape their futures.',
-            'buttons' => [
-                ['label' => 'Our Programs',    'href' => base_url('scholarships'), 'onclick' => null, 'style' => 'primary',   'icon' => 'bi-book-fill'],
-                ['label' => 'Success Stories', 'href' => base_url('stories'),      'onclick' => null, 'style' => 'secondary', 'icon' => 'bi-chat-quote-fill'],
+           'buttons' => [
+                ['label' => 'Donate Now', 'href' => null,                'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'primary',   'icon' => 'bi-heart-fill'],
+                ['label' => 'Join Us',    'href' => base_url('members'), 'onclick' => null,                                    'style' => 'secondary', 'icon' => 'bi-people-fill'],
             ],
         ],
         [
@@ -48,8 +48,8 @@ function get_hero_slides() {
             'title'   => 'Skill-Building for a <span>Sustainable</span> Future',
             'desc'    => 'From digital literacy to entrepreneurship, our programs equip young Cameroonians with 21st-century skills to thrive in a changing global economy.',
             'buttons' => [
-                ['label' => 'Explore Skills', 'href' => base_url('programs'), 'onclick' => null,                                    'style' => 'primary',   'icon' => 'bi-briefcase-fill'],
-                ['label' => 'Support Us',     'href' => null,                 'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'secondary', 'icon' => 'bi-heart-fill'],
+                ['label' => 'Donate Now', 'href' => null,                'onclick' => "openDonateModal(0,'General Donation')", 'style' => 'primary',   'icon' => 'bi-heart-fill'],
+                ['label' => 'Join Us',    'href' => base_url('members'), 'onclick' => null,                                    'style' => 'secondary', 'icon' => 'bi-people-fill'],
             ],
         ],
     ];

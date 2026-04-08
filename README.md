@@ -3,6 +3,7 @@
 This project is a PHP + MySQL web application scaffold for Golfs Cameroon (NGO). It contains public pages and an admin area for management.
 
 Tech stack:
+
 - PHP (plain, simple MVC-like structure)
 - MySQL (PDO)
 - Tailwind CSS (via CDN for prototypes)
@@ -27,22 +28,25 @@ Quick setup (local XAMPP on Windows):
 8. Visit `http://localhost/ngo/` for the public site (no `/public` in URL needed).
 
 Clean URLs:
+
 - Home: `http://localhost/ngo/`
 - About: `http://localhost/ngo/about`
 - Services: `http://localhost/ngo/services`
 - Members: `http://localhost/ngo/members`
-- Blog: `http://localhost/ngo/blog`
+- Blog: `http:///ngo/blog`
 - Donations: `http://localhost/ngo/donations`
 
 **Demo Logins:**
 
 Use the credentials you created in step 5. Example:
+
 - Username: `admin`
 - Password: `MySecurePassword123`
 
 Or create an `editor` role user for content-only access (no project/member/donor management).
 
 Notes:
+
 - Admin CRUD interfaces are scaffolded with file uploads, CSV exports, pagination, and bulk delete actions.
 - TinyMCE rich editor is used for blog content.
 - Clean URLs use Apache mod_rewrite in `.htaccess` files (root and public folders).

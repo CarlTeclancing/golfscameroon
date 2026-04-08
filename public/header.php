@@ -127,7 +127,7 @@ function nav_link_class($route, $is_mobile = false) {
             <?php endif; ?>
           </a>
           <div class="hidden md:flex items-center space-x-4 text-sm">
-            <a href="<?php echo base_url(''); ?>" class="<?php echo nav_link_class('home'); ?>"><?php echo e(t('nav.home')); ?></a>
+            <a href="<?php echo base_url(''); ?>" class="<?php echo nav_link_class(''); ?>"><?php echo e(t('nav.home')); ?></a>
             <a href="<?php echo base_url('about'); ?>" class="<?php echo nav_link_class('about'); ?>"><?php echo e(t('nav.about')); ?></a>
             <a href="<?php echo base_url('services'); ?>" class="<?php echo nav_link_class('services'); ?>"><?php echo e(t('nav.services')); ?></a>
             <a href="<?php echo base_url('members'); ?>" class="<?php echo nav_link_class('members'); ?>"><?php echo e(t('nav.members')); ?></a>

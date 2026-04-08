@@ -48,7 +48,7 @@ include __DIR__ . '/header.php';
   .hc-slide:nth-child(odd)  .hc-overlay { background:linear-gradient(105deg, rgba(20,83,45,.97) 0%, rgba(22,101,52,.88) 40%, rgba(22,101,52,.40) 65%, transparent 100%); }
   .hc-slide:nth-child(even) .hc-overlay { background:linear-gradient(255deg, rgba(20,83,45,.97) 0%, rgba(22,101,52,.88) 40%, rgba(22,101,52,.30) 65%, transparent 100%); }
  
-  .hc-inner { position:relative; z-index:2; max-width:1280px; margin:0 auto; padding:2rem 1.5rem 4rem; width:100%; display:flex; align-items:center; gap:3rem; min-height:100vh; }
+  .hc-inner { position:relative; z-index:2; max-width:1000px;  width:100%; display:flex; align-items:center; gap:3rem; min-height:50vh; }
   .hc-slide:nth-child(even) .hc-inner { flex-direction:row-reverse; }
  
   .hc-text { flex:1; max-width:580px; }
