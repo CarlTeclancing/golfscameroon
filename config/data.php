@@ -102,30 +102,34 @@ function get_involvement_options() {
         [
             'title' => 'Become a Volunteer',
             'description' => 'Mentorship, coaching, and youth leadership engagement programs designed to raise confident and purpose-driven changemakers.',
-            'image' => 'uploads/volunteer3.jpg',
+            'image' => 'uploads/volunteer3.png',
             'link' => 'members',
-            'button_text' => 'Join us'
+            'button_text' => 'Join us',
+            'icon' => 'uploads/join.png'
         ],
         [
             'title' => 'Partner With Us',
             'description' => 'Collaborate with us as an organization, institution, or corporate body. Together, we can expand opportunities for youth across borders.',
             'image' => 'uploads/global_patnership.jpg',
-            'link' => 'members',
-            'button_text' => 'Partner now'
+            'link' => 'contacts',
+            'button_text' => 'Partner now',
+            'icon'=>'uploads/partner.png'
         ],
         [
             'title' => 'Support the Mission',
             'description' => 'Contribute resources that help us run leadership programs and community outreach initiatives. Every contribution helps shape future changemakers.',
-            'image' => 'uploads/pose.jpg',
+            'image' => 'uploads/pose.png',
             'link' => 'donations',
-            'button_text' => 'Support Now'
+            'button_text' => 'Support Now',
+             'icon' => 'uploads/support.png'
         ],
         [
             'title' => 'Join the Youth Network',
             'description' => 'Are you a young leader or aspiring professional? Connect with a growing network of purpose-driven youth.',
             'image' => 'uploads/together.jpg',
             'link' => 'members',
-            'button_text' => 'Join the Network'
+            'button_text' => 'Join the Network',
+             'icon' => 'uploads/join.png'
         ]
     ];
 }

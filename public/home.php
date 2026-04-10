@@ -130,9 +130,20 @@ include __DIR__ . '/header.php';
   }
   .faq-card {
     transition: all 0.3s ease;
+    height: 350px;
   }
   .faq-card:hover {
-    background: linear-gradient(135deg, rgba(22, 78, 58, 0.05) 0%, rgba(34, 197, 94, 0.05) 100%);
+    background: #ffffff;
+    color: #14532d;
+  }
+  .faq-card:hover .group-hover\:text-green-700 {
+    color: #14532d;
+  }
+  .faq-card:hover .group-hover\:text-white {
+    color: #14532d;
+  }
+  .faq-card:hover .group-hover\:bg-green-100 {
+    background-color: #dcfce7;
   }
 </style>
 
@@ -200,13 +211,12 @@ include __DIR__ . '/header.php';
             <div class="text-center mb-12">
                 <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Our Work</h1>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid md:grid-cols-2  gap-6">
                 <?php foreach (get_service_cards() as $service): ?>
                     <?php render_service_card($service); ?>
                 <?php endforeach; ?>
             </div>
         </section>
-
 
         <!-- Section: Get Involved -->
         <section id="get-involved" data-reveal class="py-16 mb-16">
@@ -214,9 +224,10 @@ include __DIR__ . '/header.php';
                 <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Take Action</span>
                 <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2 capitalize">Ways to Get Involved</h1>
             </div>
-            <div class="grid sm:grid-cols-2 gap-8">
-                <?php foreach (get_involvement_options() as $card): ?>
-                    <?php render_involvement_card($card); ?>
+            <div class="grid gap-8">
+                <?php foreach (get_involvement_options() as $index => $card): ?>
+                    <?php $image_on_left = ($index % 2 == 0); ?>
+                    <?php render_involvement_card($card, $image_on_left); ?>
                 <?php endforeach; ?>
             </div>
         </section>
@@ -254,33 +265,61 @@ include __DIR__ . '/header.php';
                 <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Frequently Asked Questions</h1>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="faq-card bg-white p-8 rounded-2xl shadow-md" data-reveal>
-                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="bi bi-question-circle text-2xl text-green-600"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-4 text-green-700">What about boys?</h3>
-                    <p class="text-gray-600 leading-relaxed">Whether you choose to sponsor a girl or a boy, you'll help projects focused on equal opportunities for all children. We know girls are the most vulnerable and we ensure that boys play an important role in building secure communities that value girls.</p>
+                <div class="flex justify-center items-center faq-card relative bg-green-600 text-white p-8 rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:bg-white hover:text-green-700">
+
+                  <!-- DEFAULT VIEW -->
+                  <div class="flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
+                      <i class="bi bi-question-octagon text-9xl mb-4"></i>
+                      <h3 class="font-bold text-xl">What does Golfs Cameroon actually do?</h3>
+                  </div>
+
+                  <!-- HOVER VIEW -->
+                  <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <i class="bi bi-question-octagon text-5xl mb-4"></i>
+                      <h3 class="font-bold text-lg mb-2">What does Golfs Cameroon actually do?</h3>
+                      <p class="text-sm text-gray-600 leading-relaxed">
+                         We empower young people in Cameroon by providing mentorship, skills training, and opportunities that help them become leaders, entrepreneurs, and change-makers in their communities.
+                      </p>
+                  </div>
+
                 </div>
-                <div class="faq-card bg-white p-8 rounded-2xl shadow-md" data-reveal>
-                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="bi bi-chat-heart text-2xl text-red-600"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-4 text-green-700">Is sponsorship like adoption?</h3>
-                    <p class="text-gray-600 leading-relaxed">No, it's not. The girl you sponsor will have a family of her own, but your words of encouragement play an important role for her and her community. Letter writing also helps girls learn about other cultures and improve their literacy skills.</p>
-                </div>
-                <div class="faq-card bg-white p-8 rounded-2xl shadow-md" data-reveal>
-                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                        <i class="bi bi-telephone text-2xl text-green-600"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-4 text-green-700">How can I get more information?</h3>
-                    <p class="text-gray-600 leading-relaxed">Our Supporter Engagement team are happy to answer any questions about sponsorship and our work. You can reach them on 0300 777 9779 or supporterquestions@plan-uk.org.</p>
-                </div>
-            </div>
-            <div class="text-center mt-12">
-                <a href="<?php echo base_url('faq'); ?>" class="inline-flex items-center text-lg text-green-700 font-bold hover:text-green-800 transition">
-                    More FAQs <i class="bi bi-chevron-right mx-2"></i>
-                </a>
-            </div>
+
+                 <div class="flex justify-center items-center faq-card relative bg-green-600 text-white p-8 rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:bg-white hover:text-green-700">
+
+                  <!-- DEFAULT VIEW -->
+                  <div class="flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
+                      <i class="bi bi-question-octagon text-9xl mb-4"></i>
+                      <h3 class="font-bold text-xl">Who can benefit from your programs?</h3>
+                  </div>
+
+                  <!-- HOVER VIEW -->
+                  <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <i class="bi bi-question-octagon text-5xl mb-4"></i>
+                      <h3 class="font-bold text-lg mb-2">Who can benefit from your programs?</h3>
+                      <p class="text-sm text-gray-600 leading-relaxed">
+                        Our programs are designed for Cameroonian youth, especially those in underserved communities who need access to guidance, education, and opportunities to grow.
+                      </p>
+                  </div>
+
+                 </div>
+                 <div class="flex justify-center items-center faq-card relative bg-green-600 text-white p-8 rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:bg-white hover:text-green-700">
+
+                  <!-- DEFAULT VIEW -->
+                  <div class="flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
+                      <i class="bi bi-question-octagon text-9xl mb-4"></i>
+                      <h3 class="font-bold text-xl">Do I need any prior experience to join?</h3>
+                  </div>
+
+                  <!-- HOVER VIEW -->
+                  <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <i class="bi bi-question-octagon text-5xl mb-4"></i>
+                      <h3 class="font-bold text-lg mb-2">Do I need any prior experience to join?</h3>
+                      <p class="text-sm text-gray-600 leading-relaxed">
+                       Not at all. We welcome young people at all levels. What matters most is your willingness to learn, grow, and make a positive impact.
+                      </p>
+                  </div>
+
+                 </div>
         </section>
 
         <!-- Why Choose Us Section -->

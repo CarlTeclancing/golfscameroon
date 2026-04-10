@@ -1,3 +1,102 @@
+<style>
+    .scard {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 500px;
+    cursor: pointer;
+    background: #111;
+}
+
+.scard-img {
+    width: 100%;
+    height: 100%;
+    object-fit: center;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.scard:hover .scard-img {
+    transform: scale(1.07);
+}
+
+/* default gradient — dark at bottom so title is always readable */
+.scard-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.35) 45%,
+        rgba(0,0,0,0.08) 100%
+    );
+    transition: background 0.4s ease;
+}
+
+/* on hover shift to a green tint matching your brand */
+.scard:hover .scard-gradient {
+    background: linear-gradient(
+        to top,
+        rgba(10, 60, 20, 0.92) 0%,
+        rgba(10, 60, 20, 0.58) 50%,
+        rgba(0, 0, 0, 0.15) 100%
+    );
+}
+
+.scard-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+}
+
+.scard-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+/* hidden by default, revealed on hover */
+.scard-reveal {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.35s ease;
+}
+
+.scard:hover .scard-reveal {
+    max-height: 140px;
+    opacity: 1;
+}
+
+.scard-desc {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin: 8px 0 12px;
+}
+
+.scard-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    background: #b91c1c;
+    border-radius: 6px;
+    padding: 7px 14px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.scard-btn:hover {
+    background: #991b1b;
+    transform: translateX(2px);
+}
+</style>
 <?php
 
 function render_info_cards($cards) {
@@ -56,18 +155,34 @@ function render_hero_slide($slide) {
 
 function render_service_card($service) {
     ?>
-    <div class="group bg-white rounded shadow shadow-sm overflow-hidden   block" data-reveal>
-        <div class="relative overflow-hidden h-3/5">
-            <img src="<?php echo asset_url($service['image']); ?>" alt="<?php echo e($service['title']); ?>" class="h-full w-full  group-hover:scale-110 transition-transform duration-300">
+    <div class="scard" data-reveal>
+        <div class="scard-img-wrapper">
+            <img 
+                src="<?php echo asset_url($service['image']); ?>" 
+                alt="<?php echo e($service['title']); ?>" 
+                class="scard-img"
+            >
         </div>
-        <div class="px-2 py-3">
-            <h3 class="font-semibold text-xl text-green-700 flex justify-between items-center ">
+
+        <div class="scard-gradient"></div>
+
+        <div class="scard-content">
+            <h3 class="scard-title flex justify-between items-center">
                 <span><?php echo e($service['title']); ?></span>
-               <a  href="<?php echo base_url('services'); ?>"><i class="bi bi-chevron-right text-green-700 group-hover:text-red-700 group-hover:translate-x-1 transition-all duration-300"></i></a> 
+                <a href="<?php echo base_url('services'); ?>" class="scard-btn">
+                   <i class="bi bi-chevron-right scard-icon"></i>
+                </a> 
             </h3>
-            <p class="text-sm sm:text-md text-gray-600 mt-2 line-clamp-2 leading-[2]"><?php echo e($service['description']); ?></p>
+
+            <div class="scard-reveal">
+                <p class="scard-desc">
+                    <?php echo e($service['description']); ?>
+                </p>
+                
+               
+            </div>
         </div>
-        </div>
+    </div>
     <?php
 }
 
@@ -80,23 +195,47 @@ function render_stat_card($stat) {
     <?php
 }
 
-function render_involvement_card($card) {
+function render_involvement_card($card, $image_on_left = true) {
     ?>
-     <div class="involvement-card bg-white rounded-sm shadow-lg overflow-hidden grid sm:grid-cols-2 h-[200px]" data-reveal>
-        <img src="<?php echo asset_url($card['image']); ?>"
-             alt="<?php echo e($card['title']); ?>"
-             class="w-full h-full object-cover">
-        <div class="p-6 w-full flex flex-col justify-between">
-            <div>
-                <h3 class="font-semibold text-xl text-green-700 mb-3"><?php echo e($card['title']); ?></h3>
-                <p class="text-gray-600 mb-4 text-sm leading-relaxed"><?php echo e($card['description']); ?></p>
-                <a href="<?php echo base_url($card['link']); ?>"
-               class="inline-block bg-red-700 text-white px-5 py-2 rounded-lg transition font-medium hover:bg-red-800 w-fit text-center">
-                <?php echo e($card['button_text']); ?>
-            </a>
+    <div class="group aspect-square involvement-card overflow-hidden grid sm:grid-cols-2 h-auto sm:h-[250px] mb-8" data-reveal>
+        
+        <?php if ($image_on_left): ?>
+            <div class="aspect-square relative overflow-hidden h-96 sm:h-full">
+                <img src="<?php echo asset_url($card['image']); ?>"
+                     alt="<?php echo e($card['title']); ?>"
+                     class="w-full h-[400px] transition-transform duration-500 group-hover:scale-110">
+                <!-- <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> -->
             </div>
-            
+        <?php endif; ?>
+
+        <div class="px-4 py-2 w-full flex flex-col justify-center <?php echo $image_on_left ? '' : 'sm:order-first'; ?>">
+            <div>
+                <div class="flex items-center gap-3 mb-1 sm:mb-2">
+                    <span>
+                   <img src="<?php echo asset_url($card['icon']); ?>" alt="" class="w-12 h-12 object-contain"> 
+                </span>
+                <h3 class="font-bold text-2xl sm:text-3xl text-green-700 mb-3"><?php echo e($card['title']); ?></h3>
+                </div>
+                
+                <p class="text-gray-600 mb-5 text-sm sm:text-xl leading-relaxed line-clamp-3">
+                    <?php echo e($card['description']); ?>
+                </p>
+                <a href="<?php echo base_url($card['link']); ?>"
+                   class="inline-block bg-green-700 text-white px-6 py-2.5 rounded-lg transition-all duration-300 font-bold hover:bg-red-800 w-fit text-xs uppercase tracking-wider">
+                    <?php echo e($card['button_text'] ?? 'Learn More'); ?>
+                </a>
+            </div>
         </div>
+
+        <?php if (!$image_on_left): ?>
+            <div class="relative overflow-hidden h-56 sm:h-full">
+                <img src="<?php echo asset_url($card['image']); ?>"
+                     alt="<?php echo e($card['title']); ?>"
+                     class="w-full h96 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+        <?php endif; ?>
+
     </div>
     <?php
 }
