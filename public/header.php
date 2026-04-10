@@ -130,6 +130,7 @@ function nav_link_class($route, $is_mobile = false) {
             <a href="<?php echo base_url(''); ?>" class="<?php echo nav_link_class(''); ?>"><?php echo e(t('nav.home')); ?></a>
             <a href="<?php echo base_url('about'); ?>" class="<?php echo nav_link_class('about'); ?>"><?php echo e(t('nav.about')); ?></a>
             <a href="<?php echo base_url('services'); ?>" class="<?php echo nav_link_class('services'); ?>"><?php echo e(t('nav.services')); ?></a>
+            <a href="<?php echo base_url('study_abroad'); ?>" class="<?php echo nav_link_class('study_abroad'); ?>">Study Abroad</a>
             <a href="<?php echo base_url('members'); ?>" class="<?php echo nav_link_class('members'); ?>"><?php echo e(t('nav.members')); ?></a>
             <a href="<?php echo base_url('gallery'); ?>" class="<?php echo nav_link_class('gallery'); ?>"><?php echo e(t('nav.gallery')); ?></a>
             <a href="<?php echo base_url('blog'); ?>" class="<?php echo nav_link_class('blog'); ?>"><?php echo e(t('nav.blog')); ?></a>
@@ -156,6 +157,7 @@ function nav_link_class($route, $is_mobile = false) {
       <a class="<?php echo nav_link_class('home', true); ?>" href="<?php echo base_url(''); ?>"><?php echo e(t('nav.home')); ?></a>
       <a class="<?php echo nav_link_class('about', true); ?>" href="<?php echo base_url('about'); ?>"><?php echo e(t('nav.about')); ?></a>
       <a class="<?php echo nav_link_class('services', true); ?>" href="<?php echo base_url('services'); ?>"><?php echo e(t('nav.services')); ?></a>
+      <a class="<?php echo nav_link_class('study_abroad', true); ?>" href="<?php echo base_url('study_abroad'); ?>">Study Abroad</a>
       <a class="<?php echo nav_link_class('members', true); ?>" href="<?php echo base_url('members'); ?>"><?php echo e(t('nav.members')); ?></a>
       <a class="<?php echo nav_link_class('gallery', true); ?>" href="<?php echo base_url('gallery'); ?>"><?php echo e(t('nav.gallery')); ?></a>
       <a class="<?php echo nav_link_class('blog', true); ?>" href="<?php echo base_url('blog'); ?>"><?php echo e(t('nav.blog')); ?></a>

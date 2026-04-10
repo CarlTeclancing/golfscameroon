@@ -10,6 +10,7 @@ $routes = [
     'home' => 'home',
     'about' => 'about',
     'services' => 'services',
+    'study_abroad' => 'study_abroad',
     'members' => 'members',
     'gallery' => 'gallery',
     'blog' => 'blog',

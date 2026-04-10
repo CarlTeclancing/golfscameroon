@@ -140,16 +140,16 @@ function get_involvement_options() {
 function get_faqs() {
     return [
         [
-            'question' => 'What about boys?',
-            'answer' => 'Whether you choose to sponsor a girl or a boy, you\'ll help projects focused on equal opportunities for all children. We know girls are the most vulnerable and we ensure that boys play an important role in building secure communities that value girls.'
+            'question' => 'What does Golfs Cameroon actually do?',
+            'answer' => 'We empower young people in Cameroon by providing mentorship, skills training, and opportunities that help them become leaders, entrepreneurs, and change-makers in their communities.'
         ],
         [
-            'question' => 'Is sponsorship like adoption?',
-            'answer' => 'No, it\'s not. The girl you sponsor will have a family of her own, but your words of encouragement play an important role for her and her community. Letter writing also helps girls learn about other cultures and improve their literacy skills.'
+            'question' => 'Who can benefit from your programs?',
+            'answer' => 'Our programs are designed for Cameroonian youth, especially those in underserved communities who need access to guidance, education, and opportunities to grow.'
         ],
         [
-            'question' => 'How can I get more information?',
-            'answer' => 'Our Supporter Engagement team are happy to answer any questions about sponsorship and our work. You can reach them on 0300 777 9779 or supporterquestions@plan-uk.org.'
+            'question' => 'Do I need any prior experience to join?',
+            'answer' => 'Not at all. We welcome young people at all levels. What matters most is your willingness to learn, grow, and make a positive impact.'
         ]
     ];
 }

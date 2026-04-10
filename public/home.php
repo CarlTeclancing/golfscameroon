@@ -132,18 +132,16 @@ include __DIR__ . '/header.php';
     transition: all 0.3s ease;
     height: 350px;
   }
-  .faq-card:hover {
-    background: #ffffff;
-    color: #14532d;
+  .faq-card:hover, .faq-card.active-reveal {
+    background: #ffffff !important;
+    color: #14532d !important;
   }
-  .faq-card:hover .group-hover\:text-green-700 {
-    color: #14532d;
+  .faq-card:hover .default-view, .faq-card.active-reveal .default-view {
+    opacity: 0;
+    transform: scale(0.9);
   }
-  .faq-card:hover .group-hover\:text-white {
-    color: #14532d;
-  }
-  .faq-card:hover .group-hover\:bg-green-100 {
-    background-color: #dcfce7;
+  .faq-card:hover .hover-view, .faq-card.active-reveal .hover-view {
+    opacity: 1;
   }
 </style>
 
@@ -265,16 +263,16 @@ include __DIR__ . '/header.php';
                 <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Frequently Asked Questions</h1>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="flex justify-center items-center faq-card relative bg-green-600 text-white p-8 rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:bg-white hover:text-green-700">
+                <div class="flex justify-center items-center faq-card relative bg-green-600 text-white p-8 rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:bg-white hover:text-green-700" data-faq-card="0">
 
                   <!-- DEFAULT VIEW -->
-                  <div class="flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
+                  <div class="default-view flex flex-col items-center justify-center text-center transition-all duration-300">
                       <i class="bi bi-question-octagon text-9xl mb-4"></i>
                       <h3 class="font-bold text-xl">What does Golfs Cameroon actually do?</h3>
                   </div>
 
                   <!-- HOVER VIEW -->
-                  <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div class="hover-view absolute inset-0 flex flex-col items-center justify-center text-center p-6 opacity-0 transition-all duration-300">
                       <i class="bi bi-question-octagon text-5xl mb-4"></i>
                       <h3 class="font-bold text-lg mb-2">What does Golfs Cameroon actually do?</h3>
                       <p class="text-sm text-gray-600 leading-relaxed">
@@ -284,16 +282,16 @@ include __DIR__ . '/header.php';
 
                 </div>
 
-                 <div class="flex justify-center items-center faq-card relative bg-green-600 text-white p-8 rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:bg-white hover:text-green-700">
+                 <div class="flex justify-center items-center faq-card relative bg-green-600 text-white p-8 rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:bg-white hover:text-green-700" data-faq-card="1">
 
                   <!-- DEFAULT VIEW -->
-                  <div class="flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
+                  <div class="default-view flex flex-col items-center justify-center text-center transition-all duration-300">
                       <i class="bi bi-question-octagon text-9xl mb-4"></i>
                       <h3 class="font-bold text-xl">Who can benefit from your programs?</h3>
                   </div>
 
                   <!-- HOVER VIEW -->
-                  <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div class="hover-view absolute inset-0 flex flex-col items-center justify-center text-center p-6 opacity-0 transition-all duration-300">
                       <i class="bi bi-question-octagon text-5xl mb-4"></i>
                       <h3 class="font-bold text-lg mb-2">Who can benefit from your programs?</h3>
                       <p class="text-sm text-gray-600 leading-relaxed">
@@ -302,16 +300,16 @@ include __DIR__ . '/header.php';
                   </div>
 
                  </div>
-                 <div class="flex justify-center items-center faq-card relative bg-green-600 text-white p-8 rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:bg-white hover:text-green-700">
+                 <div class="flex justify-center items-center faq-card relative bg-green-600 text-white p-8 rounded-2xl shadow-md overflow-hidden group transition-all duration-300 hover:bg-white hover:text-green-700" data-faq-card="2">
 
                   <!-- DEFAULT VIEW -->
-                  <div class="flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
+                  <div class="default-view flex flex-col items-center justify-center text-center transition-all duration-300">
                       <i class="bi bi-question-octagon text-9xl mb-4"></i>
                       <h3 class="font-bold text-xl">Do I need any prior experience to join?</h3>
                   </div>
 
                   <!-- HOVER VIEW -->
-                  <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div class="hover-view absolute inset-0 flex flex-col items-center justify-center text-center p-6 opacity-0 transition-all duration-300">
                       <i class="bi bi-question-octagon text-5xl mb-4"></i>
                       <h3 class="font-bold text-lg mb-2">Do I need any prior experience to join?</h3>
                       <p class="text-sm text-gray-600 leading-relaxed">
@@ -498,5 +496,71 @@ include __DIR__ . '/header.php';
  
   resetProgress();
   startAuto();
+})();
+
+// FAQ Auto-Reveal on Scroll
+(function() {
+    const faqSection = document.getElementById('faq');
+    const faqCards = document.querySelectorAll('[data-faq-card]');
+    let faqHasTriggered = false;
+    let currentRevealedCard = null;
+
+    function revealFaqCards() {
+        if (faqSection && !faqHasTriggered) {
+            const sectionRect = faqSection.getBoundingClientRect();
+            const screenBottom = window.innerHeight;
+            
+            // Check if section is in viewport
+            if (sectionRect.top < screenBottom && sectionRect.bottom > 0) {
+                faqHasTriggered = true;
+                
+                // Reveal cards one by one sequentially
+                faqCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        // Close previous card before opening new one
+                        if (currentRevealedCard && currentRevealedCard !== card) {
+                            currentRevealedCard.classList.remove('active-reveal');
+                        }
+                        
+                        // Open current card
+                        card.classList.add('active-reveal');
+                        currentRevealedCard = card;
+                        
+                        // Close after 3 seconds unless hovering
+                        setTimeout(() => {
+                            if (!card.matches(':hover') && currentRevealedCard === card) {
+                                card.classList.remove('active-reveal');
+                                currentRevealedCard = null;
+                            }
+                        }, 3000);
+                    }, index * 3600); // Each card: 3.6 seconds (3s display + 0.6s transition)
+                });
+            }
+        }
+    }
+
+    // Listen for scroll events
+    window.addEventListener('scroll', revealFaqCards);
+    
+    // Call once on page load in case section is already visible
+    revealFaqCards();
+    
+    // Keep hover functionality working
+    faqCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            // Close any previously revealed card
+            if (currentRevealedCard && currentRevealedCard !== card) {
+                currentRevealedCard.classList.remove('active-reveal');
+            }
+            card.classList.add('active-reveal');
+            currentRevealedCard = card;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('active-reveal');
+            if (currentRevealedCard === card) {
+                currentRevealedCard = null;
+            }
+        });
+    });
 })();
     </script>
