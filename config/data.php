@@ -31,7 +31,7 @@ function get_hero_slides() {
             ],
         ],
         [
-            'image'   => 'hero-img2.jpeg',
+            'image'   => 'hero-img2.png',
             'alt'     => 'Scholarship Program',
             'tag'     => ['icon' => 'bi-mortarboard-fill', 'label' => 'Scholarships &amp; Mentorship'],
             'title'   => 'Building <span>Resilient</span> Communities, One Scholar at a Time',
@@ -42,7 +42,7 @@ function get_hero_slides() {
             ],
         ],
         [
-            'image'   => 'hero-img3.jpeg',
+            'image'   => 'hero-img6.png',
             'alt'     => 'Skill Building',
             'tag'     => ['icon' => 'bi-globe-americas', 'label' => 'UN SDGs Aligned'],
             'title'   => 'Skill-Building for a <span>Sustainable</span> Future',

@@ -16,25 +16,25 @@
       <div>
         <h4 class="font-semibold text-green-700">Follow</h4>
         <div class="flex justify-center md:justify-start gap-4 mt-2">
-          <?php $twitter = get_setting('social_twitter', ''); ?>
+          <?php $twitter = get_setting('social_twitter', '#'); ?>
           <?php if (!empty($twitter)): ?>
             <a href="<?php echo e($twitter); ?>" class="text-green-700 hover:text-red-600 transition-colors">
               <i class="bi bi-twitter text-2xl"></i>
             </a>
           <?php endif; ?>
-          <?php $facebook = get_setting('social_facebook', ''); ?>
+          <?php $facebook = get_setting('social_facebook', '#'); ?>
           <?php if (!empty($facebook)): ?>
             <a href="<?php echo e($facebook); ?>" class="text-green-700 hover:text-red-600 transition-colors">
               <i class="bi bi-facebook text-2xl"></i>
             </a>
           <?php endif; ?>
-          <?php $instagram = get_setting('social_instagram', ''); ?>
+          <?php $instagram = get_setting('social_instagram', '#'); ?>
           <?php if (!empty($instagram)): ?>
             <a href="<?php echo e($instagram); ?>" class="text-green-700 hover:text-red-600 transition-colors">
               <i class="bi bi-instagram text-2xl"></i>
             </a>
           <?php endif; ?>
-          <?php $linkedin = get_setting('social_linkedin', ''); ?>
+          <?php $linkedin = get_setting('social_linkedin', '#'); ?>
           <?php if (!empty($linkedin)): ?>
             <a href="<?php echo e($linkedin); ?>" class="text-green-700 hover:text-red-600 transition-colors">
               <i class="bi bi-linkedin text-2xl"></i>

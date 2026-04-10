@@ -6,7 +6,7 @@ include __DIR__ . '/header.php';
 ?>
 <style>
   .study-abroad-hero {
-    background-image: linear-gradient(rgba(32, 34, 33, 0.9), rgba(22, 78, 58, 0.8)), url('uploads/global_patnership.jpg');
+    background-image: linear-gradient(rgba(32, 34, 33, 0.4), rgba(32, 32, 32, 0.6)), url('uploads/china_image.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -25,27 +25,80 @@ include __DIR__ . '/header.php';
     background: linear-gradient(135deg, rgba(22, 78, 58, 0.08) 0%, rgba(34, 197, 94, 0.08) 100%);
     transform: translateY(-5px);
   }
+   .way-1{
+    background-image: linear-gradient(#167347E5), url('uploads/SVG.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-size:8px;
+  }
 </style>
 
   <!-- Hero Section -->
-  <header class="study-abroad-hero py-24 md:py-36">
-    <div class="max-w-5xl mx-auto px-6 text-center" data-reveal>
-      <span class="inline-block bg-white bg-opacity-20 text-green-100 px-4 py-2 rounded-full text-sm font-semibold mb-4">Global Opportunities</span>
-      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Study Abroad Programs</h1>
-      <p class="text-lg md:text-xl text-green-100 max-w-3xl mx-auto mb-8">Unlock global opportunities and expand your horizons with our comprehensive study abroad support and partnership programs.</p>
-      <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 inline-block">
-        <p class="text-2xl md:text-3xl font-semibold text-white italic">"Expanding Horizons, Building Futures"</p>
+  <header class="study-abroad-hero  grid grid-cols-2 items-center text-center" data-reveal>
+    <div class=" mx-auto px-6 text-left" data-reveal>
+      <div class="flex justify-center items-center gap-2 ">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-2 sm:mb-4  ">Study In China</h1>
+        <img src="uploads/plane.png" alt="plane" class="w-30 h-20 object-contain mb-4">
       </div>
+      <p class="text-lg md:text-xl text-green-100 max-w-3xl mx-auto mb-8">Unlock world-class education opportunities in China through fully and partially funded scholarships. We guide you every step of the way, from application to admission making your dream of studying abroad simple, accessible, and achievable..</p>
+      <button>Explore Program</button>
     </div>
+    <img src="uploads/graduate.png" alt="graduate " className="w-96 h-96 mx-auto">
   </header>
 
-  <main class="max-w-7xl mx-auto px-6 py-16">
-    
+  <main class=" ">
+    <!-- counters Sections -->
+  <section class="flex justify-center items-center mx-auto my-16 w-full sm:w-3/4" data-reveal>
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+            <?php 
+            $stats = [
+                ['num' => '20+', 'label' => 'Universities'],
+                ['num' => '98%', 'label' => 'admit rate'],
+                ['num' => '50+', 'label' => 'Enrolled Learners'],
+                ['num' => '500,000 FCFA', 'label' => 'Saved with our procedure']
+            ];
+            foreach ($stats as $stat): ?>
+            <div class="group" data-reveal>
+                <h2 class="text-4xl font-extrabold text-green-600 mb-2 group-hover:scale-110 transition-transform"><?php echo $stat['num']; ?></h2>
+                <p class="text-gray-400 text-xs uppercase tracking-widest font-semibold"><?php echo $stat['label']; ?></p>
+            </div>
+            <?php endforeach; ?>
+            
+        </div>
+    </section>
     <!-- Intro Section -->
-    <section class="text-center mb-20" data-reveal>
-      <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">International Education</span>
-      <h2 class="text-3xl md:text-4xl font-bold text-green-700 mt-2 mb-6">Breaking Boundaries in Education</h2>
-      <p class="text-gray-600 text-lg max-w-4xl mx-auto leading-relaxed">The Golfs Cameroon is committed to opening doors for Cameroonian youth to pursue quality education beyond borders. Our study abroad programs provide comprehensive support from application preparation to cultural integration, ensuring every scholar has the tools to succeed globally while maintaining their roots.</p>
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center mb-20 px-24 py-20 bg-green-700" data-reveal>
+      <div class="text-left text-white px-6 py-12">
+        <h2 class="text-3xl md:text-5xl font-bold text-white mt-2 mb-6">The smartest way to study in China</h2>
+       <p class=" text-lg max-w-4xl mx-auto leading-relaxed">Studying in China isn’t complicated but doing it the wrong way can be costly. Avoid fake programs and misleading information by getting trusted guidance from the</p>
+
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-4 ">
+        <p class="mt-6 p-2 w-38 border-2 border-green-700 bg-white rounded-lg flex justify-center items-center gap-2 text-black  ">
+          <a href="" class="font-bold text-xl cursor-pointer">
+            Talk to our counselor
+          </a>
+          <i class="bi bi-chevron-right"></i>
+        </p>
+         <p class="mt-6 p-2 w-38 border-2 border-green-700 rounded-lg flex justify-center items-center gap-2">
+          <a href="" class="font-bold text-xl cursor-pointer">
+          Explore Programs
+          </a>
+          <i class="bi bi-chevron-right"></i>
+        </p>
+       </div>
+      
+      </div>
+      
+       <div class="grid grid-cols-1 grid-cols-2 gap-6">
+        <div class="bg-white flex w-30 h-36  items-center justify-center rounded-lg">
+          <p class="w-full px-4 text-4xl font-bold text-green-700 flex justify-center items-center">01</p>
+          <div class=" text-white way-1  h-full w-full flex flex-col justify-center items-center gap-2">
+            <p>Understand available scholarships and eligibility requirements</p>
+          </div>
+        </div>
+
+       </div>
     </section>
 
     <!-- Study Abroad Programs -->
