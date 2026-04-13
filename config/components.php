@@ -333,7 +333,7 @@ function render_program_offered($program) {
       <div class="program-content-overlay">
         <div class="">
         <div>
-          <div class="text-green-700 w-14 h-14 bg-white flex justify-center items-center rounded-xl">
+          <div class="text-green-700 w-14 h-14 bg-white flex justify-center items-center rounded-xl mb-4">
             <i class="bi <?php echo e($program['icon']); ?> text-2xl"></i>
           </div>
           <h3 class="text-2xl sm:5xl"><?php echo e($program['title']); ?></h3>

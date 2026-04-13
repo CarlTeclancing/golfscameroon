@@ -20,7 +20,7 @@ $topChineseUniversities = get_top_chinese_universities();
     max-width: 100%;
     object-fit: cover;
   }
-    .smartest-way{
+  .smartest-way,.top-uni{
      background-image: linear-gradient(#167347E5, #122A1F);
   }
    .way-1{
@@ -193,12 +193,12 @@ $topChineseUniversities = get_top_chinese_universities();
     <div class=" mx-auto px-6 text-left" data-reveal>
       <div class="flex justify-center items-center gap-2 ">
         <h1 class="text-4xl md:text-6xl font-bold text-white mb-2 sm:mb-4  ">Study In China</h1>
-        <img src="uploads/plane.png" alt="plane" class="w-30 h-20 object-contain mb-4">
+        <img src="uploads/plane.png" alt="plane" class="w-30 h-20 object-contain mb-4 hidden sm:block">
       </div>
       <p class="text-lg md:text-xl text-green-100 max-w-3xl mx-auto mb-8">Unlock world-class education opportunities in China through fully and partially funded scholarships. We guide you every step of the way, from application to admission making your dream of studying abroad simple, accessible, and achievable..</p>
       <button>Explore Program</button>
     </div>
-    <img src="uploads/graduate.png" alt="graduate " className="w-96 h-96 mx-auto">
+    <img src="uploads/graduate.png" alt="graduate " className="w-96 h-96 mx-auto hidden sm:block">
   </header>
 
 
@@ -223,7 +223,7 @@ $topChineseUniversities = get_top_chinese_universities();
         </div>
     </section>
     <!-- Intro Section /Smartest way-->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center mb-20 px-24 py-20 bg-green-700  smartest-way" data-reveal>
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center mb-20 px-8 sm:px-24 py-8 sm:py-20 bg-green-700  smartest-way" data-reveal>
       <div class="text-left text-white px-6 py-12">
         <h2 class="text-3xl md:text-5xl font-bold text-white mt-2 mb-6">The smartest way to study in China</h2>
        <p class=" text-lg max-w-4xl mx-auto leading-relaxed">Studying in China isn’t complicated but doing it the wrong way can be costly. Avoid fake programs and misleading information by getting trusted guidance from the</p>
@@ -245,7 +245,7 @@ $topChineseUniversities = get_top_chinese_universities();
       
       </div>
       
-       <div class="grid grid-cols-1 grid-cols-2 gap-6">
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div class="bg-white flex  h-40  items-center justify-center rounded-lg overflow-hidden">
           <p class="w-full px-4 text-4xl font-bold text-green-700 flex justify-center items-center">01</p>
           <div class=" text-white way-1  h-full w-full flex flex-col justify-center items-center gap-2 p-2">
@@ -275,13 +275,13 @@ $topChineseUniversities = get_top_chinese_universities();
     </section>
 
     <!-- Study Abroad Programs -->
-    <section id="programs-offered" class="my-8 mx-12" data-reveal>
+    <section id="programs-offered" class=" px-8 sm:px-12 py-8 sm:py-20" data-reveal>
       <div class="text-center mb-10">
         <p class="text-2xl sm:text-4xl font-bold text-green-700">Programs offered</p>
         <p class="mt-4 text-gray-600 max-w-3xl mx-auto">Explore the best study abroad pathways in China with strong scholarship support, seamless applications, and full student guidance.</p>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 ">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-center items-center ">
         <?php foreach ($studyPrograms as $program): ?>
           <?php render_program_offered($program); ?>
         <?php endforeach; ?>
@@ -289,7 +289,7 @@ $topChineseUniversities = get_top_chinese_universities();
 
         <!-- partners -->
 
-        <div class="flex gap-4 justify-center items-center "> 
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center items-center p "> 
          <div class="grid grid-cols-4 gap-2 ">
           <img src="<?php echo asset_url('uploads/northernu.png'); ?>" alt="partners" class=" h-20 object-cover mt-12">
             <img src="<?php echo asset_url('uploads/SRH.png'); ?>" alt="partners" class="h-20 object-cover mt-12">
@@ -305,11 +305,12 @@ journey</p>
     </section>
 
     <!-- Top Chinese Universities Carousel -->
-    <section class="py-16 px-8 md:px-12" data-reveal>
+    <section class="py-16 px-8 md:px-12 top-uni" data-reveal>
+      
       <div class="text-center mb-12">
-        <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Partner Universities</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Top Chinese Universities</h2>
-        <p class="text-gray-600 max-w-3xl mx-auto mt-4">Preview leading universities in China and see which institutions align with your study abroad goals.</p>
+      <h1 class="text-2xl sm:text-4xl font-bold text-white  text-center mb-6 capitalize">
+        Some of the top China universities offering these programs include
+      </h1>
       </div>
       <div class="university-carousel">
         <div class="university-track">

@@ -324,23 +324,28 @@ function get_top_chinese_universities() {
         [
             'name' => 'Tsinghua University',
             'description' => 'A world-renowned research university with top engineering and innovation programs.',
-            'image' => 'uploads/hero-img4.jpeg',
+            'image' => 'uploads/TsinguaU.jpg',
         ],
         [
             'name' => 'Peking University',
             'description' => 'Leading university in liberal arts, sciences, and international student exchange.',
-            'image' => 'uploads/hospitality.jpg',
+            'image' => 'uploads/Benjing.jpg',
         ],
         [
             'name' => 'Fudan University',
             'description' => 'Prestigious Shanghai university known for business, economics, and global scholarship programs.',
-            'image' => 'uploads/business_eco.jpg',
+            'image' => 'uploads/fudan.jpg',
         ],
         [
             'name' => 'Zhejiang University',
             'description' => 'Top school for engineering, technology and research-driven global education.',
-            'image' => 'uploads/natural_science.jpg',
+            'image' => 'uploads/zhejiang.jpg',
         ],
+        [
+            'name' => 'Shanghai Jiao Tong University',
+            'description' => 'Top 50 globally, a leader in engineering and innovation.',
+            'image' => 'uploads/shanghai.jpg',
+        ]
     ];
 }
 
