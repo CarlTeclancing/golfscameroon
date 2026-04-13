@@ -178,13 +178,13 @@ function render_service_card($service) {
                 <p class="scard-desc">
                     <?php echo e($service['description']); ?>
                 </p>
-                
-               
             </div>
         </div>
     </div>
     <?php
 }
+
+
 
 function render_stat_card($stat) {
     ?>
@@ -310,20 +310,51 @@ function render_service_feature($feature) {
     <?php
 }
 
-// ============= tranvel abroad page
+// ============= travel abroad page
 
-function render_program_offered($program){
+function render_travel_program($program){
     ?>
     <div class="">
       <img src="<?php echo asset_url($program['image']); ?>" alt="<?php echo e($program['title']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
-      
+
        <div>
         <i class="<?php echo $program['icon'];?>" ></i>
         <h3 class="font-bold text-xl text-green-700 mb-2"><?php echo e($program['title']); ?></h3>
       <p class="text-gray-600 text-sm mb-4"><?php echo e($program['details']); ?></p>
        </div>
-      
+
     </div>
+    <?php
+}
+function render_program_offered($program) {
+    ?>
+    <div class="program-card" data-reveal>
+      <img src="<?php echo asset_url($program['image']); ?>" alt="<?php echo e($program['title']); ?>" class="program-bg">
+      <div class="program-content-overlay">
+        <div class="">
+        <div>
+          <div class="text-green-700 w-14 h-14 bg-white flex justify-center items-center rounded-xl">
+            <i class="bi <?php echo e($program['icon']); ?> text-2xl"></i>
+          </div>
+          <h3 class="text-2xl sm:5xl"><?php echo e($program['title']); ?></h3>
+          <p class=""><?php echo e($program['details']); ?></p>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    <?php
+}
+
+function render_university_card($university, $active = false, $index = 0) {
+    ?>
+    <article class="uni-card<?php echo $active ? ' active' : ''; ?>" data-index="<?php echo e($index); ?>">
+      <img src="<?php echo asset_url($university['image']); ?>" alt="<?php echo e($university['name']); ?>" class="uni-card__image">
+      <div class="uni-card__info">
+        <h3 class="uni-card__name"><?php echo e($university['name']); ?></h3>
+        <p class="uni-card__desc"><?php echo e($university['description']); ?></p>
+      </div>
+    </article>
     <?php
 }
 ?>

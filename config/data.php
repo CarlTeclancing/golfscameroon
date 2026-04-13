@@ -246,70 +246,102 @@ function get_service_features() {
 // <!-- travel abroad page  -->
 
 function get_program_offered(){
+    return [
+        [
+            'image' => 'uploads/business_eco.jpg',
+            'icon' => 'bi bi-graph-up',
+            'title' => 'Business & Economics',
+            'details' => 'International Business, Finance, Marketing',
+          
+        ],
+        [
+            'image' => 'uploads/medcine.jpg',
+            'icon' => 'bi bi-mortarboard-fill',
+            'title' => 'Medicine',
+            'details' => 'MBBS (Bachelor of Medicine, Bachelor of Surgery)',
+          
+        ],
+        [
+            'image' => 'uploads/it.jpg',
+            'icon' => 'bi bi-mortarboard-fill',
+            'title' => 'Information Technology',
+            'details' => 'Computer Science, Data Science, Cybersecurity',
+           
+        ],
+        [
+            'image' => 'uploads/engineering.jpg',
+            'icon' => 'bi bi-mortarboard-fill',
+            'title' => 'Engineering',
+            'details' => 'Civil, Mechanical, Electrical',
+        ],
+        [
+            'image' => 'uploads/natural_science.jpg',
+            'icon' => 'bi bi-graph-up',
+            'title' => 'Natural Sciences',
+            'details' => 'Biology, Chemistry, Environmental Science',
+           
+        ],
+        [
+            'image' => 'uploads/Language.jpg',
+            'icon' => 'bi bi-journal-bookmark-fill',
+            'title' => 'Language & Literature',
+            'details' => 'Language studies, literature and communication',
+         
+        ],
+        [
+            'image' => 'uploads/environmentalscience.jpg',
+            'icon' => 'bi bi-leaf-fill',
+            'title' => 'Environmental Science & Renewable Energy',
+            'details' => '',
+        
+        ],
+        [
+            'image' => 'uploads/urban_arhcitecture.jpg',
+            'icon' => 'bi bi-building',
+            'title' => 'Architecture & Urban Planning',
+            'details' => '',
+          
+        ],
+        [
+            'image' => 'uploads/biotech.jpg',
+            'icon' => 'bi bi-graph-up',
+            'title' => 'Biotechnology & Biomedical Engineering',
+            'details' => '',
+          
+        ],
+        [
+            'image' => 'uploads/hospitality.jpg',
+            'icon' => 'bi bi-mortarboard-fill',
+            'title' => 'Hospitality & Tourism Management',
+            'details' => '',
+           
+        ],
+    ];
+}
 
-return [
-
-[
-    "image"=>"",
-    "icon"=>"bi bi-graph-up",
-    "title"=>"Business & Economics",
-    "details"=>"International Business, Finance, Marketing"
-],
-[
-    "image"=>"",
-    "icon"=>"bi bi-mortarboard-fill",
-    "title"=>"Medicine",
-    "details"=>"MBBS (Bachelor of Medicine, Bachelor of Surgery)"
-],
-[
-    "image"=>"",
-    "icon"=>"bi bi-mortarboard-fill",
-    "title"=>"Information Technology",
-    "details"=>"Computer Science, Data Science, Cybersecurity"
-],
-[
-    "image"=>"",
-    "icon"=>"bi bi-mortarboard-fill",
-    "title"=>"Engineering",
-    "details"=>"Civil, Mechanical, Electrical"
-],
-[
-    "image"=>"",
-    "icon"=>"bi bi-graph-up",
-    "title"=>"Natural Sciences",
-    "details"=>"International Business, Finance, Marketing"
-],
-[
-    "image"=>"",
-    "icon"=>"bi bi-mortarboard-fill",
-    "title"=>"Language & Literature",
-    "details"=>"MBBS (Bachelor of Medicine, Bachelor of Surgery)"
-],
-[
-    "image"=>"",
-    "icon"=>"bi bi-mortarboard-fill",
-    "title"=>"Environmental Science & Renewable Energy",
-    "details"=>"Computer Science, Data Science, Cybersecurity"
-],
-[
-    "image"=>"",
-    "icon"=>"bi bi-mortarboard-fill",
-    "title"=>"Architecture & Urban Planning",
-    "details"=>"Civil, Mechanical, Electrical"
-],
-[
-    "image"=>"",
-    "icon"=>"bi bi-graph-up",
-    "title"=>"Biotechnology & Biomedical Engineering",
-    "details"=>"International Business, Finance, Marketing"
-],
-[
-    "image"=>"",
-    "icon"=>"bi bi-mortarboard-fill",
-    "title"=>"Hospitality & Tourism Management",
-    "details"=>"MBBS (Bachelor of Medicine, Bachelor of Surgery)"
-]
-];
+function get_top_chinese_universities() {
+    return [
+        [
+            'name' => 'Tsinghua University',
+            'description' => 'A world-renowned research university with top engineering and innovation programs.',
+            'image' => 'uploads/hero-img4.jpeg',
+        ],
+        [
+            'name' => 'Peking University',
+            'description' => 'Leading university in liberal arts, sciences, and international student exchange.',
+            'image' => 'uploads/hospitality.jpg',
+        ],
+        [
+            'name' => 'Fudan University',
+            'description' => 'Prestigious Shanghai university known for business, economics, and global scholarship programs.',
+            'image' => 'uploads/business_eco.jpg',
+        ],
+        [
+            'name' => 'Zhejiang University',
+            'description' => 'Top school for engineering, technology and research-driven global education.',
+            'image' => 'uploads/natural_science.jpg',
+        ],
+    ];
 }
 
 ?>

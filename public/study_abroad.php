@@ -4,32 +4,27 @@ require_once __DIR__ . '/../config/components.php';
 require_once __DIR__ . '/../config/data.php';
 include __DIR__ . '/header.php';
 ?>
+<?php
+$studyPrograms = get_program_offered();
+$topChineseUniversities = get_top_chinese_universities();
+?>
 <style>
   .study-abroad-hero {
-    background-image: linear-gradient(rgba(32, 34, 33, 0.4), rgba(32, 32, 32, 0.6)), url('uploads/china_image.png');
+    background-image: linear-gradient(rgba(32, 34, 33, 0.4), rgba(32, 32, 32, 0.6)), url('<?php echo asset_url('uploads/china_image.png'); ?>');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
   }
-  .program-card {
-    transition: all 0.4s ease;
+  .study-abroad-hero img {
+    border-radius: 2rem;
+    max-width: 100%;
+    object-fit: cover;
   }
-  .program-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  }
-  .benefit-box {
-    transition: all 0.3s ease;
-  }
-  .benefit-box:hover {
-    background: linear-gradient(135deg, rgba(22, 78, 58, 0.08) 0%, rgba(34, 197, 94, 0.08) 100%);
-    transform: translateY(-5px);
-  }
-  .smartest-way{
+    .smartest-way{
      background-image: linear-gradient(#167347E5, #122A1F);
   }
    .way-1{
-    background-image: linear-gradient(#167347E5), url('uploads/SVG.png');
+    background-image: linear-gradient(#009F5E), url('uploads/SVG.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -56,10 +51,145 @@ include __DIR__ . '/header.php';
     background-attachment: fixed;
     font-size:8px;
   }
+  .program-card {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden; /* Clips the green box to the rounded corners */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  font-family: sans-serif;
+}
+
+.program-bg {
+  width: 100%;
+  height: 70%;
+}
+
+.program-content-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  height: 50%; 
+  background: linear-gradient(135deg, #1e6b45 0%, #113222 100%);
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  box-sizing: border-box;
+}
+
+  .university-carousel {
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+  .university-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.6s ease;
+    will-change: transform;
+    padding-bottom: 1rem;
+  }
+  .uni-card {
+    position: relative;
+    flex: 0 0 320px;
+    min-height: 460px;
+    border-radius: 2rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .uni-card.active,
+  .uni-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 55px rgba(15, 23, 42, 0.18);
+  }
+  .uni-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85);
+    transition: filter 0.4s ease;
+  }
+  .uni-card.active .uni-card__image,
+  .uni-card:hover .uni-card__image {
+    filter: brightness(0.58);
+  }
+  .uni-card__info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.5rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.88) 100%);
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .uni-card.active .uni-card__info,
+  .uni-card:hover .uni-card__info {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .uni-card__name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.65rem;
+    color: #ffffff;
+  }
+  .uni-card__desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.92);
+  }
+  .uni-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+  .uni-button {
+    pointer-events: auto;
+    border: none;
+    background: rgba(255, 255, 255, 0.92);
+    color: #14532d;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .uni-button:hover {
+    transform: scale(1.08);
+    background: #ffffff;
+  }
+  @media (max-width: 1024px) {
+    .program-grid { grid-template-columns: 1fr; }
+    .uni-card { flex: 0 0 280px; }
+  }
+  @media (max-width: 767px) {
+    .study-abroad-hero { grid-template-columns: 1fr; text-align: center; padding: 3rem 1rem; }
+    .study-abroad-hero img { margin: 0 auto; width: min(320px, 100%); height: auto; }
+    .program-card__content { padding: 1.6rem; }
+    .uni-nav { display: none; }
+    .program-grid { gap: 1.5rem; }
+  }
 </style>
 
   <!-- Hero Section -->
-  <header class="study-abroad-hero  grid grid-cols-2 items-center text-center" data-reveal>
+<header class="study-abroad-hero  grid grid-cols-2 items-center text-center" data-reveal>
     <div class=" mx-auto px-6 text-left" data-reveal>
       <div class="flex justify-center items-center gap-2 ">
         <h1 class="text-4xl md:text-6xl font-bold text-white mb-2 sm:mb-4  ">Study In China</h1>
@@ -70,6 +200,7 @@ include __DIR__ . '/header.php';
     </div>
     <img src="uploads/graduate.png" alt="graduate " className="w-96 h-96 mx-auto">
   </header>
+
 
   <main class=" ">
     <!-- counters Sections -->
@@ -144,15 +275,37 @@ include __DIR__ . '/header.php';
     </section>
 
     <!-- Study Abroad Programs -->
-   <section class=" my-8 mx-8" data-reveal>
-          <p class="text-2xl sm:text-4xl text-center font-bold text-center text-green-700">Programs offered </p>
-          <!-- rendering the prograns  -->
-          <div class="grid grid-cols-2 sm:grid-cols-4">
-           
-          </div>
-   </section>
+    <section id="programs-offered" class="my-8 mx-8" data-reveal>
+      <div class="text-center mb-10">
+        <p class="text-2xl sm:text-4xl font-bold text-green-700">Programs offered</p>
+        <p class="mt-4 text-gray-600 max-w-3xl mx-auto">Explore the best study abroad pathways in China with strong scholarship support, seamless applications, and full student guidance.</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 ">
+        <?php foreach ($studyPrograms as $program): ?>
+          <?php render_program_offered($program); ?>
+        <?php endforeach; ?>
+      </div>
+    </section>
 
-  
+    <!-- Top Chinese Universities Carousel -->
+    <section class="py-16 px-8 md:px-12" data-reveal>
+      <div class="text-center mb-12">
+        <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Partner Universities</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Top Chinese Universities</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto mt-4">Preview leading universities in China and see which institutions align with your study abroad goals.</p>
+      </div>
+      <div class="university-carousel">
+        <div class="university-track">
+          <?php foreach ($topChineseUniversities as $index => $uni): ?>
+            <?php render_university_card($uni, $index === 0, $index); ?>
+          <?php endforeach; ?>
+        </div>
+        <div class="uni-nav">
+          <button class="uni-button uni-prev" aria-label="Previous university"><i class="bi bi-chevron-left"></i></button>
+          <button class="uni-button uni-next" aria-label="Next university"><i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+    </section>
 
     <!-- CTA Section -->
     <section class="mt-20 bg-gradient-to-r from-green-700 to-green-600 text-white rounded-3xl p-8 md:p-16 text-center" data-reveal>
@@ -169,4 +322,56 @@ include __DIR__ . '/header.php';
     </section>
 
   </main>
+
+  <script>
+    (function() {
+      const track = document.querySelector('.university-track');
+      const cards = Array.from(document.querySelectorAll('.uni-card'));
+      const prevButton = document.querySelector('.uni-prev');
+      const nextButton = document.querySelector('.uni-next');
+      let activeIndex = 0;
+      let intervalId;
+
+      function updateCarousel(index) {
+        activeIndex = (index + cards.length) % cards.length;
+        const cardWidth = cards[0].offsetWidth + 24;
+        track.style.transform = `translateX(${-activeIndex * cardWidth}px)`;
+        cards.forEach((card, idx) => card.classList.toggle('active', idx === activeIndex));
+      }
+
+      function startAutoPlay() {
+        intervalId = setInterval(() => {
+          updateCarousel(activeIndex + 1);
+        }, 4500);
+      }
+
+      function stopAutoPlay() {
+        clearInterval(intervalId);
+      }
+
+      prevButton.addEventListener('click', () => {
+        stopAutoPlay();
+        updateCarousel(activeIndex - 1);
+        startAutoPlay();
+      });
+
+      nextButton.addEventListener('click', () => {
+        stopAutoPlay();
+        updateCarousel(activeIndex + 1);
+        startAutoPlay();
+      });
+
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          stopAutoPlay();
+          updateCarousel(Number(card.dataset.index));
+        });
+        card.addEventListener('mouseleave', startAutoPlay);
+      });
+
+      window.addEventListener('resize', () => updateCarousel(activeIndex));
+      updateCarousel(activeIndex);
+      startAutoPlay();
+    })();
+  </script>
 <?php include __DIR__ . '/footer.php'; ?>
