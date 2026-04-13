@@ -275,16 +275,33 @@ $topChineseUniversities = get_top_chinese_universities();
     </section>
 
     <!-- Study Abroad Programs -->
-    <section id="programs-offered" class="my-8 mx-8" data-reveal>
+    <section id="programs-offered" class="my-8 mx-12" data-reveal>
       <div class="text-center mb-10">
         <p class="text-2xl sm:text-4xl font-bold text-green-700">Programs offered</p>
         <p class="mt-4 text-gray-600 max-w-3xl mx-auto">Explore the best study abroad pathways in China with strong scholarship support, seamless applications, and full student guidance.</p>
       </div>
+
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 ">
         <?php foreach ($studyPrograms as $program): ?>
           <?php render_program_offered($program); ?>
         <?php endforeach; ?>
       </div>
+
+        <!-- partners -->
+
+        <div class="flex gap-4 justify-center items-center "> 
+         <div class="grid grid-cols-4 gap-2 ">
+          <img src="<?php echo asset_url('uploads/northernu.png'); ?>" alt="partners" class=" h-20 object-cover mt-12">
+            <img src="<?php echo asset_url('uploads/SRH.png'); ?>" alt="partners" class="h-20 object-cover mt-12">
+             <img src="<?php echo asset_url('uploads/PSB.png'); ?>" alt="partners" class="h-20 object-cover mt-12">
+             <img src="<?php echo asset_url('uploads/drexel.png'); ?>" alt="partners" class="h-20 object-cover mt-12">
+         </div>
+          <div class="">
+            <p class="text-2xl"> <span class="font-bold text-green-400"><br> 10+ national & international</span>  partners for your study abroad
+journey</p>
+            <p></p>
+          </div>
+        </div>
     </section>
 
     <!-- Top Chinese Universities Carousel -->
