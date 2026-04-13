@@ -132,10 +132,16 @@ include __DIR__ . '/header.php';
     transition: all 0.3s ease;
     min-height: 380px;
   }
-  .faq-card:hover {
-    background: #ffffff;
-    color: #14532d;
-    transform: translateY(-5px);
+  .faq-card:hover, .faq-card.active-reveal {
+    background: #ffffff !important;
+    color: #14532d !important;
+  }
+   .faq-card:hover .default-view, .faq-card.active-reveal .default-view {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+   .faq-card:hover .hover-view, .faq-card.active-reveal .hover-view {
+    opacity: 1;
   }
 </style>
 
@@ -321,24 +327,6 @@ include __DIR__ . '/header.php';
                 <p class="text-lg text-gray-600 leading-relaxed">We are a youth-focused organization striving to empower the next generation of leaders and changemakers. For years, we've worked alongside young people and their communities to ensure every youth can reach their full potential and every young person has access to guidance, mentorship, and opportunities. We bring people together to nurture talent, build skills, and create pathways to leadership, even in underserved areas.</p>
             </div>
         </section>
-        <!-- <section id="members" data-reveal>
-            <h2 class="text-2xl font-semibold mb-4 text-center">Our Members</h2>
-            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-                <?php foreach (array_slice($members,0,8) as $m): ?>
-                    <div class="bg-white p-4 rounded shadow text-center">
-                        <div class="h-36 w-36 mx-auto mb-3 bg-gray-100 rounded-full overflow-hidden">
-                            <?php if (!empty($m['image'])): ?>
-                                <img src="<?php echo base_url('uploads/' . $m['image']); ?>" class="w-full h-full object-cover">
-                            <?php else: ?>
-                                <div class="flex items-center justify-center h-full text-gray-400">No image</div>
-                            <?php endif; ?>
-                        </div>
-                        <h4 class="font-semibold"><?php echo e($m['name']); ?></h4>
-                        <p class="text-sm text-gray-600"><?php echo e($m['role']); ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </section> -->
     
     </main>
 
@@ -426,6 +414,72 @@ include __DIR__ . '/header.php';
             initMobileMenu('#mobile-menu-btn', '#mobile-nav');
             initScrollReveal();
         });
+
+// FAQ Auto-Reveal on Scroll
+(function() {
+    const faqSection = document.getElementById('faq');
+    const faqCards = document.querySelectorAll('[data-faq-card]');
+    let faqHasTriggered = false;
+    let currentRevealedCard = null;
+
+    function revealFaqCards() {
+        if (faqSection && !faqHasTriggered) {
+            const sectionRect = faqSection.getBoundingClientRect();
+            const screenBottom = window.innerHeight;
+            
+            // Check if section is in viewport
+            if (sectionRect.top < screenBottom && sectionRect.bottom > 0) {
+                faqHasTriggered = true;
+                
+                // Reveal cards one by one sequentially
+                faqCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        // Close previous card before opening new one
+                        if (currentRevealedCard && currentRevealedCard !== card) {
+                            currentRevealedCard.classList.remove('active-reveal');
+                        }
+                        
+                        // Open current card
+                        card.classList.add('active-reveal');
+                        currentRevealedCard = card;
+                        
+                        // Close after 3 seconds unless hovering
+                        setTimeout(() => {
+                            if (!card.matches(':hover') && currentRevealedCard === card) {
+                                card.classList.remove('active-reveal');
+                                currentRevealedCard = null;
+                            }
+                        }, 3000);
+                    }, index * 3600); // Each card: 3.6 seconds (3s display + 0.6s transition)
+                });
+            }
+        }
+    }
+
+    // Listen for scroll events
+    window.addEventListener('scroll', revealFaqCards);
+    
+    // Call once on page load in case section is already visible
+    revealFaqCards();
+    
+    // Keep hover functionality working
+    faqCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            // Close any previously revealed card
+            if (currentRevealedCard && currentRevealedCard !== card) {
+                currentRevealedCard.classList.remove('active-reveal');
+            }
+            card.classList.add('active-reveal');
+            currentRevealedCard = card;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('active-reveal');
+            if (currentRevealedCard === card) {
+                currentRevealedCard = null;
+            }
+        });
+    });
+})();
 
         (function () {
   const carousel  = document.getElementById('heroCarousel');
