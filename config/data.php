@@ -349,4 +349,37 @@ function get_top_chinese_universities() {
     ];
 }
 
+function get_student_testimonials() {
+    return [
+        [
+            'name' => 'Marie N.',
+            'program' => 'Medicine at Peking University',
+            'testimonial' => 'Studying medicine in China has been transformative. The Golfs Cameroon team guided me through every step, from application to visa. The scholarship support made it possible, and now I\'m pursuing my dream in one of the world\'s top medical programs.',
+            'image' => 'uploads/business_eco.jpg',
+            'rating' => 5,
+        ],
+        [
+            'name' => 'Jean-Paul K.',
+            'program' => 'Engineering at Tsinghua University',
+            'testimonial' => 'The support from Golfs Cameroon was incredible. They helped me secure a full scholarship and navigate the cultural transition. The engineering program here is world-class, and I\'m grateful for the opportunity to study at Tsinghua.',
+            'image' => 'uploads/business_eco.jpg',
+            'rating' => 5,
+        ],
+        [
+            'name' => 'Sophie T.',
+            'program' => 'Business at Fudan University',
+            'testimonial' => 'From Cameroon to Shanghai, the journey was smooth thanks to Golfs Cameroon. Their counseling helped me choose the right program, and the scholarship covered everything. Fudan\'s business school is excellent.',
+            'image' => 'uploads/business_eco.jpg',
+            'rating' => 5,
+        ],
+        [
+            'name' => 'David M.',
+            'program' => 'Computer Science at Zhejiang University',
+            'testimonial' => 'Golfs Cameroon made studying abroad a reality. Their expertise in Chinese universities and scholarship applications was invaluable. Zhejiang\'s CS program is cutting-edge, and I\'m thriving here.',
+            'image' => 'uploads/business_eco.jpg',
+            'rating' => 5,
+        ],
+    ];
+}
+
 ?>

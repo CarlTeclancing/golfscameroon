@@ -297,6 +297,54 @@ function render_focus_area($area, $image_on_left = true) {
     <?php
 }
 
+function render_testimonial_carousel($testimonials) {
+    ?>
+      
+      <div class="testimonial-carousel max-w-4xl mx-auto">
+        <div class="testimonial-track">
+          <?php foreach ($testimonials as $index => $testimonial): ?>
+            <div class="testimonial-slide<?php echo $index === 0 ? ' active' : ''; ?>" data-index="<?php echo $index; ?>">
+              <div class="bg-white rounded-2xl shadow-lg p-8 md:p-10 border border-gray-100">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                  <div class="">
+                    <img src="<?php echo asset_url($testimonial['image']); ?>" alt="<?php echo e($testimonial['name']); ?>" class="w-56 h-full">
+                  </div>
+                  <div class="flex-1 text-center md:text-left">
+                    <div class="flex justify-center md:justify-start mb-3">
+                      <?php for ($i = 0; $i < $testimonial['rating']; $i++): ?>
+                        <i class="bi bi-star-fill text-yellow-400"></i>
+                      <?php endfor; ?>
+                    </div>
+                    <blockquote class="text-gray-700 text-lg leading-relaxed mb-6 italic">
+                      "<?php echo e($testimonial['testimonial']); ?>"
+                    </blockquote>
+                    <div>
+                      <h4 class="font-bold text-green-700 text-lg"><?php echo e($testimonial['name']); ?></h4>
+                      <p class="text-gray-600 text-sm"><?php echo e($testimonial['program']); ?></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        </div>
+        <div class="testimonial-nav mt-8 flex justify-center gap-4">
+          <button class="testimonial-prev bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors" aria-label="Previous testimonial">
+            <i class="bi bi-chevron-up"></i>
+          </button>
+          <div class="testimonial-dots flex gap-2">
+            <?php foreach ($testimonials as $index => $testimonial): ?>
+              <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-green-600 transition-colors<?php echo $index === 0 ? ' bg-green-600' : ''; ?>" data-index="<?php echo $index; ?>"></button>
+            <?php endforeach; ?>
+          </div>
+          <button class="testimonial-next bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors" aria-label="Next testimonial">
+            <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
+      </div>
+    <?php
+}
+
 /**
  * Service Feature Card - For bottom service features section
  */

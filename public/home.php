@@ -171,15 +171,15 @@ include __DIR__ . '/header.php';
         </section>
          <section id="initiative" class="py-8 bg-brand text-white grid md:grid-cols-2 gap-6 mb-12 py-8 " data-reveal>
             
-            <div class="bg-white w-[710px] h-[544px] shadow-lg p-4" data-reveal>
-                <img src="<?php echo asset_url('uploads/trads.jpeg'); ?>" alt="initiative" class="w-full object-cover ">
+            <div class="bg-white w-full max-w-lg mx-auto md:mx-0 shadow-lg p-4" data-reveal>
+                <img src="<?php echo asset_url('uploads/trads.jpeg'); ?>" alt="initiative" class="w-full h-64 md:h-96 object-cover rounded-lg">
             </div>
             
-            <article class="text-left">
+            <article class="text-left px-4 md:px-0">
                 <h2 class="text-2xl md:text-3xl font-semibold text-green-700 mb-4">Cameroon Youth Leadership Initiative</h2>
-                <p class="mt-4 text-lg text-gray-700  max-w-2xl mx-auto mb-2">Young people across Cameroon need opportunities to grow as future leaders, entrepreneurs, and changemakers.
+                <p class="mt-4 text-lg text-gray-700 max-w-2xl mx-auto mb-2 leading-relaxed">Young people across Cameroon need opportunities to grow as future leaders, entrepreneurs, and changemakers.
                Through mentorship programs, school awards, and community workshops, we equip youth with the skills, confidence, and guidance to drive positive change in their communities.</p>
-            <button><a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-4 py-2 mt-4 transition font-medium">
+            <button><a href="<?php echo base_url('members'); ?>" class="inline-block bg-red-700 text-white px-6 py-3 mt-4 rounded-lg font-medium hover:bg-red-800 transition">
              Join the Movement!
             </a></button>
            </article>

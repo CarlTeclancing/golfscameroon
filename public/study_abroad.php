@@ -186,6 +186,36 @@ $topChineseUniversities = get_top_chinese_universities();
     .uni-nav { display: none; }
     .program-grid { gap: 1.5rem; }
   }
+     .testimonial-carousel {
+        position: relative;
+        height: 500px;
+        overflow: hidden;
+      }
+      .testimonial-track {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        transition: transform 0.6s ease;
+      }
+      .testimonial-slide {
+        flex: 0 0 100%;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .testimonial-slide.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .testimonial-dot.active {
+        background-color: #16a34a;
+      }
+      @media (max-width: 768px) {
+        .testimonial-carousel {
+          height: 600px;
+        }
+      }
+
   .end-section{
     background:#E8F3ED;
   }
@@ -352,18 +382,26 @@ journey</p>
             </p>
           </div>
         </div>
-        <div>
-          <h1 class="text-2x sm:text-4xl text-green-700 font-extrabold">Students Testimonials</h1>
+      
+   </section>
+  <!-- Section  for students testiominiald  -->
+
+  <section class="flex flex-col justify-center items-center py-16 px-8 md:px-12" data-reveal>">
+    <div class="text-left mb-12">
+       <h1 class="text-2x sm:text-4xl text-green-700 font-extrabold">Students Testimonials</h1>
            <p class="text-2xl text-gray-600 my-2">
             From learners to <span class="text-green-700">achievers</span> 
            </p>
            <p class='text-sm text-gray-600'>
             Hear from our learners who have turned their study-abroad dreams into reality. If they can, so can you!
            </p>
-        </div>
-        
+      </div>
+    <?php
+   $testimonials = get_student_testimonials();
+   render_testimonial_carousel($testimonials);
+   ?>
+  </section>
 
-   </section>
    <!-- ///// -->
    <section class="grid grid-cols-1 md:grid-cols-2 end-section my-8 sm:my-16" data-reveal>
        <img src="<?php echo asset_url('uploads/graduation.jpg'); ?>" alt="testimonial" class="w-full  object-cover">
@@ -427,5 +465,55 @@ journey</p>
       updateCarousel(activeIndex);
       startAutoPlay();
     })();
+
+     (function() {
+        const track = document.querySelector('.testimonial-track');
+        const slides = Array.from(document.querySelectorAll('.testimonial-slide'));
+        const dots = Array.from(document.querySelectorAll('.testimonial-dot'));
+        const prevButton = document.querySelector('.testimonial-prev');
+        const nextButton = document.querySelector('.testimonial-next');
+        let activeIndex = 0;
+        let intervalId;
+
+        function updateCarousel(index) {
+          activeIndex = (index + slides.length) % slides.length;
+          track.style.transform = `translateY(-${activeIndex * 100}%)`;
+          slides.forEach((slide, idx) => slide.classList.toggle('active', idx === activeIndex));
+          dots.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
+        }
+
+        function startAutoPlay() {
+          intervalId = setInterval(() => {
+            updateCarousel(activeIndex + 1);
+          }, 5000);
+        }
+
+        function stopAutoPlay() {
+          clearInterval(intervalId);
+        }
+
+        prevButton.addEventListener('click', () => {
+          stopAutoPlay();
+          updateCarousel(activeIndex - 1);
+          startAutoPlay();
+        });
+
+        nextButton.addEventListener('click', () => {
+          stopAutoPlay();
+          updateCarousel(activeIndex + 1);
+          startAutoPlay();
+        });
+
+        dots.forEach(dot => {
+          dot.addEventListener('click', () => {
+            stopAutoPlay();
+            updateCarousel(Number(dot.dataset.index));
+            startAutoPlay();
+          });
+        });
+
+        updateCarousel(activeIndex);
+        startAutoPlay();
+      })();
   </script>
 <?php include __DIR__ . '/footer.php'; ?>
