@@ -25,8 +25,32 @@ include __DIR__ . '/header.php';
     background: linear-gradient(135deg, rgba(22, 78, 58, 0.08) 0%, rgba(34, 197, 94, 0.08) 100%);
     transform: translateY(-5px);
   }
+  .smartest-way{
+     background-image: linear-gradient(#167347E5, #122A1F);
+  }
    .way-1{
     background-image: linear-gradient(#167347E5), url('uploads/SVG.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-size:8px;
+  }
+   .way-2{
+    background-image: linear-gradient(#D17E00), url('uploads/SVG1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-size:8px;
+  }
+   .way-3{
+    background-image: linear-gradient(#D17E00), url('uploads/SVG2.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-size:8px;
+  }
+   .way-4{
+    background-image: linear-gradient(#FF5151), url('uploads/SVG3.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -67,8 +91,8 @@ include __DIR__ . '/header.php';
             
         </div>
     </section>
-    <!-- Intro Section -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center mb-20 px-24 py-20 bg-green-700" data-reveal>
+    <!-- Intro Section /Smartest way-->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center mb-20 px-24 py-20 bg-green-700  smartest-way" data-reveal>
       <div class="text-left text-white px-6 py-12">
         <h2 class="text-3xl md:text-5xl font-bold text-white mt-2 mb-6">The smartest way to study in China</h2>
        <p class=" text-lg max-w-4xl mx-auto leading-relaxed">Studying in China isn’t complicated but doing it the wrong way can be costly. Avoid fake programs and misleading information by getting trusted guidance from the</p>
@@ -91,229 +115,44 @@ include __DIR__ . '/header.php';
       </div>
       
        <div class="grid grid-cols-1 grid-cols-2 gap-6">
-        <div class="bg-white flex w-30 h-36  items-center justify-center rounded-lg">
+        <div class="bg-white flex  h-40  items-center justify-center rounded-lg overflow-hidden">
           <p class="w-full px-4 text-4xl font-bold text-green-700 flex justify-center items-center">01</p>
-          <div class=" text-white way-1  h-full w-full flex flex-col justify-center items-center gap-2">
+          <div class=" text-white way-1  h-full w-full flex flex-col justify-center items-center gap-2 p-2">
             <p>Understand available scholarships and eligibility requirements</p>
           </div>
         </div>
-
+         <div class="bg-white flex  h-40  items-center justify-center rounded-lg overflow-hidden">
+          <p class="w-full px-4 text-4xl font-bold text-green-700 flex justify-center items-center">02</p>
+          <div class=" text-white way-2  h-full w-full flex flex-col justify-center items-center gap-2" p-2>
+            <p>Select accredited universities and the best programs for your goals.</p>
+          </div>
+        </div>
+        <div class="bg-white flex  h-40  items-center justify-center rounded-lg overflow-hidden">
+          <p class="w-full px-4 text-4xl font-bold text-green-700 flex justify-center items-center">03</p>
+          <div class=" text-white way-3  h-full w-full flex flex-col justify-center items-center gap-2 p-2">
+            <p>Submit all required documents and complete application package.</p>
+          </div>
+        
+        </div>
+        <div class="bg-white flex  h-40  items-center justify-center rounded-lg overflow-hidden">
+          <p class="w-full px-4 text-4xl font-bold text-green-700 flex justify-center items-center">04</p>
+          <div class=" text-white way-4  h-full w-full flex flex-col justify-center items-center gap-2 p-2">
+            <p>Apply and stay on track through admission and visa processes. </p>
+          </div>
+        </div>
        </div>
     </section>
 
     <!-- Study Abroad Programs -->
-    <section class="py-16 mb-16" data-reveal>
-      <div class="text-center mb-12">
-        <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Our Programs</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-green-700 mt-2 mb-6">Pathways to Global Education</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <!-- Program 1: Undergraduate Scholarships -->
-        <div class="program-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
-          <div class="relative overflow-hidden h-64 bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center">
-            <i class="bi bi-mortarboard-fill text-7xl text-white opacity-20"></i>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+   <section class=" my-8 mx-8" data-reveal>
+          <p class="text-2xl sm:text-4xl text-center font-bold text-center text-green-700">Programs offered </p>
+          <!-- rendering the prograns  -->
+          <div class="grid grid-cols-2 sm:grid-cols-4">
+           
           </div>
-          <div class="p-8">
-            <h3 class="font-bold text-2xl text-green-700 mb-3">Undergraduate Scholarships</h3>
-            <p class="text-gray-600 mb-6">Access fully-funded and partial scholarship opportunities at leading universities across North America, Europe, and Africa for high-achieving secondary school graduates.</p>
-            <ul class="space-y-2 mb-6">
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Academic excellence support</span>
-              </li>
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>University application guidance</span>
-              </li>
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Visa & documentation assistance</span>
-              </li>
-            </ul>
-            <a href="<?php echo base_url('contact'); ?>" class="inline-block bg-red-700 text-white px-6 py-2.5 rounded-lg transition-all duration-300 font-bold hover:bg-red-800 text-xs uppercase tracking-wider">Learn More</a>
-          </div>
-        </div>
+   </section>
 
-        <!-- Program 2: Graduate Studies -->
-        <div class="program-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
-          <div class="relative overflow-hidden h-64 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-            <i class="bi bi-book-fill text-7xl text-white opacity-20"></i>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-          </div>
-          <div class="p-8">
-            <h3 class="font-bold text-2xl text-green-700 mb-3">Graduate Studies Programs</h3>
-            <p class="text-gray-600 mb-6">Pursue advanced degrees at prestigious universities worldwide. We support scholarships and grants for master's and doctoral programs aligned with your career goals.</p>
-            <ul class="space-y-2 mb-6">
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Research & thesis support</span>
-              </li>
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Career mentoring</span>
-              </li>
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Alumni networking</span>
-              </li>
-            </ul>
-            <a href="<?php echo base_url('contact'); ?>" class="inline-block bg-red-700 text-white px-6 py-2.5 rounded-lg transition-all duration-300 font-bold hover:bg-red-800 text-xs uppercase tracking-wider">Learn More</a>
-          </div>
-        </div>
-
-        <!-- Program 3: Exchange Programs -->
-        <div class="program-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
-          <div class="relative overflow-hidden h-64 bg-gradient-to-br from-yellow-600 to-yellow-800 flex items-center justify-center">
-            <i class="bi bi-globe-americas text-7xl text-white opacity-20"></i>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-          </div>
-          <div class="p-8">
-            <h3 class="font-bold text-2xl text-green-700 mb-3">International Exchange Programs</h3>
-            <p class="text-gray-600 mb-6">Short-term exchange opportunities for cultural immersion and skill development. Spend a semester or year abroad while earning credits toward your degree.</p>
-            <ul class="space-y-2 mb-6">
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Cultural integration programs</span>
-              </li>
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Language preparation</span>
-              </li>
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Host family placement</span>
-              </li>
-            </ul>
-            <a href="<?php echo base_url('contact'); ?>" class="inline-block bg-red-700 text-white px-6 py-2.5 rounded-lg transition-all duration-300 font-bold hover:bg-red-800 text-xs uppercase tracking-wider">Learn More</a>
-          </div>
-        </div>
-
-        <!-- Program 4: Professional Development -->
-        <div class="program-card bg-white rounded-2xl shadow-lg overflow-hidden" data-reveal>
-          <div class="relative overflow-hidden h-64 bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center">
-            <i class="bi bi-briefcase-fill text-7xl text-white opacity-20"></i>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-          </div>
-          <div class="p-8">
-            <h3 class="font-bold text-2xl text-green-700 mb-3">Professional Development Abroad</h3>
-            <p class="text-gray-600 mb-6">Internships, certifications, and professional training programs designed for working professionals and recent graduates seeking career advancement globally.</p>
-            <ul class="space-y-2 mb-6">
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Internship placement services</span>
-              </li>
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Professional certifications</span>
-              </li>
-              <li class="flex items-center text-gray-700">
-                <i class="bi bi-check-circle-fill text-green-600 mr-3"></i>
-                <span>Career coaching</span>
-              </li>
-            </ul>
-            <a href="<?php echo base_url('contact'); ?>" class="inline-block bg-red-700 text-white px-6 py-2.5 rounded-lg transition-all duration-300 font-bold hover:bg-red-800 text-xs uppercase tracking-wider">Learn More</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Key Benefits -->
-    <section class="py-16 mb-16" data-reveal>
-      <div class="text-center mb-12">
-        <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Why Study With Us</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Comprehensive Support Services</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <div class="benefit-box p-8 bg-white rounded-2xl shadow-md text-center group cursor-default">
-          <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-green-50 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-            <i class="bi bi-pencil-square text-3xl text-green-600"></i>
-          </div>
-          <h4 class="font-semibold text-xl text-green-700 mb-3 group-hover:text-red-700 transition-colors duration-300">Application Guidance</h4>
-          <p class="text-gray-600">Expert assistance with application essays, recommendation letters, and portfolio preparation to maximize your chances of admission.</p>
-          <div class="h-1 w-0 bg-gradient-to-r from-green-500 to-green-700 rounded-full group-hover:w-full transition-all duration-500 mt-4 mx-auto"></div>
-        </div>
-
-        <div class="benefit-box p-8 bg-white rounded-2xl shadow-md text-center group cursor-default">
-          <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-green-50 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-            <i class="bi bi-file-earmark-text text-3xl text-green-600"></i>
-          </div>
-          <h4 class="font-semibold text-xl text-green-700 mb-3 group-hover:text-red-700 transition-colors duration-300">Visa & Documentation</h4>
-          <p class="text-gray-600">Navigate visa requirements and immigration paperwork with confidence through our compliance team's expert guidance.</p>
-          <div class="h-1 w-0 bg-gradient-to-r from-green-500 to-green-700 rounded-full group-hover:w-full transition-all duration-500 mt-4 mx-auto"></div>
-        </div>
-
-        <div class="benefit-box p-8 bg-white rounded-2xl shadow-md text-center group cursor-default">
-          <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-green-50 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-            <i class="bi bi-people-fill text-3xl text-green-600"></i>
-          </div>
-          <h4 class="font-semibold text-xl text-green-700 mb-3 group-hover:text-red-700 transition-colors duration-300">Community & Mentoring</h4>
-          <p class="text-gray-600">Connect with our global network of alumni and mentors who provide guidance and support throughout your journey.</p>
-          <div class="h-1 w-0 bg-gradient-to-r from-green-500 to-green-700 rounded-full group-hover:w-full transition-all duration-500 mt-4 mx-auto"></div>
-        </div>
-
-        <div class="benefit-box p-8 bg-white rounded-2xl shadow-md text-center group cursor-default">
-          <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-green-50 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-            <i class="bi bi-cash-coin text-3xl text-green-600"></i>
-          </div>
-          <h4 class="font-semibold text-xl text-green-700 mb-3 group-hover:text-red-700 transition-colors duration-300">Scholarship Opportunities</h4>
-          <p class="text-gray-600">Access to comprehensive scholarship databases and funding sources to make your dream education affordable.</p>
-          <div class="h-1 w-0 bg-gradient-to-r from-green-500 to-green-700 rounded-full group-hover:w-full transition-all duration-500 mt-4 mx-auto"></div>
-        </div>
-
-        <div class="benefit-box p-8 bg-white rounded-2xl shadow-md text-center group cursor-default">
-          <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-green-50 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-            <i class="bi bi-globe text-3xl text-green-600"></i>
-          </div>
-          <h4 class="font-semibold text-xl text-green-700 mb-3 group-hover:text-red-700 transition-colors duration-300">Language Preparation</h4>
-          <p class="text-gray-600">Language courses and proficiency support to ensure you're prepared to study in English-speaking or other-language environments.</p>
-          <div class="h-1 w-0 bg-gradient-to-r from-green-500 to-green-700 rounded-full group-hover:w-full transition-all duration-500 mt-4 mx-auto"></div>
-        </div>
-
-        <div class="benefit-box p-8 bg-white rounded-2xl shadow-md text-center group cursor-default">
-          <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-green-50 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-            <i class="bi bi-heart-fill text-3xl text-green-600"></i>
-          </div>
-          <h4 class="font-semibold text-xl text-green-700 mb-3 group-hover:text-red-700 transition-colors duration-300">Mental Health Support</h4>
-          <p class="text-gray-600">Access to counseling and mental wellness resources to support your well-being during your study abroad experience.</p>
-          <div class="h-1 w-0 bg-gradient-to-r from-green-500 to-green-700 rounded-full group-hover:w-full transition-all duration-500 mt-4 mx-auto"></div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Application Process -->
-    <section class="py-16 mb-16 bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 md:p-12" data-reveal>
-      <div class="text-center mb-12">
-        <span class="text-red-600 font-semibold text-sm uppercase tracking-wider">Getting Started</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Simple Application Process</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div class="text-center" data-reveal>
-          <div class="w-12 h-12 bg-green-700 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
-          <h4 class="font-semibold text-lg text-green-700 mb-2">Initial Consultation</h4>
-          <p class="text-gray-600 text-sm">Meet with our advisors to discuss your goals and identify the best programs for you.</p>
-        </div>
-        <div class="text-center" data-reveal>
-          <div class="w-12 h-12 bg-green-700 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
-          <h4 class="font-semibold text-lg text-green-700 mb-2">Preparation & Support</h4>
-          <p class="text-gray-600 text-sm">Receive comprehensive support with test prep, essays, and documentation requirements.</p>
-        </div>
-        <div class="text-center" data-reveal>
-          <div class="w-12 h-12 bg-green-700 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
-          <h4 class="font-semibold text-lg text-green-700 mb-2">Application Submission</h4>
-          <p class="text-gray-600 text-sm">Submit your applications with confidence knowing they're complete and competitive.</p>
-        </div>
-        <div class="text-center" data-reveal>
-          <div class="w-12 h-12 bg-green-700 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
-          <h4 class="font-semibold text-lg text-green-700 mb-2">Acceptance & Transition</h4>
-          <p class="text-gray-600 text-sm">Get accepted and transition smoothly with pre-arrival support and orientation programs.</p>
-        </div>
-      </div>
-    </section>
+  
 
     <!-- CTA Section -->
     <section class="mt-20 bg-gradient-to-r from-green-700 to-green-600 text-white rounded-3xl p-8 md:p-16 text-center" data-reveal>

@@ -241,4 +241,75 @@ function get_service_features() {
     ];
 }
 
+
+
+// <!-- travel abroad page  -->
+
+function get_program_offered(){
+
+return [
+
+[
+    "image"=>"",
+    "icon"=>"bi bi-graph-up",
+    "title"=>"Business & Economics",
+    "details"=>"International Business, Finance, Marketing"
+],
+[
+    "image"=>"",
+    "icon"=>"bi bi-mortarboard-fill",
+    "title"=>"Medicine",
+    "details"=>"MBBS (Bachelor of Medicine, Bachelor of Surgery)"
+],
+[
+    "image"=>"",
+    "icon"=>"bi bi-mortarboard-fill",
+    "title"=>"Information Technology",
+    "details"=>"Computer Science, Data Science, Cybersecurity"
+],
+[
+    "image"=>"",
+    "icon"=>"bi bi-mortarboard-fill",
+    "title"=>"Engineering",
+    "details"=>"Civil, Mechanical, Electrical"
+],
+[
+    "image"=>"",
+    "icon"=>"bi bi-graph-up",
+    "title"=>"Natural Sciences",
+    "details"=>"International Business, Finance, Marketing"
+],
+[
+    "image"=>"",
+    "icon"=>"bi bi-mortarboard-fill",
+    "title"=>"Language & Literature",
+    "details"=>"MBBS (Bachelor of Medicine, Bachelor of Surgery)"
+],
+[
+    "image"=>"",
+    "icon"=>"bi bi-mortarboard-fill",
+    "title"=>"Environmental Science & Renewable Energy",
+    "details"=>"Computer Science, Data Science, Cybersecurity"
+],
+[
+    "image"=>"",
+    "icon"=>"bi bi-mortarboard-fill",
+    "title"=>"Architecture & Urban Planning",
+    "details"=>"Civil, Mechanical, Electrical"
+],
+[
+    "image"=>"",
+    "icon"=>"bi bi-graph-up",
+    "title"=>"Biotechnology & Biomedical Engineering",
+    "details"=>"International Business, Finance, Marketing"
+],
+[
+    "image"=>"",
+    "icon"=>"bi bi-mortarboard-fill",
+    "title"=>"Hospitality & Tourism Management",
+    "details"=>"MBBS (Bachelor of Medicine, Bachelor of Surgery)"
+]
+];
+}
+
 ?>

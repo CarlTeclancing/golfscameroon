@@ -309,4 +309,23 @@ function render_service_feature($feature) {
     </div>
     <?php
 }
+
+// ============= tranvel abroad page
+
+function render_program_offered($program){
+    ?>
+    <div class="">
+      <img src="<?php echo asset_url($program['image']); ?>" alt="<?php echo e($program['title']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
+      
+       <div>
+        <i class="<?php echo $program['icon'];?>" ></i>
+        <h3 class="font-bold text-xl text-green-700 mb-2"><?php echo e($program['title']); ?></h3>
+      <p class="text-gray-600 text-sm mb-4"><?php echo e($program['details']); ?></p>
+       </div>
+      
+    </div>
+    <?php
+}
 ?>
+
+
