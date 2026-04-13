@@ -186,6 +186,9 @@ $topChineseUniversities = get_top_chinese_universities();
     .uni-nav { display: none; }
     .program-grid { gap: 1.5rem; }
   }
+  .end-section{
+    background:#E8F3ED;
+  }
 </style>
 
   <!-- Hero Section -->
@@ -325,20 +328,53 @@ journey</p>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="mt-20 bg-gradient-to-r from-green-700 to-green-600 text-white rounded-3xl p-8 md:p-16 text-center" data-reveal>
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Pursue Global Education?</h2>
-      <p class="text-green-100 text-lg max-w-2xl mx-auto mb-8">Take the next step in your academic journey with The Golfs Cameroon. Our team is ready to support you every step of the way.</p>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <a href="<?php echo base_url('contact'); ?>" class="bg-white text-green-700 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition duration-300 transform hover:scale-105 shadow-lg">
-          <i class="bi bi-envelope-fill"></i> Get in Touch
-        </a>
-        <a href="<?php echo base_url('members'); ?>" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-700 transition duration-300 shadow-lg">
-          <i class="bi bi-person-plus"></i> Join Our Program
-        </a>
-      </div>
-    </section>
+   <!-- Why choose us -->
 
+   <section  class="px-8 sm:px-24 py-10 ">
+        <h1 class="text-3xl sm:text-8xl text-green-700 font-semibold w-full sm:w-1/2 ">Why Choose Us ?</h1> 
+        <div class="flex justify-end">
+          <div class=" border-4  rounded-lg leading-[2] p-4 w-1/2 flex flex-col gap-4">
+            <p class="flex items-center gap-2">
+              <img src="<?php echo asset_url('uploads/check.png'); ?>" alt="Why Choose Us" class="w-4 h-4 object-cover">
+              <span class="text-green-700 text-xl">We do pickups for all international students, payable</span>
+            </p>
+             <p class="flex items-center gap-2">
+              <img src="<?php echo asset_url('uploads/check.png'); ?>" alt="Why Choose Us" class="w-4 h-4 object-cover">
+              <span class="text-green-700 text-xl">We ensure their security is our priority.</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <img src="<?php echo asset_url('uploads/check.png'); ?>" alt="Why Choose Us" class="w-4 h-4 object-cover">
+              <span class="text-green-700 text-xl">Monthly stipule form the university based on academic performance</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <img src="<?php echo asset_url('uploads/check.png'); ?>" alt="Why Choose Us" class="w-4 h-4 object-cover">
+              <span class="text-green-700 text-xl">We ensure accommodations are fixed partially free </span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <h1 class="text-2x sm:text-4xl text-green-700 font-extrabold">Students Testimonials</h1>
+           <p class="text-2xl text-gray-600 my-2">
+            From learners to <span class="text-green-700">achievers</span> 
+           </p>
+           <p class='text-sm text-gray-600'>
+            Hear from our learners who have turned their study-abroad dreams into reality. If they can, so can you!
+           </p>
+        </div>
+        
+
+   </section>
+   <!-- ///// -->
+   <section class="grid grid-cols-1 md:grid-cols-2 end-section my-8 sm:my-16" data-reveal>
+       <img src="<?php echo asset_url('uploads/graduation.jpg'); ?>" alt="testimonial" class="w-full  object-cover">
+       <div class="px-8 py-4 flex flex-col justify-center  items-start ">
+        <p class="text-2xl"><span class="text-green-600"> 30+ Learners</span> have trusted us </p>
+        <p class="text-gray-400 ">Advance your career with our expert guidance & global programs.</p>
+        <button class="p-4 rounded-xl bg-green-700 text-white font-bold mt-4">
+          Download Brochure
+        </button>
+       </div>
+   </section>
   </main>
 
   <script>
