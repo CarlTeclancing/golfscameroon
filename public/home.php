@@ -205,7 +205,7 @@ include __DIR__ . '/header.php';
         </section>
 
         <!-- Section: Our Work -->
-        <section id="top-projects" class="py-12 mb-16 bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 md:p-12" data-reveal>
+        <section id="top-projects" class="py-4 sm:py-12 mb-16 bg-gradient-to-br from-gray-50 to-white rounded-3xl  " data-reveal>
             <div class="text-center mb-12">
                 <h1 class="text-3xl md:text-4xl font-bold text-green-700 mt-2">Our Work</h1>
             </div>

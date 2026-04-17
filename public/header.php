@@ -71,6 +71,25 @@ function nav_link_class($route, $is_mobile = false) {
   <script src="<?php echo asset_url('assets/app.js'); ?>" defer></script>
   <title><?php echo isset($page_title) ? e($page_title) . ' - ' . e($site_name) : e($site_name); ?></title>
 </head>
+<script>
+const button = document.getElementById('mobile-menu-btn');
+const mobileNav = document.getElementById('mobile-nav');
+
+if (!button || !mobileNav) {
+  console.error("Elements not found");
+} else {
+  button.addEventListener('click', function () {
+    console.log("Button clicked");
+
+    mobileNav.classList.toggle('hidden');
+
+    button.setAttribute(
+      'aria-expanded',
+      mobileNav.classList.contains('hidden') ? 'false' : 'true'
+    );
+  });
+}
+</script>
 <body class="bg-white text-gray-800 animation-fade-in">
   <style>
     *{
@@ -147,13 +166,13 @@ function nav_link_class($route, $is_mobile = false) {
             </select>
           </form>
           <a href="<?php echo base_url('contact'); ?>" class="hidden sm:inline bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 transform hover:scale-105"><?php echo e(t('nav.contact_us')); ?></a>
-          <button id="mobile-menu-btn" class="md:hidden px-3 py-2 text-green-700 hover:text-red-600 transition">
+          <button id="mobile-menu-btn" type="button" aria-controls="mobile-nav" aria-expanded="false" class="md:hidden px-3 py-2 text-green-700 hover:text-red-600 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
         </div>
       </div>
     </div>
-    <div id="mobile-nav" class="md:hidden hidden bg-white border-t border-gray-200">
+    <div id="mobile-nav" class="md:hidden hidden flex-col bg-white border-t border-gray-200">
       <a class="<?php echo nav_link_class('home', true); ?>" href="<?php echo base_url(''); ?>"><?php echo e(t('nav.home')); ?></a>
       <a class="<?php echo nav_link_class('about', true); ?>" href="<?php echo base_url('about'); ?>"><?php echo e(t('nav.about')); ?></a>
       <a class="<?php echo nav_link_class('services', true); ?>" href="<?php echo base_url('services'); ?>"><?php echo e(t('nav.services')); ?></a>
@@ -176,18 +195,3 @@ function nav_link_class($route, $is_mobile = false) {
     </div>
   </nav>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function(){
-      var btn = document.querySelector('#mobile-menu-btn');
-      var nav = document.querySelector('#mobile-nav');
-      if (btn && nav) {
-        btn.addEventListener('click', function(e){
-          e.preventDefault();
-          nav.classList.toggle('hidden');
-        });
-      }
-      if (typeof initScrollReveal === 'function') {
-        initScrollReveal();
-      }
-    });
-  </script>
