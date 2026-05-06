@@ -36,3 +36,4 @@ if (isset($routes[$path])) {
 // Default to home if no route found
 include __DIR__ . '/home.php';
 ?>
+ <script src="<?php echo asset_url('assets/app.js'); ?>" defer></script>

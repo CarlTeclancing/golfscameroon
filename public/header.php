@@ -67,29 +67,11 @@ function nav_link_class($route, $is_mobile = false) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
-
+	
   <script src="<?php echo asset_url('assets/app.js'); ?>" defer></script>
   <title><?php echo isset($page_title) ? e($page_title) . ' - ' . e($site_name) : e($site_name); ?></title>
 </head>
-<script>
-const button = document.getElementById('mobile-menu-btn');
-const mobileNav = document.getElementById('mobile-nav');
 
-if (!button || !mobileNav) {
-  console.error("Elements not found");
-} else {
-  button.addEventListener('click', function () {
-    console.log("Button clicked");
-
-    mobileNav.classList.toggle('hidden');
-
-    button.setAttribute(
-      'aria-expanded',
-      mobileNav.classList.contains('hidden') ? 'false' : 'true'
-    );
-  });
-}
-</script>
 <body class="bg-white text-gray-800 animation-fade-in">
   <style>
     *{
@@ -115,21 +97,6 @@ if (!button || !mobileNav) {
     a, button {
       transition: all 0.3s ease-in-out;
     }
-
-    h1 { font-size: clamp(2rem, 4vw, 3.4rem); }
-    h2 { font-size: clamp(1.5rem, 3vw, 2.6rem); }
-    h3 { font-size: clamp(1.25rem, 2.3vw, 2rem); }
-    p, label, a, button { font-size: clamp(0.95rem, 1.8vw, 1.05rem); }
-    .text-green-700, .text-gray-700, .text-gray-600, .text-white { word-break: break-word; }
-
-    @media (max-width: 640px) {
-      nav .flex { flex-wrap: wrap; }
-      nav .max-w-6xl { padding-left: 1rem; padding-right: 1rem; }
-      nav a, nav button { font-size: 0.95rem; }
-      .text-xl { font-size: 1.25rem; }
-      .hc-inner { padding: 2.5rem 1rem 2rem; }
-    }
-
     nav a:hover {
       text-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     }
@@ -146,10 +113,10 @@ if (!button || !mobileNav) {
             <?php endif; ?>
           </a>
           <div class="hidden md:flex items-center space-x-4 text-sm">
-            <a href="<?php echo base_url(''); ?>" class="<?php echo nav_link_class(''); ?>"><?php echo e(t('nav.home')); ?></a>
+            <a href="<?php echo base_url('home'); ?>" class="<?php echo nav_link_class('home'); ?>"><?php echo e(t('nav.home')); ?></a>
             <a href="<?php echo base_url('about'); ?>" class="<?php echo nav_link_class('about'); ?>"><?php echo e(t('nav.about')); ?></a>
             <a href="<?php echo base_url('services'); ?>" class="<?php echo nav_link_class('services'); ?>"><?php echo e(t('nav.services')); ?></a>
-            <a href="<?php echo base_url('study_abroad'); ?>" class="<?php echo nav_link_class('study_abroad'); ?>">Study Abroad</a>
+			   <a href="<?php echo base_url('study_abroad'); ?>" class="<?php echo nav_link_class('study_abroad'); ?>">Study Abroad</a>
             <a href="<?php echo base_url('members'); ?>" class="<?php echo nav_link_class('members'); ?>"><?php echo e(t('nav.members')); ?></a>
             <a href="<?php echo base_url('gallery'); ?>" class="<?php echo nav_link_class('gallery'); ?>"><?php echo e(t('nav.gallery')); ?></a>
             <a href="<?php echo base_url('blog'); ?>" class="<?php echo nav_link_class('blog'); ?>"><?php echo e(t('nav.blog')); ?></a>
@@ -165,7 +132,7 @@ if (!button || !mobileNav) {
               <?php endforeach; ?>
             </select>
           </form>
-          <a href="<?php echo base_url('contact'); ?>" class="hidden sm:inline bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 transform hover:scale-105"><?php echo e(t('nav.contact_us')); ?></a>
+              <a href="<?php echo base_url('contact'); ?>" class="hidden sm:inline bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300 transform hover:scale-105"><?php echo e(t('nav.contact_us')); ?></a>
           <button id="mobile-menu-btn" type="button" aria-controls="mobile-nav" aria-expanded="false" class="md:hidden px-3 py-2 text-green-700 hover:text-red-600 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
@@ -173,7 +140,7 @@ if (!button || !mobileNav) {
       </div>
     </div>
     <div id="mobile-nav" class="md:hidden hidden flex-col bg-white border-t border-gray-200">
-      <a class="<?php echo nav_link_class('home', true); ?>" href="<?php echo base_url(''); ?>"><?php echo e(t('nav.home')); ?></a>
+      <a class="<?php echo nav_link_class('home', true); ?>" href="<?php echo base_url('home'); ?>"><?php echo e(t('nav.home')); ?></a>
       <a class="<?php echo nav_link_class('about', true); ?>" href="<?php echo base_url('about'); ?>"><?php echo e(t('nav.about')); ?></a>
       <a class="<?php echo nav_link_class('services', true); ?>" href="<?php echo base_url('services'); ?>"><?php echo e(t('nav.services')); ?></a>
       <a class="<?php echo nav_link_class('study_abroad', true); ?>" href="<?php echo base_url('study_abroad'); ?>">Study Abroad</a>
@@ -194,4 +161,18 @@ if (!button || !mobileNav) {
       </div>
     </div>
   </nav>
-
+ <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var btn = document.querySelector('#mobile-menu-btn');
+      var nav = document.querySelector('#mobile-nav');
+      if (btn && nav) {
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          nav.classList.toggle('hidden');
+        });
+      }
+      if (typeof initScrollReveal === 'function') {
+        initScrollReveal();
+      }
+    });
+  </script>

@@ -53,8 +53,7 @@ $topChineseUniversities = get_top_chinese_universities();
   }
   .program-card {
   position: relative;
-  width: 350px;
-  height: 500px;
+  height:500px;
   border-radius: 20px;
   overflow: hidden; /* Clips the green box to the rounded corners */
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);

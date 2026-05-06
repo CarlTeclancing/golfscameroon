@@ -362,7 +362,7 @@ function render_service_feature($feature) {
 
 function render_travel_program($program){
     ?>
-    <div class="">
+    <div class="w-full h-full">
       <img src="<?php echo asset_url($program['image']); ?>" alt="<?php echo e($program['title']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
 
        <div>
